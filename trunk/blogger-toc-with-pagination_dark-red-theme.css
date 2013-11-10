@@ -1,0 +1,167 @@
+/**
+ * Blogger Archive with Pagination - Dark Red Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px/14px Arial,Sans-Serif;
+  color:white;
+  text-align:left;
+  margin:0px auto;
+  background-color:#333;
+  border-top:1px solid #666;
+  -webkit-box-shadow:0px 1px 5px rgba(0,0,0,0.7);
+  -moz-box-shadow:0px 1px 5px rgba(0,0,0,0.7);
+  box-shadow:0px 1px 5px rgba(0,0,0,0.7);
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+#loadingscript {
+  font-weight:bold;
+  font-size:20px;
+  text-align:center;
+  padding:30px 0px;
+  height:1200px;
+  text-decoration:blink;
+}
+
+.itemposts {
+  margin:0px auto 0px;
+  height:auto;
+  overflow:hidden;
+  display:block;
+}
+
+.itemposts h6 {
+  margin:5px 5px 0px;
+  font:bold 12px/14px Arial,Sans-Serif;
+  text-transform:none;
+  color:white;
+  background-color:#981216;
+  background-image:-webkit-linear-gradient(#FD0303 0%, #B20207 50%, #981216 51%, #B20207 100%);
+  background-image:-moz-linear-gradient(#FD0303 0%, #B20207 50%, #981216 51%, #B20207 100%);
+  background-image:-ms-linear-gradient(#FD0303 0%, #B20207 50%, #981216 51%, #B20207 100%);
+  background-image:-o-linear-gradient(#FD0303 0%, #B20207 50%, #981216 51%, #B20207 100%);
+  background-image:linear-gradient(#FD0303 0%, #B20207 50%, #981216 51%, #B20207 100%);
+  padding:5px 10px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+
+.itemposts h6 a {
+  color:white;
+  text-decoration:none;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.4);
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:2px 10px 2px 0px;
+  padding:4px;
+  background-color:#ccc;
+  background-image:-webkit-linear-gradient(#ccc, #999, #666);
+  background-image:-moz-linear-gradient(#ccc, #999, #666);
+  background-image:-ms-linear-gradient(#ccc, #999, #666);
+  background-image:-o-linear-gradient(#ccc, #999, #666);
+  background-image:linear-gradient(#ccc, #999, #666);
+  border:1px solid white;
+  border-right-color:#666;
+  border-bottom-color:#666;
+  -webkit-box-shadow:0px 0px 3px 1px black;
+  -moz-box-shadow:0px 0px 3px 1px black;
+  box-shadow:0px 0px 3px 1px black;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+}
+
+.itemposts .iteminside {
+  margin:10px;
+}
+
+.itemposts .itemfoot {
+  clear:both;
+  padding:5px 10px;
+  margin:0px 0px 0px;
+  background-image:-webkit-linear-gradient(#333, #444, #333, #222);
+  background-image:-moz-linear-gradient(#333, #444, #333, #222);
+  background-image:-ms-linear-gradient(#333, #444, #333, #222);
+  background-image:-o-linear-gradient(#333, #444, #333, #222);
+  background-image:linear-gradient(#333, #444, #333, #222);
+  color:#999;
+  font-size:90%;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#FED100;
+  float:right;
+  text-decoration:none;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  color:#FED100;
+  text-decoration:underline;
+}
+
+#itempager {
+  background-color:#444;
+  background-image:-webkit-linear-gradient(#444, #333);
+  background-image:-moz-linear-gradient(#444, #333);
+  background-image:-ms-linear-gradient(#444, #333);
+  background-image:-o-linear-gradient(#444, #333);
+  background-image:linear-gradient(#444, #333);
+  padding:30px 0px;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.7);
+  -webkit-border-radius:0px 0px 10px 10px;
+  -moz-border-radius:0px 0px 10px 10px;
+  border-radius:0px 0px 10px 10px;
+}
+
+#pagination, #totalposts {
+  color:#999;
+  font:bold 10px Verdana,Arial,Sans-Serif;
+  padding:0px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+#pagination span, #pagination a {
+  color:white;
+  display:inline;
+  margin:0 1px;
+  padding:2px 5px;
+  text-indent:0px;
+  background-color:#FD0303;
+  background-image:-webkit-linear-gradient(#FD0303, #B20207);
+  background-image:-moz-linear-gradient(#FD0303, #B20207);
+  background-image:-ms-linear-gradient(#FD0303, #B20207);
+  background-image:-o-linear-gradient(#FD0303, #B20207);
+  background-image:linear-gradient(#FD0303, #B20207);
+  border:1px solid #981216;
+  text-decoration:none;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
+ 
+#pagination span.actual,
+#pagination a:hover {
+  background-color:#B20207;
+  background-image:-webkit-linear-gradient(#B20207, #FD0303);
+  background-image:-moz-linear-gradient(#B20207, #FD0303);
+  background-image:-ms-linear-gradient(#B20207, #FD0303);
+  background-image:-o-linear-gradient(#B20207, #FD0303);
+  background-image:linear-gradient(#B20207, #FD0303);
+}
+
+#pagination span.hidden {
+  display:none;
+}
