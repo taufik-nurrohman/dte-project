@@ -1,0 +1,140 @@
+/**
+ * Blogger Archive with Pagination - Yellow Green Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px/14px Arial,Sans-Serif;
+  color:black;
+  text-align:left;
+  margin:0px auto;
+  background-color:#F7DE8C;
+  border:2px solid white;
+  -webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow:0px 1px 4px rgba(0,0,0,0.4);
+  box-shadow:0px 1px 4px rgba(0,0,0,0.4);
+  overflow:hidden;
+}
+
+#loadingscript {
+  font-weight:bold;
+  font-size:20px;
+  text-align:center;
+  padding:30px 0px;
+  text-decoration:blink;
+}
+
+.itemposts {
+  margin:0px auto 0px;
+  height:auto;
+  overflow:hidden;
+  display:block;
+}
+
+.itemposts h6 {
+  margin:0px 0px 0px;
+  font:bold 12px/14px Arial,Sans-Serif;
+  text-transform:none;
+  color:white;
+  background-color:rgb(191,210,85);
+  background-image:-webkit-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-moz-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-ms-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-o-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  padding:5px 10px;
+}
+
+.itemposts h6 a {
+  color:white;
+  text-decoration:none;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.4);
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:0px 10px 5px 0px;
+  padding:3px;
+  background-color:#B2830A;
+  border:none;
+}
+
+.itemposts .iteminside {
+  margin:10px;
+}
+
+.itemposts .itemfoot {
+  clear:both;
+  padding:5px 10px;
+  margin:10px 0px 0px;
+  background-color:#F8BF25;
+  color:#7E5D08;
+  font-size:90%;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#405A08;
+  float:right;
+  text-decoration:none;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  text-decoration:underline;
+}
+
+#itempager {
+  background-color:#ccc;
+  background-image:-webkit-linear-gradient(#ccc, white);
+  background-image:-moz-linear-gradient(#ccc, white);
+  background-image:-ms-linear-gradient(#ccc, white);
+  background-image:-o-linear-gradient(#ccc, white);
+  background-image:linear-gradient(#ccc, white);
+  padding:30px 0px;
+}
+
+#pagination, #totalposts {
+  display:block;
+  color:#999;
+  font:bold 10px Verdana,Arial,Sans-Serif;
+  padding:0px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+#pagination span, #pagination a {
+  color:white;
+  display:inline;
+  margin:0 1px;
+  padding:5px 10px;
+  text-indent:0px;
+  background-color:rgb(191,210,85);
+  background-image:-webkit-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-moz-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-ms-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:-o-linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  background-image:linear-gradient(rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+  border:1px solid #5D8905;
+  text-decoration:none;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.4);
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+}
+ 
+#pagination span.actual,
+#pagination a:hover {
+  background-color:rgb(181,203,59);
+  background-image:-webkit-linear-gradient(rgba(181,203,59,1) 0%, rgba(127,165,37,1) 50%, rgba(101,152,0,1) 51%, rgba(140,180,40,1) 100%);
+  background-image:-moz-linear-gradient(rgba(181,203,59,1) 0%, rgba(127,165,37,1) 50%, rgba(101,152,0,1) 51%, rgba(140,180,40,1) 100%);
+  background-image:-ms-linear-gradient(rgba(181,203,59,1) 0%, rgba(127,165,37,1) 50%, rgba(101,152,0,1) 51%, rgba(140,180,40,1) 100%);
+  background-image:-o-linear-gradient(rgba(181,203,59,1) 0%, rgba(127,165,37,1) 50%, rgba(101,152,0,1) 51%, rgba(140,180,40,1) 100%);
+  background-image:linear-gradient(rgba(181,203,59,1) 0%, rgba(127,165,37,1) 50%, rgba(101,152,0,1) 51%, rgba(140,180,40,1) 100%);
+}
+
+#pagination span.hidden {
+  display:none;
+}
