@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>JavaScript Style Switcher</title>
+<style type="text/css">
+* {
+  margin:0 0;
+  padding:0 0;
+}
+
+html {
+  overflow-y:scroll;
+}
+
+body {
+  background-color:#ccc;
+  font:normal 12px Verdana,Arial,Sans-Serif;
+}
+
+#page-wrap {
+  width:80%;
+  margin:50px auto;
+  background-color:white;
+  -webkit-box-shadow:0 0 0 10px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 0 0 10px rgba(0,0,0,0.1);
+  box-shadow:0 0 0 10px rgba(0,0,0,0.1);
+  position:relative;
+}
+
+h2 {
+  font-size:18px;
+  margin:0 0 15px;
+}
+
+article,
+aside {
+  display:block;
+}
+
+article {
+  float:left;
+  display:inline;
+  width:56%;
+  padding:2% 2% 100px;
+}
+
+aside {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  width:36%;
+  padding:2%;
+  background-color:#eee;
+}
+
+.clear {
+  clear:both;
+}
+
+#styleSwitcher {
+  border:none;
+  margin:0 0;
+  padding:0 0;
+  width:98%;
+  text-align:left;
+  font:normal 11px Helvatica,Tahoma,Arial,Sans-Serif;
+  border-collapse:collapse;
+}
+
+#styleSwitcher th,
+#styleSwitcher td {
+  vertical-align:middle;
+  border:none !important;
+  padding:2px 10px;
+}
+
+#styleSwitcher th.title {
+  background-color:#ccc;
+  padding:5px 10px;
+  margin:0 0 10px;
+  text-transform:uppercase;
+  font-size:12px;
+  font-family:Arial,Sans-Serif;
+}
+
+#styleSwitcher select,
+#styleSwitcher input[type="text"] {
+  width:130px;
+  border:2px solid #bbb;
+  background-color:#333;
+  padding:2px;
+  font:bold 11px Tahoma,Verdana,Arial,Sans-Serif;
+  color:#999;
+  display:block;
+  margin:0 0 0;
+  height:24px;
+}
+
+#styleSwitcher select option {
+  color:white;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+#styleSwitcher button {
+  font:normal 11px Tahoma,Arial,Sans-Serif;
+  padding:3px 5px;
+  cursor:pointer;
+}
+
+#styleSwitcher #bgColorer {
+  overflow:hidden;
+  margin:10px 0 10px;
+}
+
+#styleSwitcher #bgColorer span {
+  display:block;
+  float:left;
+  width:20px;
+  height:20px;
+  border:1px solid black;
+  margin:0 5px 0 0;
+  cursor:pointer;
+}
+
+#styleSwitcher input[type="text"] {
+  width:118px !important;
+  padding:4px !important;
+  height:auto !important;
+}
+
+@media screen and (max-width:800px) {
+article,
+aside {
+  position:static;
+  clear:both;
+  float:none;
+  display:block;
+  width:auto;
+  padding:10%;
+}}
+</style>
+</head>
+<body>
+<div id="page-wrap">
+<article>
+<h2>Lorem Ipsum Style Switcher</h2>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum - <a href="http://www.dte.web.id/2012/05/style-switcher-blog-dengan-cookies.html">DTE :]</a></p>
+</article>
+<aside>
+
+<table border="0" id="styleSwitcher">
+	<tr><th class="title" colspan="2">Ganti Tampilan Sesuka Hati</th></tr>
+	<tr>
+		<td colspan="2">
+			<div id="bgColorer">
+				<span style="background-color:#523690;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#248bcb;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#fed100;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#c91212;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#3a9838;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#36404a;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+				<span style="background-color:#ffffff;" onclick="bgSwitch(this.style.backgroundColor);"></span>
+			</div>
+		</td>
+	</tr>
+	<tr><th>Tipe Font</th>
+		<td>
+			<select onchange="fontSwitch(this.value);">
+				<option selected="true">--</option>
+				<option value="'Book Antiqua',Serif">Book Antiqua</option>
+				<option value="'Times New Roman',Serif">Times New Roman</option>
+				<option value="Georgia,Serif">Georgia</option>
+				<option value="Arial,Sans-Serif">Arial</option>
+				<option value="Tahoma,Verdana,Arial,Sans-Serif">Tahoma</option>
+				<option value="'Trebuchet MS',Arial,Sans-Serif">Trebuchet</option>
+				<option value="Verdana,Arial,Sans-Serif">Verdana</option>
+				<option value="'Century Gothic',Tahoma,Verdana,Arial,Sans-Serif">Century Gothic</option>
+				<option value="'Comic Sans MS',Serif">Comic Sans</option>
+			</select>
+		</td>
+	</tr>
+	<tr><th>Warna Font</th>
+	<td><input type="text" id="fontColorer" value="#000000" onkeyup="fontColor(this.value);"/></td>
+	</tr>
+	<tr><th>Ukuran Huruf</th>
+		<td><input type="text" id="fontSizer" value="12" maxlength="3" onkeyup="changeFontSize(this.value);"/></td>
+	</tr>
+	<tr><th>Reset?</th>
+		<td><button onclick="resetStyle();">Reset Semua Tampilan</button></td>
+	</tr>
+</table>
+
+</aside>
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+// == Start Cookie
+function createCookie(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name, "", -1);
+}
+// == End Cookie
+
+// == Your personal function
+var expiredStyle = 7000,
+    dbs = document.body.style;
+
+// background switcher
+function bgSwitch(v) {
+    dbs.background = v;
+    createCookie('bgstyle', v, expiredStyle);
+}
+
+// font switcher
+function fontSwitch(v) {
+    dbs.fontFamily = v;
+    createCookie('fontstyle', v, expiredStyle);
+}
+
+// font sizer
+function changeFontSize(v) {
+    dbs.fontSize = v + 'px';
+    createCookie('fontsize', v, expiredStyle);
+}
+
+// color switcher
+function fontColor(v) {
+    dbs.color = v;
+    createCookie('fontcolor', v, expiredStyle);
+}
+
+// == If cookies are created... do something!
+if (readCookie('bgstyle')) {
+    dbs.background = readCookie('bgstyle');
+}
+if (readCookie('fontstyle')) {
+    dbs.fontFamily = readCookie('fontstyle');
+}
+if (readCookie('fontsize')) {
+    dbs.fontSize = readCookie('fontsize') + 'px';
+    document.getElementById('fontSizer').value = readCookie('fontsize');
+}
+if (readCookie('fontcolor')) {
+    dbs.color = readCookie('fontcolor');
+    document.getElementById('fontColorer').value = readCookie('fontcolor');
+}
+
+// == Reset button
+function resetStyle() {
+    eraseCookie('bgstyle');
+    eraseCookie('fontstyle');
+    eraseCookie('fontsize');
+    eraseCookie('fontcolor');
+    window.location.reload(1);
+}
+//]]>
+</script>
+</body>
+</html>
