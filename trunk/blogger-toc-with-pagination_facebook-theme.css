@@ -1,0 +1,130 @@
+/**
+ * Blogger Archive with Pagination - facebook Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px "Lucida Grande",Tahoma,Verdana,Arial,Sans-Serif;
+  line-height:1.28 !important;
+  color:rgb(51,51,51);
+  text-align:left;
+  text-shadow:none;
+  background-color:white;
+  overflow:hidden;
+  border:1px solid #C4CDE0;
+  -webkit-box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+  box-shadow:0px 1px 0px rgba(0,0,0,0.1);
+}
+
+#toc-outer a {border:none;color:#3B59BB;}
+
+#loadingscript {
+  padding:0px 0px;
+  height:37px;
+  text-indent:-9999px;
+  color:transparent;
+  background:white url('data:image/gif;base64,R0lGODlhEAALALMMAOXp8a2503CHtOrt9L3G2+Dl7vL0+J6sy4yew1Jvp/T2+e/y9v///wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCwAMACwAAAAAEAALAAAEK5DJSau91KxlpObepinKIi2kyaAlq7pnCq9p3NZ0aW/47H4dBjAEwhiPlAgAIfkECQsADAAsAAAAAAQACwAABA9QpCQRmhbflPnu4HdJVAQAIfkECQsADAAsAAAAABAACwAABDKQySlSEnOGc4JMCJJk0kEQxxeOpImqIsm4KQPG7VnfbEbDvcnPtpINebJNByiTVS6yCAAh+QQJCwAMACwAAAAAEAALAAAEPpDJSaVISVQWzglSgiAJUBSAdBDEEY5JMQyFyrqMSMq03b67WY2x+uVgvGERp4sJfUyYCQUFJjadj3WzuWQiACH5BAkLAAwALAAAAAAQAAsAAAQ9kMlJq73hnGDWMhJQFIB0EMSxKMoiFcNQmKjKugws0+navrEZ49S7AXfDmg+nExIPnU9oVEqmLpXMBouNAAAh+QQFCwAMACwAAAAAEAALAAAEM5DJSau91KxlpOYSUBTAoiiLZKJSMQzFmjJy+8bnXDMuvO89HIuWs8E+HQYyNAJgntBKBAAh+QQFFAAMACwMAAIABAAHAAAEDNCsJZWaFt+V+ZVUBAA7') no-repeat 50% 50%;
+}
+
+.itemposts {
+  margin:0px auto 1px;
+  padding:5px 5px 5px;
+  height:auto;
+  overflow:hidden;
+  display:block;
+  border-bottom:1px solid #D2D9E7;
+}
+
+.itemposts h6 {
+  margin:0px 0px 0px;
+  font:bold 11px/16px "lucida Grande",Tahoma,Verdana,Arial,Sans-Serif;
+  line-height:16px !important;
+  height:16px;
+  overflow:hidden;
+  color:white;
+  padding:5px 10px;
+  background-color:#3B5998;
+  border-bottom:1px solid #133783;
+  text-transform:none;
+}
+
+.itemposts h6 a {
+  color:white !important;
+  text-decoration:none;
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:2px 10px 2px 0px;
+  padding:0px 0px;
+  background-color:white;
+  border:none !important;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  outline:none;
+}
+
+.itemposts .iteminside {margin:10px 0px 0px;}
+
+.itemposts .itemfoot {
+  clear:both;
+  padding:5px 10px;
+  margin:10px 0px 0px;
+  background-color:#EDEFF4;
+  border-left:2px solid #A8B2CE;
+  color:#333;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#3B5998;
+  float:right;
+  text-decoration:none;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  text-decoration:underline;
+  border-color:transparent;
+}
+
+#itempager {
+  background-color:#3B5998;
+  padding:15px 0px;
+  border-bottom:1px solid #133783;
+  color:#D8DFEA;
+}
+
+#pagination, #totalposts {
+  text-align:center;
+}
+
+#pagination {
+  margin:0px 10px 10px;
+}
+
+#pagination span, #pagination a {
+  font-weight:bold;
+  color:white;
+  display:inline;
+  margin:0 1px;
+  padding:2px 5px;
+  text-indent:0px;
+  background-color:#1F4189;
+  text-decoration:none;
+  border:none;
+}
+
+#pagination a:hover,
+#pagination span.actual {
+  background-color:#D8DFEA;
+  color:#3B5998;
+}
+
+#pagination span.hidden {
+  display:none;
+}
