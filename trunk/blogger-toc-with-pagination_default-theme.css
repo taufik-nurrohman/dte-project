@@ -1,0 +1,142 @@
+/**
+ * Blogger Archive with Pagination - Default Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px/14px Arial,Sans-Serif;
+  color:#666;
+  text-align:left;
+  margin:0px auto;
+  padding:15px;
+  background-color:white;
+  -webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.6);
+  -moz-box-shadow:0px 1px 4px rgba(0,0,0,0.6);
+  box-shadow:0px 1px 4px rgba(0,0,0,0.6);
+}
+
+#loadingscript {
+  background:#F6EFBB url('data:image/gif;base64,R0lGODlhEAAQAPUAAP///wAAAO7u7lRUVAAAALa2tvb29tbW1uLi4mZmZggICL6+vk5OTtzc3BwcHCgoKOjo6GxsbCIiIkZGRpiYmH5+fsrKyoyMjKqqqvz8/NDQ0IaGhmBgYBYWFnJycsTExFpaWpKSkqSkpEBAQC4uLjQ0NJ6ennh4eA4ODjo6OrCwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAAGo0CA0IDJAAhIR0YgbDYmhAKggyQIDp/mwYGcADzIEGDT0QgRjyrgQHAYIMiRgAmhII0EDGBUFQ0SCAAGD0YNAiJIAwtHSBUQGQZNCEZNVQQSTZkWEQpIChEWQpQAApYEmRkLgQAZGRpQSAALA0kQTQlCBSQlBZahDEIECotvBgxIwL1ZVYBCBxIEGgadIAAcSB0NWhdjahoEI9qZttexABiRQkEAIfkECQoAAAAsAAAAABAAEAAABmBAgBAgGhGEhJFoyGQQnsjniCk0PY+Aq4eZQACs2OfWcCI+vVbkWEEoXtHCtfR6ZhrYV6p+z9fTCVtDYFdGYgAGQmiEIoZ3SIptACNyUWgMdnhRBF5UJ3lZTwl7bkhKTEEAIfkECQoAAAAsAAAAABAAEAAABp1AgBAAGRGOQoxhKNRoAI8jAaAhjA7DQwcEWBy5HOnSwDh+MuUPQEp4FqQowGFqOA6ez8XgeMogAAgoZwAbXEN+TA0GKg5SChEWTEMgbJUFkgAWCQpsHRhMAggZTEYboxdDBkYEAwsABU8QKQSjIwACbCIZGRVScgSoF0cjAgAZHUcTAB5HAgIOHU9CEBMEl8gECRkf0qkYo1IMEExBADsAAAAAAAAAAAA=') no-repeat 50% 46%;
+  padding:10px;
+  font:bold 20px Georgia,Serif;
+  color:black;
+  height:400px;
+  text-indent:-9999px;
+  -webkit-box-shadow:inset 0px 0px 0px 5px #EAE0AD;
+  -moz-box-shadow:inset 0px 0px 0px 5px #EAE0AD;
+  box-shadow:inset 0px 0px 0px 5px #EAE0AD;
+}
+
+.itemposts {
+  margin:0px auto 5px;
+  height:auto;
+  background-color:white;
+  overflow:hidden;
+  display:block;
+}
+
+.itemposts h6 {
+  margin:0px auto 2px;
+  font:bold 12px/14px Arial,Sans-Serif;
+  background-color:#9BB009;
+  background-image:-webkit-linear-gradient(#9BB009, #AABD30);
+  background-image:-moz-linear-gradient(#9BB009, #AABD30);
+  background-image:-ms-linear-gradient(#9BB009, #AABD30);
+  background-image:-o-linear-gradient(#9BB009, #AABD30);
+  background-image:linear-gradient(#9BB009, #AABD30);
+  padding:10px 15px;
+  text-transform:none;
+  color:white;
+}
+
+.itemposts h6 a {
+  color:white;
+  text-decoration:none;
+  text-shadow:0px 1px 0px rgba(0,0,0,0.3);
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:2px 10px 2px 0px;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  background-color:#fafafa;
+  border:1px solid #dcdcdc;
+  padding:4px;
+}
+
+.itemposts .iteminside {
+  padding:10px;
+  background-color:#f2f2f2;
+  background-image:-webkit-linear-gradient(#f2f2f2, white);
+  background-image:-moz-linear-gradient(#f2f2f2, white);
+  background-image:-ms-linear-gradient(#f2f2f2, white);
+  background-image:-o-linear-gradient(#f2f2f2, white);
+  background-image:linear-gradient(#f2f2f2, white);
+  border-top:1px solid #e5e5e5;
+  -webkit-box-shadow:inset 0px 1px 0px white;
+  -moz-box-shadow:inset 0px 1px 0px white;
+  box-shadow:inset 0px 1px 0px white;
+}
+
+.itemposts .itemfoot {
+  clear:both;
+  border:1px solid #EAE7DB;
+  padding:5px 10px;
+  margin:10px 0px 0px;
+  background-color:#FAFAE7;
+  color:#4B86C1;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#895F30;
+  float:right;
+  text-decoration:none;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  color:#9BB009;
+  text-decoration:underline;
+}
+
+#itempager {
+  background-color:#F2F0F1;
+  padding:30px 0px;
+  border-top:1px solid #E5E5E5;
+  -webkit-box-shadow:inset 0px 1px 0px white;
+  -moz-box-shadow:inset 0px 1px 0px white;
+  box-shadow:inset 0px 1px 0px white;
+}
+
+#pagination, #totalposts {
+  color:#999;
+  font:bold 10px Verdana,Arial,Sans-Serif;
+  padding:0px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+#pagination span, #pagination a {
+  border:1px solid #e5e5e5;
+  color:white;
+  display:inline;
+  margin:0 1px;
+  padding:2px 5px;
+  text-indent:0px;
+  background-color:#8899D0;
+  text-decoration:none;
+}
+ 
+#pagination span.actual,
+#pagination a:hover {
+  background-color:#7483BC;
+}
+
+#pagination span.hidden {
+  display:none;
+}
