@@ -1,0 +1,125 @@
+/**
+ * Blogger Archive with Pagination - Minima Brown Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px/12px Arial,Sans-Serif;
+  color:#999;
+  text-align:left;
+  text-shadow:none;
+  background:white url('data:image/png;base64,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') repeat 0 0;
+  border:2px solid #666;
+  overflow:hidden;
+  -webkit-box-shadow:0px 1px 7px rgba(0,0,0,0.7);
+  -moz-box-shadow:0px 1px 7px rgba(0,0,0,0.7);
+  box-shadow:0px 1px 7px rgba(0,0,0,0.7);
+  border-radius:10px;
+  margin:7px 7px;
+}
+
+#toc-outer a {border:none;color:#36341A;}
+
+#loadingscript {
+  padding:0px 0px;
+  font:bold 18px/200px Georgia,Serif;
+  text-decoration:blink;
+  text-align:center;
+  height:200px;
+}
+
+.itemposts, #itempager {
+  padding:0px 10px 7px;
+  color:#666;
+}
+
+.itemposts h6 {
+  margin:0px 0px 0px;
+  padding:0px 2px 0px;
+  font:bold 11px/28px Georgia,Serif;
+  line-height:28px !important;
+  height:28px;
+  overflow:hidden;
+  color:#766464;
+  text-transform:none;
+}
+
+.itemposts h6 a {
+  color:#766464 !important;
+  text-decoration:none;
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:2px 10px 2px 2px;
+  padding:0px 0px;
+  background:transparent;
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  border-radius:100%;
+  -webkit-box-shadow:0px 0px 0px 2px black;
+  -moz-box-shadow:0px 0px 0px 2px black;
+  box-shadow:0px 0px 0px 2px black;
+  padding:0px;
+  outline:none;
+}
+
+.itemposts .iteminside {
+  padding:10px 0px 10px;
+  border-top:1px solid #D6D6CB;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot {
+  clear:both;
+  padding:5px 10px;
+  color:#666;
+  overflow:hidden;
+  position:relative;
+  background-color:#D8D8CE;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#3B5998;
+  text-decoration:none;
+  position:absolute;
+  top:5px;
+  right:10px;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  text-decoration:underline;
+  border-color:transparent;
+}
+
+#itempager {
+  padding:20px 0px;
+}
+
+#pagination, #totalposts {
+  text-align:center;
+  color:#666;
+  margin:0px 15px 10px;
+}
+
+#pagination span, #pagination a {
+  display:inline;
+  text-indent:0px;
+  font-weight:bold;
+  text-decoration:none;
+  margin:0px 3px;
+  padding:3px 7px;
+  background-color:#D8D8CE;
+}
+
+#pagination a:hover,
+#pagination span.actual {
+  background-color:#BFBFB2;
+}
+
+#pagination span.hidden {
+  display:none;
+}
