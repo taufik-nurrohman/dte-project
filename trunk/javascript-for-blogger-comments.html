@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Add More Features in Blogger Comments</title>
+<style>
+* {
+  margin:0;
+  padding:0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {margin:10px 0 15px}
+
+body {
+  font:normal normal 13px/1.4 'Trebuchet MS',Trebuchet,Tahoma,Arial,Sans-Serif;
+  color:black;
+  background-color:#DEF0FF;
+  text-align:center;
+}
+
+button {
+  padding:10px;
+  font:normal bold 18px/normal Verdana,Tahoma,Arial,Sans-Serif;
+  cursor:pointer;
+}
+
+button::-moz-focus-inner {
+  margin:0;
+  padding:0;
+  border:none;
+  outline:none;
+}
+
+.section {
+  display:block;
+  margin:0 0 30px;
+}
+
+#comment-holder {
+  width:600px;
+  padding:30px;
+  background-color:white;
+  border:10px solid #BCD6ED;
+  box-shadow:inset 0 0 0 1px #5893C9;
+  margin:50px auto;
+  text-align:left;
+}
+
+img.emo {
+  display:inline-block;
+  vertical-align:middle;
+}
+
+#comment-holder .cm-youtube {
+  display:block;
+  border:none;
+  background-color:#333;
+  width:370px;
+  height:218px;
+  margin:0 auto 30px;
+}
+
+#comment-holder .cm-image {
+  display:block;
+  margin:0 auto 15px;
+  outline:none;
+  border:1px solid #ccc;
+  background-color:white;
+  -webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);
+  -moz-box-shadow:0 1px 3px rgba(0,0,0,.2);
+  box-shadow:0 1px 3px rgba(0,0,0,.2);
+  padding:5px;
+  max-width:96%;
+  height:auto;
+  width:auto\9;
+}
+
+#comment-holder code,
+#comment-holder i[rel="code"],
+#comment-holder pre,
+#comment-holder i[rel="pre"] {
+  font:normal normal 12px/normal Monaco,"Courier New",Courier,Monospace;
+  color:blue;
+}
+
+#comment-holder pre,
+#comment-holder i[rel="pre"] {
+  display:block;
+  background-color:#333;
+  color:white;
+  padding:.5em 1em;
+  word-wrap:normal;
+  white-space:pre;
+  overflow:auto;
+}
+
+#comment-holder blockquote,
+#comment-holder b[rel="quote"] {
+  margin:0 2%;
+  background-color:#eee;
+  padding:1em 1.2em;
+  border-left:4px solid #7498AD;
+  display:block;
+  font-weight:bold;
+  font-style:italic;
+}
+
+#comment-holder i[rel="image"],
+#comment-holder i[rel="youtube"] {
+  display:block;
+  overflow:hidden;
+  border:2px solid black;
+  position:relative;
+  width:170px;
+  height:100px;
+  margin:0 auto 30px;
+}
+
+#comment-holder i[rel="image"]:before,
+#comment-holder i[rel="youtube"]:before {
+  content:"Please enable your JavaScript to see this image!";
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  background-color:red;
+  color:white;
+  font-weight:bold;
+  text-align:center;
+  padding:15px 0;
+}
+
+#comment-holder i[rel="youtube"]:before {content:"Please enable your JavaScript to watch this video!"}
+</style>
+</head>
+<body>
+
+<div id="comment-holder">
+	<div class="section"><button onclick="this.disabled=true;repText('comment-holder');">TES!</button></div>
+
+	<div class="section"><h3>Dengan [youtube]</h3>[youtube]http://www.youtube.com/watch?v=-joKveiaabA[/youtube] Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+	<div class="section">[youtube]http://youtu.be/-joKveiaabA[/youtube] Lorem ipsum dolor sit amet, consectetuer :) adipiscing :( elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore :D magna aliquam \o/ erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci \m/ tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+	<div class="section">[youtube]http://www.youtube.com/embed/-joKveiaabA[/youtube] Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci @@, tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+<hr>
+	<div class="section"><h3>Dengan &lt;i rel="youtube"&gt;</h3><i rel="youtube">http://www.youtube.com/watch?v=-joKveiaabA&amp;feature=a-bcde</i> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+	<div class="section"><i rel="youtube">http://youtu.be/-joKveiaabA</i> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+	<div class="section"><i rel="youtube">http://www.youtube.com/embed/-joKveiaabA</i> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</div>
+
+	<div class="section"><h3>Dengan &lt;b rel="quote"&gt;</h3>
+	<b rel="quote">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat...</b></div>
+	<div class="section"><h3>Dengan [blockquote]</h3>
+	[blockquote]Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat[/blockquote]</div>
+<hr>
+	<div class="section"><h3>Dengan [img]</h3>
+	[img]http://1.bp.blogspot.com/-jrMCCmrYSY4/T6Aoe9Z2fBI/AAAAAAAACno/JBRwhDUDAV0/s1600/green-grass.jpg[/img]<br>
+	[img]http://1.bp.blogspot.com/-j8Juf_L4q5g/TmL_x6U54bI/AAAAAAAAAzE/HVf40rUrJQE/s320/319.jpg[/img]
+	</div>
+	<div class="section"><h3>Dengan &lt;i rel="image"&gt;</h3>
+	<i rel="image">http://2.bp.blogspot.com/_yGa4b5VGx6w/S_Sbmhqh14I/AAAAAAAAAFw/7Fs8bxAWdzk/s320/sky-flower.jpg</i>
+	<i rel="image">http://1.bp.blogspot.com/-P5SF0SFn_nA/T6AqorI8pnI/AAAAAAAACnw/MUUrR0W4e2M/s1600/grass-bg.jpg</i></div>
+<hr>
+	<div class="section"><h3>Emotikon</h3>
+	<strong> :) :( =( :s ^_^ :D =D ^:D @@, ;) :-bd :-d :&#39;( :'( T_T :&#92; :\ :p B) :Q :Ozz 7:( &#92;o/ \o/ &#92;m/ \m/ &lt;3 0:) ^o^ :-a 7:O *fck* xV x@ X@ ~x( &#39;&#39;J :W</strong>
+	</div>
+<hr>
+	<div class="section"><h3>Dengan &lt;i rel="pre"&gt;</h3><i rel="pre">$(function() {<br>    alert("Something!");<br>});</i>
+<br><h3>Dengan [pre]</h3>
+[pre]$(function() {<br>    alert("Something!");<br>});[/pre]
+<br><br><h3>&lt;i rel="code"&gt; dan [code]</h3>
+Lorem ipsum dolor sit amet, <i rel="code">&lt;nav&gt;</i> consectetuer [code]&lt;section&gt;[/code] adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat...
+	</div>
+
+	<div class="section"><h2>Tingkat Lanjut</h2>
+	<h3>Contoh-Contoh Kesalahan Penulisan dalam Berkomentar</h3>
+	[youtube]http://www.youtube.com/watch?v=cL_G31YDIZY&amp;feature=g-logo[youtube]<br>
+	[youtube]http://youtu.be/cL_G31YDIZY[youtube]<br>
+	[youtube]http://www.youtube.com/embed/-joKveiaabA[youtube]<br>
+	Emotikon tanpa spasi:):-d
+	</div>
+<hr><br>
+	<footer style="text-align:right;">Demo oleh <a href="http://www.dte.web.id">Taufik Nurrohman</a></footer>
+</div>
+
+<script>
+//<![CDATA[
+// Add More Features to the Blogger Comments
+// Fix some bugs that I got from some similar code out here :)
+// Date: 21 May 2012
+// Time: 22:50 WIB
+// Author: Taufik Nurrohman
+// URL: https://plus.google.com/108949996304093815163/about
+function repText(id) {
+    var a = (document.getElementById(id)) ? document.getElementById(id) : "",
+        b = (a !== "") ? a.innerHTML : a,
+        c = "http://dte-project.googlecode.com/svn/trunk/emoticon/";
+        // Images
+        b = b.replace(/<i rel="image">(.*?)<\/i>/ig, "<img class='cm-image' src='$1' alt='loading...' \/>");
+        b = b.replace(/\[img\](.*?)\[\/img\]/ig, "<img class='cm-image' src='$1' alt='loading...' \/>");
+        // YouTube video
+        b = b.replace(/<i rel="youtube">http:\/\/www\.youtube\.com\/embed\/(.*?)<\/i>/ig, "<iframe class='cm-youtube' src='http://www.youtube.com/embed/$1'><\/iframe>");
+        b = b.replace(/<i rel="youtube">(http:\/\/youtu\.be\/|http:\/\/www\.youtube\.com\/watch\?v\=)(.*?)<\/i>/ig, "<iframe class='cm-youtube' src='http://www.youtube.com/embed/$2'><\/iframe>");
+        b = b.replace(/\[youtube\]http:\/\/www\.youtube\.com\/embed\/(.*?)\[\/youtube\]/ig, "<iframe class='cm-youtube' src='http://www.youtube.com/embed/$1'><\/iframe>");
+        b = b.replace(/\[youtube\](http:\/\/youtu\.be\/|http:\/\/www\.youtube\.com\/watch\?v\=)(.*?)\[\/youtube\]/ig, "<iframe class='cm-youtube' src='http://www.youtube.com/embed/$2'><\/iframe>");
+        // Code & text block
+        b = b.replace(/<i rel="code">(.*?)<\/i>/ig, "<code>$1<\/code>");
+        b = b.replace(/<i rel="pre">(.*?)<\/i>/ig, "<pre>$1<\/pre>");
+        b = b.replace(/<b rel="quote">(.*?)<\/b>/ig, "<blockquote>$1<\/blockquote>");
+        b = b.replace(/\[code\](.*?)\[\/code\]/ig, "<code>$1<\/code>");
+        b = b.replace(/\[pre\](.*?)\[\/pre\]/ig, "<pre>$1<\/pre>");
+        b = b.replace(/\[blockquote\](.*?)\[\/blockquote\]/ig, "<blockquote>$1<\/blockquote>");
+        // Finishing YouTube and Reduce filesize from images that uploaded by Blogger
+        b = b.replace(/&amp;feature=[0-9a-zA-Z-_]*/ig, "");
+        b = b.replace(/\/s(640|1600)/g, "/s400");
+        // Emoticons
+        b = b.replace(/\s:\)+/g, " <img class='emo' alt='emo' src='" + c + "01.gif'\/>");
+        b = b.replace(/\s;\)+/g, " <img class='emo' alt='emo' src='" + c + "02.gif'\/>");
+        b = b.replace(/\s:\(/g, " <img class='emo' alt='emo' src='" + c + "03.gif'\/>");
+        b = b.replace(/\s=\(/g, " <img class='emo' alt='emo' src='" + c + "04.gif'\/>");
+        b = b.replace(/\s@@,/g, " <img class='emo' alt='emo' src='" + c + "05.gif'\/>");
+        b = b.replace(/\s:s/ig, " <img class='emo' alt='emo' src='" + c + "07.gif'\/>");
+        b = b.replace(/\s:(\\|\/)/g, " <img class='emo' alt='emo' src='" + c + "08.gif'\/>");
+        b = b.replace(/\s:D/g, " <img class='emo' alt='emo' src='" + c + "09.gif'\/>");
+        b = b.replace(/\s=D/g, " <img class='emo' alt='emo' src='" + c + "10.gif'\/>");
+        b = b.replace(/\s\^:D/g, " <img class='emo' alt='emo' src='" + c + "11.gif'\/>");
+        b = b.replace(/\s\^(\_|)\^/g, " <img class='emo' alt='emo' src='" + c + "12.gif'\/>");
+        b = b.replace(/\s:'\(/g, " <img class='emo' alt='emo' src='" + c + "13.gif'\/>");
+        b = b.replace(/\sT_T/ig, " <img class='emo' alt='emo' src='" + c + "15.gif'\/>");
+        b = b.replace(/\sB\)/g, " <img class='emo' alt='emo' src='" + c + "16.gif'\/>");
+        b = b.replace(/\s:Q/ig, " <img class='emo' alt='emo' src='" + c + "17.gif'\/>");
+        b = b.replace(/\s7:\(/g, " <img class='emo' alt='emo' src='" + c + "19.gif'\/>");
+        b = b.replace(/\s:p/ig, " <img class='emo' alt='emo' src='" + c + "20.gif'\/>");
+        b = b.replace(/\s:Oz+/ig, " <img class='emo' alt='emo' src='" + c + "21.gif'\/>");
+        b = b.replace(/\s7:O/ig, " <img class='emo' alt='emo' src='" + c + "22.gif'\/>");
+        b = b.replace(/\s\\o\//ig, " <img class='emo' alt='emo' src='" + c + "23.gif'\/>");
+        b = b.replace(/\s\\m\//ig, " <img class='emo' alt='emo' src='" + c + "24.gif'\/>");
+        b = b.replace(/\s(&lt;3|:\*)/ig, " <img class='emo' alt='emo' src='" + c + "25.gif'\/>");
+        b = b.replace(/\s0:\)+/ig, " <img class='emo' alt='emo' src='" + c + "26.gif'\/>");
+        b = b.replace(/\s\^o\^/ig, " <img class='emo' alt='emo' src='" + c + "27.gif'\/>");
+        b = b.replace(/\s:-a/ig, " <img class='emo' alt='emo' src='" + c + "28.gif'\/>");
+        b = b.replace(/\s\*fck\*/ig, " <img class='emo' alt='emo' src='" + c + "29.gif'\/>");
+        b = b.replace(/\sxV/ig, " <img class='emo' alt='emo' src='" + c + "30.gif'\/>");
+        b = b.replace(/\sx\@/g, " <img class='emo' alt='emo' src='" + c + "31.gif'\/>");
+        b = b.replace(/\s\X\@/g, " <img class='emo' alt='emo' src='" + c + "32.gif'\/>");
+        b = b.replace(/\s:-d/ig, " <img class='emo' alt='emo' src='" + c + "33.gif'\/>");
+        b = b.replace(/\s:-bd/ig, " <img class='emo' alt='emo' src='" + c + "34.gif'\/>");
+        b = b.replace(/\s\~x\(+/ig, " <img class='emo' alt='emo' src='" + c + "35.gif'\/>");
+        b = b.replace(/\s:W/g, " <img class='emo' alt='emo' src='" + c + "37.gif'\/>");
+        b = b.replace(/\s\'\'J/ig, " <img class='emo' alt='emo' src='" + c + "47.gif'\/>");
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = b;
+    }
+} //repText('comment-holder');
+//]]>
+</script>
+</body>
+</html>
