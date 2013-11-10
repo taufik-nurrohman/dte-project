@@ -1,0 +1,149 @@
+/**
+ * Blogger Archive with Pagination - Construction Theme
+ * Visit: http://www.dte.web.id
+ */
+
+#toc-outer {
+  font:normal 11px/14px Arial,Sans-Serif;
+  color:black;
+  text-align:left;
+  margin:0px auto;
+}
+
+#loadingscript {
+  font-weight:bold;
+  font-size:20px;
+  text-align:center;
+}
+
+#loadingscript, .itemposts {
+  margin:0px 0px 2px;
+  height:auto;
+  overflow:hidden;
+  display:block;
+  background-color:#FDC20E;
+  border:1px solid #FC9B05;
+  padding:10px;
+}
+
+.itemposts h6 {
+  margin:0px 0px 10px;
+  font:normal 14px/16px Impact,Arial,Sans-Serif;
+  text-transform:uppercase;
+  color:black;
+  padding:0px 10px;
+  height:24px;
+  line-height:24px;
+  background-color:#FC9B05;
+  position:relative;
+  overflow:hidden;
+}
+
+.itemposts h6 a {
+  color:black;
+  text-decoration:none;
+}
+
+.itemposts h6:after {
+  content:"";
+  width:0px;
+  height:0px;
+  border:12px solid transparent;
+  border-top-color:black;
+  border-right-color:black;
+  position:absolute;
+  top:0px;
+  right:0px;
+}
+
+.itemposts img {
+  float:left;
+  height:72px;
+  width:72px;
+  margin:0px 10px 5px 0px;
+  padding:0px;
+  background-color:white;
+  border:none;
+  -webkit-border-radius:44px;
+  -moz-border-radius:44px;
+  border-radius:44px;
+  -webkit-box-shadow:0px 0px 0px 4px #E52117;
+  -moz-box-shadow:0px 0px 0px 4px #E52117;
+  box-shadow:0px 0px 0px 4px #E52117;
+}
+
+.itemposts .iteminside {}
+
+.itemposts .itemfoot {
+  clear:both;
+  padding:5px 10px 5px 20px;
+  margin:10px 0px 0px;
+  background-color:#222;
+  color:white;
+  font-style:italic;
+  position:relative;
+  overflow:hidden;
+}
+
+.itemposts .itemfoot:after {
+  content:"";
+  width:0px;
+  height:0px;
+  border:10px solid transparent;
+  border-left-color:#E52117;
+  border-top-color:#E52117;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+
+.itemposts .itemfoot a.itemrmore {
+  font-weight:bold;
+  color:#4B9540;
+  float:right;
+  text-decoration:none;
+}
+
+.itemposts .itemfoot a.itemrmore:hover {
+  text-decoration:underline;
+}
+
+#itempager {
+  padding:30px 0px;
+  background-color:black;
+  background-image:-webkit-repeating-linear-gradient(-45deg, #FDC20E 15px, #FDC20E 15px, #FDC20E 30px, black 30px, black 45px);
+  background-image:-moz-repeating-linear-gradient(-45deg, #FDC20E 15px, #FDC20E 15px, #FDC20E 30px, black 30px, black 45px);
+  background-image:-ms-repeating-linear-gradient(-45deg, #FDC20E 15px, #FDC20E 15px, #FDC20E 30px, black 30px, black 45px);
+  background-image:-o-repeating-linear-gradient(-45deg, #FDC20E 15px, #FDC20E 15px, #FDC20E 30px, black 30px, black 45px);
+  background-image:repeating-linear-gradient(-45deg, #FDC20E 15px, #FDC20E 15px, #FDC20E 30px, black 30px, black 45px);
+  border:4px solid #ccc;
+}
+
+#pagination, #totalposts {
+  display:block;
+  color:white;
+  text-shadow:0px 1px 0px black;
+  font:bold 10px Verdana,Arial,Sans-Serif;
+  padding:0px;
+  text-align:center;
+  background-color:#FDC20E;
+  padding:10px 15px;
+}
+
+#pagination {border-top:4px solid black;}
+#totalposts {border-bottom:4px solid black;border-top:1px solid #FC9B05;}
+
+#pagination span, #pagination a {
+  color:white;
+  display:inline;
+  margin:0 1px;
+  padding:3px 5px;
+  text-indent:0px;
+  background-color:#316F27;
+  text-decoration:none;
+  text-shadow:none;
+}
+ 
+#pagination a:hover     {background-color:#666;}
+#pagination span.actual {background-color:black;}
+#pagination span.hidden {display:none;}
