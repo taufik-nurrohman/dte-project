@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<meta charset="utf-8">
+<title>Ajax Recent Post by Container Scroll</title>
+<style type="text/css">
+* {margin:0;padding:0}
+body {background-color:#eee}
+#result-container {
+  height:400px;
+  width:400px;
+  overflow:auto;
+  margin:50px auto;
+  font:normal normal 12px 'Trebuchet MS',Trebuchet,Geneva,Arial,Sans-Serif;
+}
+#result-container ol {
+  margin:0 0;
+  padding:0 0;
+  background-color:#B5D68C;
+}
+#result-container li {
+  margin:0 0;
+  padding:0 0;
+  list-style:none;
+}
+#result-container li:nth-child(even) {background-color:#A2C179}
+#result-container li a {
+  display:block;
+  padding:5px 10px;
+  font-weight:bold;
+  color:#396B18;
+  text-decoration:none;
+}
+#result-container li a:hover {
+  background-color:#396B18;
+  color:white;
+  text-decoration:none;
+}
+#result-container .loading {
+  display:block;
+  height:26px;
+  font:normal bold 11px/26px Arial,Sans-Serif;
+  color:white;
+  text-align:center;
+  background-color:#B75A6F;
+  border-top:2px solid #222;
+}
+#result-container .loading.the-end {background-color:#666}
+</style>
+</head>
+<body>
+
+
+
+<div id="result-container">
+	<ol></ol>
+	<span class="loading">Memuat...</span>
+</div>
+
+<script type="text/javascript">
+
+var widget_config = {
+	home_page: 'http://dte-feed.blogspot.com', // Your blog homepage
+	container_id: 'result-container', // ID of the result container
+	script_id: 'load-on-scroll-end-script', // ID of the asynchronous script
+	max_result: 25, // Max result post at once script loading
+	end_text: 'Habis' // End text if all posts has been loaded
+};
+
+var elem = document.getElementById(widget_config.container_id),
+	inner = elem.getElementsByTagName('ol')[0],
+	loading = elem.getElementsByTagName('span')[0],
+	start = 0, // Dynamic start-index
+	max = widget_config.max_result;
+
+function grabList(json) {
+	var list = json.feed.entry, link, skeleton = "";
+	if (list !== undefined) {
+		for (var i = 0; i < list.length; i++) {
+			for (var j = 0; j < list[i].link.length; j++) {
+				if (list[i].link[j].rel == "alternate") {
+					link = list[i].link[j].href;
+				}
+			}
+			skeleton += '<li><a href="' + link + '">' + list[i].title.$t + '</a></li>';
+		}
+		inner.innerHTML += skeleton; // Insert the list to the container
+		loading.style.display = "none"; // Hide the loading indicator
+	} else {
+		// If the JSON is empty (list == undefined),
+		// add a new class to the loading indicator called `the-end`
+		loading.className += ' the-end';
+		// Replae the loading indicator text into `fully loaded!` for the example
+		loading.textContent = widget_config.end_text;
+	}
+}
+
+// Make an indirect script loader with two parameters: start-index and max-result post
+function updateScript(a, b) {
+	var head = document.getElementsByTagName('head')[0],
+		script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.id = widget_config.script_id;
+		script.src = widget_config.home_page + '/feeds/posts/summary?alt=json-in-script&start-index=' + a + '&max-results=' + b + '&callback=grabList';
+	// If there is an old script in the document...
+	if (document.getElementById(widget_config.script_id)) {
+		var oldScript = document.getElementById(widget_config.script_id);
+		// Remove the old script, and replace with the new one that has an updated start-index value
+		oldScript.parentNode.removeChild(oldScript);
+	}
+	head.appendChild(script);
+}
+
+// Start loading the callback script with start-index of 1
+updateScript(1, max);
+
+// When the container is being scrolled...
+elem.onscroll = function() {
+	// ... check the scroll distance
+	if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
+		// If the distance equal to the height of the inner container...
+		start++; // Increase the start value by one
+		// then load the new script with an updated start-index
+		updateScript(start*max, max);
+		// and show the loading indicator
+		loading.style.display = "block";
+	}
+};
+
+</script>
+
+
+<a style="display:block;position:absolute;top:15px;right:18px;color:brown;text-decoration:none;font:normal bold 11px Arial,Sans-Serif;" href="https://plus.google.com/108949996304093815163/about">DTE :]</a>
+
+</body>
+</html>
