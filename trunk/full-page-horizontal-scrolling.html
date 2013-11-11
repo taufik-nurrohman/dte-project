@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Horizontal Scrolling</title>
+<style type="text/css">
+
+* {
+  margin:0;
+  padding:0;
+}
+
+html,
+body {
+  height:100%;
+  min-height:100%;
+}
+
+#page-wrap {
+  width:500%; /* 100% x length of panel */
+  height:100%;
+  overflow:hidden;
+}
+
+.panel {
+  width:20%; /* 100% / length of panel */
+  float:left;
+  height:100%;
+}
+
+.panel .inner {padding:2em}
+
+
+/* Details (Ignore this!) */
+body {
+  font:italic normal 13px/1.4 Georgia,Serif;
+  color:#666;
+}
+
+h2 {
+  font-weight:bold;
+  font-size:200%;
+  margin:0 0 1em;
+}
+
+p {margin:1.5em 0}
+
+#panel-1 {
+  background-color:black;
+  color:white;
+}
+
+#panel-2 {
+  background-color:magenta;
+  color:yellow;
+}
+
+#panel-3 {
+  background-color:darkblue;
+  color:lightgreen;
+}
+
+#panel-4 {
+  background-color:pink;
+  color:brown;
+}
+
+#panel-5 {
+  background-color:darkred;
+  color:cyan;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<div id="page-wrap">
+	<div class="panel" id="panel-1">
+		<div class="inner"><h2>Eodem Modo Typi</h2><div style="-webkit-column-count:4;-moz-column-count:4;column-count:4;-webkit-column-gap:1em;-moz-column-gap:1em;column-gap:1em;text-align:right;"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p><p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p></div><p style="font-size:500%;font-style:normal;text-align:right;">&rArr;</p></div>
+	</div>
+	<div class="panel" id="panel-2">
+		<div class="inner"><h2>Facilisis At Vero Eros</h2><div style="-webkit-column-count:2;-moz-column-count:2;column-count:2;-webkit-column-gap:2em;-moz-column-gap:2em;column-gap:2em;"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p><p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p></div></div>
+	</div>
+	<div class="panel" id="panel-3">
+		<div class="inner"><img src="http://lorempixel.com/400/400/food/" alt="Image" width="400" height="400" style="float:right;margin:0 0 0 3em;"><h2>Euismod Tincidunt</h2><div><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p></div></div>
+	</div>
+	<div class="panel" id="panel-4">
+		<div class="inner"><h2>Claritas est Etiam Processus Dynamicus</h2><img src="http://lorempixel.com/200/200/food/" alt="Image" width="200" height="200" style="float:right;margin:0 0 0 3em;"><div style="-webkit-column-count:2;-moz-column-count:2;column-count:2;-webkit-column-gap:2em;-moz-column-gap:2em;column-gap:2em;"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p><p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p></div></div>
+	</div>
+	<div class="panel" id="panel-5">
+		<div class="inner"><img src="http://lorempixel.com/400/400/food/" alt="Image" width="400" height="400" style="float:left;margin:0 3em 0 0;"><h2>Vulputate Velit Esse Molestie</h2><div style="-webkit-column-count:4;-moz-column-count:4;column-count:4;-webkit-column-gap:1em;-moz-column-gap:1em;column-gap:1em;"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p><p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p><p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p></div></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+// http://www.dte.web.id/2013/02/event-mouse-wheel.html
+
+(function() {
+	function scrollHorizontally(e) {
+		e = window.event || e;
+		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+		document.documentElement.scrollLeft -= (delta*40); // Multiplied by 40
+		document.body.scrollLeft -= (delta*40); // Multiplied by 40
+		e.preventDefault();
+	}
+	if (window.addEventListener) {
+		// IE9, Chrome, Safari, Opera
+		window.addEventListener("mousewheel", scrollHorizontally, false);
+		// Firefox
+		window.addEventListener("DOMMouseScroll", scrollHorizontally, false);
+	} else {
+		// IE 6/7/8
+		window.attachEvent("onmousewheel", scrollHorizontally);
+	}
+})();
+
+</script>
+
+
+
+</body>
+</html>
