@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html dir='ltr'>
+<head>
+<meta charset="utf-8">
+<title>Ajax Recent Post by Container Scroll</title>
+<style type="text/css">
+* {margin:0;padding:0}
+body {background-color:white}
+#result-container {
+  height:400px;
+  width:400px;
+  overflow:auto;
+  margin:50px auto;
+}
+#result-container ol {
+  margin:0 0;
+  padding:0 0;
+}
+#result-container li {
+  margin:0 0;
+  padding:0 0;
+  list-style:none;
+}
+#result-container .loading {color:red}
+#result-container .loading.the-end {color:black}
+</style>
+</head>
+<body>
+
+
+
+<div id="result-container">
+	<ol></ol>
+	<span class="loading">Memuat...</span>
+</div>
+
+<script type="text/javascript">
+
+var elem = document.getElementById('result-container'),
+	inner = elem.getElementsByTagName('ol')[0],
+	loading = elem.getElementsByTagName('span')[0],
+	start = 0,
+	max_result = 25;
+
+function grabList(json) {
+	var list = json.feed.entry, link, skeleton = "";
+	if (list !== undefined) {
+		for (var i = 0; i < list.length; i++) {
+			for (var j = 0; j < list[i].link.length; j++) {
+				if (list[i].link[j].rel == "alternate") {
+					link = list[i].link[j].href;
+				}
+			}
+			skeleton += '<li><a href="' + link + '">' + list[i].title.$t + '</a></li>';
+		}
+		inner.innerHTML += skeleton;
+		loading.style.display = "none";
+	} else {
+		loading.className += ' the-end';
+		loading.textContent = 'Habis';
+	}
+}
+
+function updateScript(i, max) {
+	var head = document.getElementsByTagName('head')[0],
+		script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.id = 'load-on-scroll-end';
+		script.src = 'http://dte-feed/feeds/posts/summary?alt=json-in-script&start-index=' + i + '&max-results=' + max + '&callback=grabList';
+	if (document.getElementById('load-on-scroll-end')) {
+		var oldScript = document.getElementById('load-on-scroll-end');
+		oldScript.parentNode.removeChild(oldScript);
+	}
+	head.appendChild(script);
+}
+
+updateScript(1, max_result);
+
+elem.onscroll = function() {
+	if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
+		start++;
+		updateScript(start*max_result, max_result);
+		loading.style.display = "block";
+	}
+};
+
+</script>
+
+
+<a style="display:block;position:absolute;top:15px;right:18px;color:brown;text-decoration:none;font:normal bold 11px Arial,Sans-Serif;" href="https://plus.google.com/108949996304093815163/about">DTE :]</a>
+
+</body>
+</html>
