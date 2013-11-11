@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mobile Navigation Concept with Media Queries</title>
+<style type="text/css">
+* {
+  margin:0;
+  padding:0;
+}
+
+h1 {
+  font:normal bold 30px Arial,Sans-Serif;
+  color:black;
+  margin:30px 30px 0;
+}
+
+/* horizontal navigation: define the navigation font and basic background */
+nav {
+  background-color:black;
+  font:normal bold 11px Arial,Sans-Serif;
+  color:gray;
+  height:30px;
+}
+
+/* lists: remove the nested list margin, padding & bullets */
+nav ul,
+nav li {
+  margin:0 0;
+  padding:0 0;
+  list-style:none;
+}
+
+/* navigation height */
+nav ul {height:30px}
+
+/* inline layout menu */
+nav li {
+  float:left;
+  display:inline;
+}
+
+/* the anchor */
+nav a {
+  display:block;
+  line-height:30px;
+  padding:0 14px;
+  text-decoration:none;
+  color:white;
+}
+
+/* hover state menu */
+nav a:hover {background-color:#39f}
+
+/* checkbox element: for mobile navigation button */
+nav input {
+  display:none;
+  margin:0 0;
+  padding:0 0;
+  width:30px;
+  height:30px;
+  opacity:0;
+  cursor:pointer;
+}
+
+/* for visual purpose */
+nav label {
+  display:none;
+  font-size:200%;
+  width:30px;
+  height:30px;
+  /* center vertically and horizontally */
+  line-height:30px;
+  text-align:center;
+}
+
+
+/* MOBILE NAVIGATION */
+
+@media (max-width:767px) {
+
+  nav {
+    /* we want to absolute positioning the menu, checkbox and label element to its parent, so this is needed */
+    position:relative;
+  }
+
+  nav ul {
+    background-color:#200;
+    position:absolute;
+    top:100%;
+    right:0;
+    left:0;
+    height:auto;
+    display:none; /* hide the menu */
+  }
+
+  /* set the menu as a block list item */
+  nav li {
+    display:block;
+    float:none;
+    width:auto;
+  }
+
+  /* now show the checkbox and label element in mobile device */
+  nav input,
+  nav label {
+    position:absolute;
+    top:0;
+    right:0;
+    display:block; /* show the menu icon */
+  }
+  
+  nav input {z-index:4} /* always place the checkbox above the label element */
+
+  /* highlight the label element and show the menu if the checkbox is checked */
+  nav input:checked + label {color:white}
+  nav input:checked ~ ul {display:block}
+
+}
+</style>
+</head>
+<body>
+
+<!-- required markup: <nav>, <ul>, <li>, <input type=checkbox>, <label>, <a> -->
+<nav>
+	<input type="checkbox">
+	<label>&equiv;</label>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Archive</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+</nav>
+
+<h1>Resize the window...</h1>
+<script>window.onresize = function() {
+    document.getElementsByTagName('h1')[0].style.display = "none";
+};</script>
+
+</body>
+</html>
