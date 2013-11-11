@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta content="jquery, draggable, plugin, event, mouse" name="keywords">
+<meta content="Draggable without JQuery UI" name="description">
+<title>Demo Simple JQuery Draggable</title>
+<style type="text/css">
+
+html {overflow-y:scroll}
+
+body {
+  background-color:#eee;
+  font:normal normal 16px Times,Serif;
+  color:black;
+  padding:20px 50px 50px;
+}
+
+a {color:blue}
+
+#wrap-left div {
+  background-color:black;
+  margin:2px;
+  float:left;
+  border:1px solid white;
+  color:white;
+  padding:5px 10px;
+  width:100px;
+  height:100px;
+}
+
+#wrap-left div strong {
+  display:block;
+  background-color:darkmagenta;
+  color:white !important;
+  padding:5px 10px;
+  margin:0 -5px 5px;
+  overflow:hidden;
+}
+
+#wrap-left div strong a {
+  color:violet;
+  text-decoration:none;
+  font-weight:bold;
+  float:right;
+}
+
+#wrap-left .draggable {
+  background-color:yellow;
+  border-color:black;
+  color:black;
+  z-index:9999; /* move the z-index to the CSS */
+}
+
+pre {
+  clear:both;
+  margin:0 0;
+  overflow:auto;
+  white-space:pre;
+  word-wrap:normal;
+  background-color:white;
+  border:1px dashed #aaa;
+  padding:1em 1.5em;
+  font:bold 11px/14px "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+}
+
+#wrap-left {
+  float:left;
+  width:45%;
+}
+
+#wrap-right {
+  float:right;
+  width:55%;
+}
+
+@media screen and (max-width:800px) {
+	#wrap-left,
+	#wrap-right {
+	  float:none;
+	  width:auto;
+	  margin:0 0 30px;
+	}
+}
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="draggable.js"></script>
+<script type="text/javascript">
+$(function() {
+
+	$('#wrap-left div').filter(':not(.with-handle)').drags();
+	$('#wrap-left .with-handle').drags({handle:"strong"});
+
+});
+</script>
+</head>
+<body>
+<h1><a href="http://www.dte.web.id/2012/06/draggable-without-jquery-ui.html">JQuery Draggable Demo</a></h1>
+<div id="wrap-left">
+	<div class="with-handle" style="width:226px;"><strong>I'm a dragging handle<a href="#" onclick="this.parentNode.parentNode.style.visibility='hidden';return false;">&#215;</a></strong>Define the <code>handle</code> option to make a simple draggable dialog box (limited for direct children).</div>
+	<div><a href="draggable.js" target="_blank">Download Source</a></div>
+	<div><a href="draggable.min.js" target="_blank">Download Minified</a></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<span style="display:block;clear:both;"></span>
+</div>
+<div id="wrap-right">
+<pre><span style="color:#666;font-weight:normal;">// Simple JQuery Draggable Plugin</span>
+<span style="color:#666;font-weight:normal;">// https://plus.google.com/108949996304093815163/about</span>
+<span style="color:#666;font-weight:normal;">// Usage: $(selector).drags();</span>
+<span style="color:#666;font-weight:normal;">// Options:</span>
+<span style="color:#666;font-weight:normal;">// handle            =&gt; your dragging handle.</span>
+<span style="color:#666;font-weight:normal;">//                      If not defined, then the whole body of the</span>
+<span style="color:#666;font-weight:normal;">//                      selected element will be draggable</span>
+<span style="color:#666;font-weight:normal;">// cursor            =&gt; define your draggable element cursor type</span>
+<span style="color:#666;font-weight:normal;">// draggableClass    =&gt; define the draggable class</span>
+<span style="color:#666;font-weight:normal;">// activeHandleClass =&gt; define the active handle class</span>
+<span style="color:#666;font-weight:normal;">//</span>
+<span style="color:#666;font-weight:normal;">// Update: 26 February 2013</span>
+<span style="color:#666;font-weight:normal;">// 1. Move the `z-index` manipulation from the plugin to CSS declaration</span>
+<span style="color:#666;font-weight:normal;">// 2. Fix the laggy effect, because at the first time I made this plugin,</span>
+<span style="color:#666;font-weight:normal;">//    I just use the `draggable` class that's added to the element</span>
+<span style="color:#666;font-weight:normal;">//    when the element is clicked to select the current draggable element. (Sorry about my bad English!)</span>
+<span style="color:#666;font-weight:normal;">// 3. Move the `draggable` and `active-handle` class as a part of the plugin option</span>
+<span style="color:#666;font-weight:normal;">// Next update?? NEVER!!! Should create a similar plugin that is not called `simple`!</span>
+
+(<span style="color:darkred;">function</span>($) {
+    $.fn.drags = <span style="color:darkred;">function</span>(opt) {
+
+        opt = $<span style="color:darkblue;">.extend</span>({
+            handle: <span style="color:darkgreen;">""</span>,
+            cursor: <span style="color:darkgreen;">"move"</span>,
+            draggableClass: <span style="color:darkgreen;">"draggable"</span>,
+            activeHandleClass: <span style="color:darkgreen;">"active-handle"</span>
+        }, opt);
+
+        <span style="color:darkred;">var</span> $selected = null;
+        <span style="color:darkred;">var</span> $elements = (opt.handle === <span style="color:darkgreen;">""</span>) ? <span style="color:darkred;">this</span> : <span style="color:darkred;">this</span><span style="color:darkblue;">.find</span>(opt.handle);
+
+        $elements<span style="color:darkblue;">.css</span>(<span style="color:darkgreen;">'cursor'</span>, opt.cursor)<span style="color:darkblue;">.on</span>(<span style="color:darkgreen;">"mousedown"</span>, <span style="color:darkred;">function</span>(e) {
+            if(opt.handle === <span style="color:darkgreen;">""</span>) {
+                $selected = $(<span style="color:darkred;">this</span>);
+                $selected<span style="color:darkblue;">.addClass</span>(opt.draggableClass);
+            } else {
+                $selected = $(<span style="color:darkred;">this</span>)<span style="color:darkblue;">.parent</span>();
+                $selected<span style="color:darkblue;">.addClass</span>(opt.draggableClass)<span style="color:darkblue;">.find</span>(opt.handle)<span style="color:darkblue;">.addClass</span>(opt.activeHandleClass);
+            }
+            <span style="color:darkred;">var</span> drg_h = $selected<span style="color:darkblue;">.outerHeight</span>(),
+                drg_w = $selected<span style="color:darkblue;">.outerWidth</span>(),
+                pos_y = $selected<span style="color:darkblue;">.offset</span>().top + drg_h - e.pageY,
+                pos_x = $selected<span style="color:darkblue;">.offset</span>().left + drg_w - e.pageX;
+            $(document)<span style="color:darkblue;">.on</span>(<span style="color:darkgreen;">"mousemove"</span>, <span style="color:darkred;">function</span>(e) {
+                $selected<span style="color:darkblue;">.offset</span>({
+                    top: e.pageY + pos_y - drg_h,
+                    left: e.pageX + pos_x - drg_w
+                });
+            })<span style="color:darkblue;">.on</span>(<span style="color:darkgreen;">"mouseup"</span>, <span style="color:darkred;">function</span>() {
+                $(<span style="color:darkred;">this</span>)<span style="color:darkblue;">.off</span>(<span style="color:darkgreen;">"mousemove"</span>); <span style="color:#666;font-weight:normal;">// Unbind events from document</span>
+                if ($selected !== null) {
+                    $selected<span style="color:darkblue;">.removeClass</span>(opt.draggableClass);
+                    $selected = null;
+                }
+            });
+            e<span style="color:darkblue;">.preventDefault</span>(); <span style="color:#666;font-weight:normal;">// disable selection</span>
+        })<span style="color:darkblue;">.on</span>(<span style="color:darkgreen;">"mouseup"</span>, <span style="color:darkred;">function</span>() {
+            if(opt.handle === <span style="color:darkgreen;">""</span>) {
+                $selected<span style="color:darkblue;">.removeClass</span>(opt.draggableClass);
+            } else {
+                $selected<span style="color:darkblue;">.removeClass</span>(opt.draggableClass)
+                    <span style="color:darkblue;">.find</span>(opt.handle)<span style="color:darkblue;">.removeClass</span>(opt.activeHandleClass);
+            }
+            $selected = null;
+        });
+
+        return <span style="color:darkred;">this</span>;
+
+    };
+})(jQuery);</pre>
+</div>
+<div style="clear:both;"></div>
+
+</body>
+</html>
