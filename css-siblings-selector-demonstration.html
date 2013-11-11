@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
+<meta content="Life time, easy understanding CSS selectors" name="description">
+<title>CSS Siblings Selector Demo</title>
+<style type="text/css">
+* {
+  margin:0;
+  padding:0;
+}
+body {
+  font:normal 12px Arial,Sans-Serif;
+  background-color:white;
+}
+a {
+  text-decoration:none;
+}
+h2 {
+  font-size:16px;
+  margin:20px 0 0;
+}
+#page-wrap {
+  margin:30px;
+}
+#page-wrap:after {
+  content:".";
+  height:0;
+  display:block;
+  clear:both;
+  visibility:hidden;
+}
+.col {
+  width:48%;
+}
+.col.left {float:left}
+.col.right {float:right}
+article,
+article div,
+article ~ div,
+article ~ div div {
+  display:block;
+  border:1px dotted black;
+  margin:10px;
+  padding:10px;
+  position:relative;
+}
+#result article {
+  border:2px solid #090;
+  margin:15px 0;
+}
+textarea {
+  width:100%;
+  height:300px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  background-color:black;
+  border:2px solid #666;
+  padding:5px 10px;
+  font:normal bold 13px Consolas,"Courier New",Monospace;
+  color:yellow;
+  overflow:auto;
+  margin:15px 0;
+}
+.legend {
+  display:block;
+  position:absolute;
+  top:-9px;
+  left:10px;
+  background-color:white;
+  font:normal normal 11px Tahoma,Verdana,Arial,Sans-Serif;
+  color:black;
+  padding:2px 5px;
+}
+@media screen and (max-width:750px) {
+  .col.left,
+  .col.right {
+    display:block;
+	float:none;
+	width:auto;
+	margin:0 0 15px;
+  }
+}
+</style>
+</head>
+<body spellcheck="false">
+<div id="style"></div>
+<div id="page-wrap">
+<div class="col left" id="skeleton">
+	<h2>Kode CSS</h2><textarea id="css-text" onkeyup="makeCSS('css-text');">article div {
+  border:4px solid red !important;
+}</textarea><a href="http://hompimpaalaihumgambreng.blogspot.com">DTE :]</a>
+</div>
+<div class="col right" id="result">
+	<h2>Tampilan</h2><article><span class="legend">&lt;article&gt;</span>
+		<div class="wrap-1"><span class="legend">&lt;div class="wrap-1"&gt;</span>
+			<div class="wrap-2"><span class="legend">&lt;div class="wrap-2"&gt;</span>
+				<div class="wrap-3"><span class="legend">&lt;div class="wrap-3"&gt;</span>
+					<div class="wrap-4"><span class="legend">&lt;div class="wrap-4"&gt;</span></div>
+				</div>
+			</div>
+		</div>
+		<div><span class="legend">&lt;div&gt;</span>
+			<div class="wrap-5"><span class="legend">&lt;div class="wrap-5"&gt;</span></div>
+		</div>
+	</article>
+	<div><span class="legend">&lt;div&gt;</span>
+		<div><span class="legend">&lt;div&gt;</span></div>
+	</div>
+	<div><span class="legend">&lt;div&gt;</span>
+		<div><span class="legend">&lt;div&gt;</span>
+			<div><span class="legend">&lt;div&gt;</span></div>
+		</div>
+	</div>
+	<div><span class="legend">&lt;div&gt;</span></div>
+</div>
+</div>
+<script type="text/javascript">
+function makeCSS(value) {
+	var cssText = document.getElementById(value).value;
+		cssText = cssText.replace(/&gt;/g, ">");
+	var css  = "<style type='text/css'>" + cssText + "</style>";
+	document.getElementById('style').innerHTML = css;
+} makeCSS('css-text');
+</script>
+</body>
+</html>
