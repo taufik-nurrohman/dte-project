@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Raw of the JQuery Masonry</title>
+<style type="text/css">
+* {margin:0;padding:0}
+body {padding:50px}
+.item {
+  width:70px;
+  border:1px solid black;
+  margin:1px;
+  padding:10px 10px;
+  font:normal bold 14px Times,Serif;
+  float:left;
+}
+.start-transition .item {
+  -webkit-transition:top .7s ease .5s, left .7s ease .5s;
+  -moz-transition:top .7s ease .5s, left .7s ease .5s;
+  -ms-transition:top .7s ease .5s, left .7s ease .5s;
+  -o-transition:top .7s ease .5s, left .7s ease .5s;
+  transition:top .7s ease .5s, left .7s ease .5s;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+	<div class="item" style="height:100px;">1</div>
+	<div class="item" style="height:100px;">2</div>
+	<div class="item" style="height:100px;">3</div>
+	<div class="item" style="height:60px;">4</div>
+	<div class="item" style="height:50px;">5</div>
+	<div class="item" style="height:30px;">6</div>
+	<div class="item" style="height:70px;">7</div>
+	<div class="item" style="height:100px;">8</div>
+	<div class="item" style="height:70px;">9</div>
+	<div class="item" style="height:40px;">10</div>
+	<div class="item" style="height:100px;">11</div>
+	<div class="item" style="height:100px;">12</div>
+	<div class="item" style="height:60px;">13</div>
+	<div class="item" style="height:50px;">14</div>
+	<div class="item" style="height:70px;">15</div>
+	<div class="item" style="height:40px;">16</div>
+	<div class="item" style="height:70px;">17</div>
+	<div class="item" style="height:100px;">18</div>
+	<div class="item" style="height:70px;">19</div>
+	<div class="item" style="height:40px;">20</div>
+	<div class="item" style="height:100px;">21</div>
+	<div class="item" style="height:100px;">22</div>
+	<div class="item" style="height:60px;">23</div>
+	<div class="item" style="height:50px;">24</div>
+	<div class="item" style="height:30px;">25</div>
+	<div class="item" style="height:70px;">26</div>
+	<div class="item" style="height:100px;">27</div>
+	<div class="item" style="height:100px;">28</div>
+	<div class="item" style="height:100px;">29</div>
+	<div class="item" style="height:60px;">30</div>
+	<div class="item" style="height:50px;">31</div>
+	<div class="item" style="height:100px;">32</div>
+	<div class="item" style="height:30px;">33</div>
+	<div class="item" style="height:70px;">34</div>
+	<div class="item" style="height:100px;">35</div>
+	<div class="item" style="height:70px;">36</div>
+	<div class="item" style="height:100px;">37</div>
+	<div class="item" style="height:60px;">38</div>
+	<div class="item" style="height:50px;">39</div>
+	<div class="item" style="height:40px;">40</div>
+	<div class="item" style="height:30px;">41</div>
+	<div class="item" style="height:70px;">42</div>
+	<div class="item" style="height:100px;">43</div>
+	<div class="item" style="height:70px;">44</div>
+	<div class="item" style="height:40px;">45</div>
+	<div class="item" style="height:100px;">46</div>
+	<div class="item" style="height:100px;">47</div>
+	<div class="item" style="height:60px;">48</div>
+	<div class="item" style="height:50px;">49</div>
+	<div class="item" style="height:30px;">50</div>
+	<div class="item" style="height:30px;">51</div>
+	<div class="item" style="height:70px;">52</div>
+	<div class="item" style="height:100px;">53</div>
+	<div class="item" style="height:100px;">54</div>
+	<div class="item" style="height:60px;">55</div>
+	<div class="item" style="height:50px;">56</div>
+	<div class="item" style="height:30px;">57</div>
+	<div class="item" style="height:70px;">58</div>
+	<div class="item" style="height:100px;">59</div>
+	<div class="item" style="height:70px;">60</div>
+	<div class="item" style="height:40px;">61</div>
+	<div class="item" style="height:100px;">62</div>
+	<div class="item" style="height:100px;">63</div>
+	<div class="item" style="height:60px;">64</div>
+	<div class="item" style="height:50px;">65</div>
+	<div class="item" style="height:30px;">66</div>
+	<div class="item" style="height:70px;">67</div>
+	<div class="item" style="height:100px;">68</div>
+	<div class="item" style="height:70px;">69</div>
+	<div class="item" style="height:40px;">70</div>
+	<div class="item" style="height:100px;">71</div>
+	<div class="item" style="height:100px;">72</div>
+	<div class="item" style="height:60px;">73</div>
+	<div class="item" style="height:50px;">74</div>
+	<div class="item" style="height:30px;">75</div>
+	<div class="item" style="height:70px;">76</div>
+	<div class="item" style="height:100px;">77</div>
+	<div class="item" style="height:100px;">78</div>
+	<div class="item" style="height:60px;">79</div>
+	<div class="item" style="height:50px;">80</div>
+	<div class="item" style="height:30px;">81</div>
+	<div class="item" style="height:70px;">82</div>
+	<div class="item" style="height:100px;">83</div>
+	<div class="item" style="height:70px;">84</div>
+	<div class="item" style="height:40px;">85</div>
+	<div class="item" style="height:100px;">86</div>
+	<div class="item" style="height:100px;">87</div>
+	<div class="item" style="height:60px;">88</div>
+	<div class="item" style="height:50px;">89</div>
+	<div class="item" style="height:30px;">90</div>
+	<div class="item" style="height:70px;">91</div>
+	<div class="item" style="height:100px;">92</div>
+	<div class="item" style="height:70px;">93</div>
+	<div class="item" style="height:40px;">94</div>
+	<div class="item" style="height:100px;">95</div>
+	<div class="item" style="height:100px;">96</div>
+	<div class="item" style="height:100px;">97</div>
+	<div class="item" style="height:60px;">98</div>
+	<div class="item" style="height:50px;">99</div>
+	<div class="item" style="height:30px;">100</div>
+	<div class="item" style="height:70px;">101</div>
+	<div class="item" style="height:100px;">102</div>
+	<div class="item" style="height:100px;">103</div>
+	<div class="item" style="height:60px;">104</div>
+	<div class="item" style="height:50px;">105</div>
+	<div class="item" style="height:100px;">106</div>
+	<div class="item" style="height:70px;">107</div>
+	<div class="item" style="height:40px;">108</div>
+	<div class="item" style="height:100px;">109</div>
+	<div class="item" style="height:100px;">110</div>
+	<div class="item" style="height:60px;">111</div>
+	<div class="item" style="height:100px;">112</div>
+	<div class="item" style="height:60px;">113</div>
+	<div class="item" style="height:50px;">114</div>
+	<div class="item" style="height:30px;">115</div>
+	<div class="item" style="height:70px;">116</div>
+	<div class="item" style="height:100px;">117</div>
+	<div class="item" style="height:70px;">118</div>
+	<div class="item" style="height:100px;">119</div>
+	<div class="item" style="height:60px;">120</div>
+	<div class="item" style="height:50px;">121</div>
+	<div class="item" style="height:30px;">122</div>
+	<div class="item" style="height:70px;">123</div>
+	<div class="item" style="height:30px;">124</div>
+	<div class="item" style="height:70px;">125</div>
+	<div class="item" style="height:100px;">126</div>
+	<div class="item" style="height:70px;">127</div>
+	<div class="item" style="height:40px;">128</div>
+	<div class="item" style="height:30px;">129</div>
+	<div class="item" style="height:70px;">130</div>
+	<div class="item" style="height:100px;">131</div>
+	<div class="item" style="height:70px;">132</div>
+	<div class="item" style="height:100px;">133</div>
+	<div class="item" style="height:60px;">134</div>
+	<div class="item" style="height:50px;">135</div>
+	<div class="item" style="height:70px;">136</div>
+	<div class="item" style="height:100px;">137</div>
+	<div class="item" style="height:40px;">138</div>
+	<div class="item" style="height:100px;">139</div>
+	<div class="item" style="height:100px;">140</div>
+	<div class="item" style="height:60px;">141</div>
+	<div class="item" style="height:50px;">142</div>
+	<div class="item" style="height:30px;">143</div>
+	<div class="item" style="height:70px;">144</div>
+	<div class="item" style="height:100px;">145</div>
+	<div class="item" style="height:70px;">146</div>
+	<div class="item" style="height:40px;">147</div>
+	<div class="item" style="height:100px;">148</div>
+	<div class="item" style="height:100px;">149</div>
+	<div class="item" style="height:60px;">150</div>
+	<div class="item" style="height:50px;">151</div>
+	<div class="item" style="height:30px;">152</div>
+	<div class="item" style="height:70px;">153</div>
+	<div class="item" style="height:100px;">154</div>
+	<div class="item" style="height:60px;">155</div>
+	<div class="item" style="height:50px;">156</div>
+	<div class="item" style="height:30px;">157</div>
+	<div class="item" style="height:70px;">158</div>
+	<div class="item" style="height:100px;">159</div>
+	<div class="item" style="height:70px;">160</div>
+	<div class="item" style="height:40px;">161</div>
+	<div class="item" style="height:100px;">162</div>
+	<div class="item" style="height:100px;">163</div>
+	<div class="item" style="height:60px;">164</div>
+	<div class="item" style="height:50px;">165</div>
+	<div class="item" style="height:30px;">166</div>
+	<div class="item" style="height:70px;">167</div>
+	<div class="item" style="height:100px;">168</div>
+	<div class="item" style="height:70px;">169</div>
+	<div class="item" style="height:40px;">170</div>
+	<div class="item" style="height:100px;">171</div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+/* Modified from: https://gist.github.com/2208329 */
+
+(function($) {
+	// Finding min and max values in array
+	Array.prototype.min = function() {return Math.min.apply({},this);};
+	Array.prototype.max = function() {return Math.max.apply({},this);};
+	$.fn.masonry = function() {
+		this.each(function() {
+			var wall = $(this);
+			if (wall.children().length > 0) { // Check if the element has anything in it
+				if (wall.children('.masonry-wrap').length === 0) { // checks if the `.masonry-wrap` div is already there
+					wall.wrapInner('<div class="masonry-wrap"></div>');
+				}
+				var m_w = wall.children('.masonry-wrap'),
+					brick = m_w.children(),
+					b_w = brick.outerWidth(true),
+					c_c = Math.floor(m_w.width() / b_w),
+					c_h = [], this_col, i;
+				for (i = 0; i < c_c; i++) {
+					c_h[i] = 0;
+				}
+				m_w.css('position','relative');
+				brick.css({
+					'float':'none',
+					'position':'absolute',
+					'display':'block'
+				}).each(function() {
+					for (i = c_c - 1; i > -1; i--) {
+						if (c_h[i] == c_h.min()) {
+							this_col = i;
+						}
+					}
+					$(this).css({
+						'top':c_h[this_col],
+						'left':b_w * this_col
+					});
+					c_h[this_col] += $(this).outerHeight(true);
+				});
+				m_w.height(c_h.max()).parent().addClass('start-transition');
+			}
+			return this;
+		});
+	};
+})(jQuery);
+
+$(window).on("resize", function() {
+	$('#container').masonry();
+}).trigger("resize");
+
+</script>
+</body>
+</html>
