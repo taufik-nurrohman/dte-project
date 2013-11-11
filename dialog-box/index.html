@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+<meta charset="utf-8">
+<!-- http://www.dte.web.id -->
+<title>Simple JavaScript Dialog Box Plugin Demonstration</title>
+<style type="text/css">html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}body{font:normal normal .8125em/1.4 Arial,Sans-Serif;background-color:white;color:#333}strong,b{font-weight:bold}cite,em,i{font-style:italic}a{text-decoration:none}a:hover{text-decoration:underline}a img{border:none}abbr,acronym{border-bottom:1px dotted;cursor:help}sup,sub{vertical-align:baseline;position:relative;top:-.4em;font-size:86%}sub{top:.4em}small{font-size:86%}kbd{font-size:80%;border:1px solid #999;padding:2px 5px;border-bottom-width:2px;border-radius:3px}mark{background-color:#ffce00;color:black}p,blockquote,pre,table,figure,hr,form,ol,ul,dl{margin:1.5em 0}hr{height:1px;border:none;background-color:#666}h1,h2,h3,h4,h5,h6{font-weight:bold;line-height:normal;margin:1.5em 0 0}h1{font-size:200%}h2{font-size:180%}h3{font-size:160%}h4{font-size:140%}h5{font-size:120%}h6{font-size:100%}ol,ul,dl{margin-left:3em}ol{list-style:decimal outside}ul{list-style:disc outside}li{margin:.5em 0}dt{font-weight:bold}dd{margin:0 0 .5em 2em}input,button,select,textarea{font:inherit;font-size:100%;line-height:normal;vertical-align:baseline}textarea{display:block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}pre,code{font-family:"Courier New",Courier,Monospace;color:inherit}pre{white-space:pre;word-wrap:normal;overflow:auto}blockquote{margin-left:2em;margin-right:2em;border-left:4px solid #ccc;padding-left:1em;font-style:italic}table[border="1"] th,table[border="1"] td,table[border="1"] caption{border:1px solid;padding:.5em 1em;text-align:left;vertical-align:top}th{font-weight:bold}table[border="1"] caption{border:none;font-style:italic}</style>
+<link rel="stylesheet" type="text/css" href="dialog-box.css">
+<style type="text/css">
+
+body {
+  height:3000px;
+  font-size:15px;
+  padding:50px;
+}
+
+.aborted {border-color:red}
+.launched {border-color:blue}
+p button {cursor:pointer}
+
+pre {
+  background-color:#333;
+  color:white;
+  padding:.5em 1em;
+  font-size:12px;
+}
+
+.dialog-box.transition {
+  -webkit-transition:
+    opacity .5s ease-out,
+    width .5s ease-out,
+    height .5s ease-out,
+    top .5s ease-out,
+    left .5s ease-out,
+    margin-top .5s ease-out,
+    margin-left .5s ease-out;
+  -moz-transition:
+    opacity .5s ease-out,
+    width .5s ease-out,
+    height .5s ease-out,
+    top .5s ease-out,
+    left .5s ease-out,
+    margin-top .5s ease-out,
+    margin-left .5s ease-out;
+  -ms-transition:
+    opacity .5s ease-out,
+    width .5s ease-out,
+    height .5s ease-out,
+    top .5s ease-out,
+    left .5s ease-out,
+    margin-top .5s ease-out,
+    margin-left .5s ease-out;
+  -o-transition:
+    opacity .5s ease-out,
+    width .5s ease-out,
+    height .5s ease-out,
+    top .5s ease-out,
+    left .5s ease-out,
+    margin-top .5s ease-out,
+    margin-left .5s ease-out;
+  transition:
+    opacity .5s ease-out,
+    width .5s ease-out,
+    height .5s ease-out,
+    top .5s ease-out,
+    left .5s ease-out,
+    margin-top .5s ease-out,
+    margin-left .5s ease-out;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<h1>Simple JavaScript Dialog Box Plugin Demonstration</h1>
+<ul>
+	<li><a href="javascript:setDialog('open', {title:'Example Title', content:'This is a dialog content example!'});">Open dialog box!</a></li>
+	<li><a href="javascript:setDialog('open', {width:600, height:300, title:'Lorem Ipsum', content:'<h2>Example Heading 2</h2><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+'});">Open dialog box!</a></li>
+	<li><a href="javascript:setDialog('open', {width:200, height:300, title:'HTML Escaper', content:'<iframe src=&quot;iframe-test.html&quot; frameborder=&quot;0&quot;></iframe>'});">Inserting iframe inside the dialog content</a></li>
+	<li><a href="javascript:setDialog('open', {title:'Options', width:650, content:'Click the buttons below!', buttons:{'Cancel':function(){alert('Canceled!')},'Visit DTE :]':function(){window.open('http://www.dte.web.id','','')},'Insert a Hello Text':function(){this.parentNode.parentNode.children[3].innerHTML+=' <strong>Hello!</strong>'},'Show the Code':showCode,'Reload':function(){window.location.reload()}}});">Custom dialog buttons</a></li>
+	<li><a href="javascript:setDialog('open', {width:400, title:'Custom Offset', content:'<code>setDialog\(&quot;open&quot;\, \{top\:100, left\:10\}\);</code>', top:100, left:10});">Custom offset</a></li>
+	<li><a href="javascript:setDialog('open', {width:400, title:'Fixed Position - Scroll Down!', content:'<code>setDialog(&quot;open&quot;, \{fixed:true\});</code>', fixed:true});">Fixed Position (Default)</a> | <a href="javascript:setDialog('open', {width:400, title:'Absolute Position - Scroll Down!', content:'<code>setDialog(&quot;open&quot;, \{fixed:false\});</code>', fixed:false});">Absolute Position</a></li>
+	<li><a href="javascript:setDialog('open', {width:400, title:'&nbsp;', content:'<code>setDialog(&quot;open&quot;, \{overlay:true\});</code>', overlay:true});">Overlay</a></li>
+</ul>
+
+<p><button onclick="setDialog('open', {width:600, height:400, title:'Plugin Installation', content: '<p>Put this <a href=&quot;http://reader-download.googlecode.com/svn/trunk/dialog-box/dialog-box.css&quot;>CSS</a> file above the <code>&amp;lt;/head&amp;gt;</code> code:</p><pre><code>&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;http://reader-download.googlecode.com/svn/trunk/dialog-box/dialog-box.min.css&amp;quot;/&amp;gt;</code></pre><p>And then put this <a href=&quot;http://reader-download.googlecode.com/svn/trunk/dialog-box/dialog-box.js&quot;>JavaScript</a> file above the <code>&amp;lt;/body&amp;gt;</code> tag:</p><pre><code>&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;http://reader-download.googlecode.com/svn/trunk/dialog-box/dialog-box.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;</code></pre><p>Done!</p>'});">Installation</button> <button id="dialog-button">Usage</button> <button onclick="advancedExample();">Advanced Example</button> <button onclick="pluginLimit();">Plugin Limitation</button></p>
+
+<script type="text/javascript" src="dialog-box.js"></script>
+<script type="text/javascript">
+
+document.getElementById('dialog-button').onclick = function() {
+	var dialogWidth = window.innerWidth - 50,
+		dialogHeight = window.innerHeight - 50,
+		html_1 = '<p>Trigger <code>setDialog()</code> inside <code>href</code> or <code>onclick</code> attribute:</p><pre><code>&lt;a href=&quot;javascript:setDialog\(\&#39;open&#39;, {title: &#39;Example Title&#39;, content: &#39;Hello!&#39;});&quot;&gt;Open Dialog!&lt;/a&gt;</code></pre><pre><code>&lt;button onclick=&quot;setDialog\(\&#39;open&#39;, {title: &#39;Example Title&#39;, content: &#39;Hello!&#39;});&quot;&gt;Open Dialog!&lt;/button&gt;</code></pre>',
+		html_2 = '<h5>Example Markup</h5>' +
+		'<pre><code>' +
+		'&lt;button id=&quot;dialog-button&quot;&gt;Open Dialog!&lt;/button&gt;' +
+		'</code></pre>' + 
+		'<h5>Basic JavaScript</h5>' +
+		'<pre><code>' +
+		'document.getElementById(&#39;dialog-button&#39;).onclick = function() {\n' +
+		'    var foo = &quot;Hello!&quot;;\n' +
+		'    setDialog(&quot;open&quot;, {\n' +
+		'        title: &quot;The Dialog Box Title&quot;,\n' +
+		'        width: 400,\n' +
+		'        height: 200,\n' +
+		'        content: foo\n' +
+		'    });\n' +
+		'};' +
+		'</code></pre>' +
+		'<h5>Chainning the Function</h5>' +
+		'<p>Whatever you want to setup the next dialog/communication, just trigger back the <code>setDialog</code> function with different configuration for each button. Similar with JQuery UI Dialog:</p>' +
+		'<pre><code>' +
+		'document.getElementById(&#39;dialog-button&#39;).onclick = function() {\n' +
+		'    setDialog(&quot;open&quot;, {\n' +
+		'        title: &quot;The Dialog Box Title&quot;,\n' +
+		'        width: 400,\n' +
+		'        height: 200,\n' +
+		'        content: &quot;Hello!&quot;,\n' +
+		'        buttons: {\n' +
+		'            &quot;Delete&quot;: function() {\n' +
+		'                setDialog(&quot;open&quot;, {\n' +
+		'                    title: &quot;Confirmation&quot;\n' +
+		'                    content: &quot;Are you sure?&quot;\n' +
+		'                    buttons: {\n' +
+		'                        &quot;Yes&quot;: function() {\n' +
+		'                            setDialog(&quot;close&quot;);\n' +
+		'                        },\n' +
+		'                        &quot;No&quot;: function() {\n' +
+		'                            alert(&quot;Canceled!&quot;);\n' +
+		'                            setDialog(&quot;close&quot;);\n' +
+		'                        }\n' +
+		'                    }\n' +
+		'                });\n' +
+		'            }\n' +
+		'        }\n' +
+		'    });\n' +
+		'};' +
+		'</code></pre>';
+	function fn_1() {
+		setDialog("open", {
+			title: "Inline Function Example",
+			content: html_1,
+			width: dialogWidth,
+			height: dialogHeight,
+			buttons: {
+				"Separated Function Example": fn_2
+			}
+		});
+	}
+	function fn_2() {
+		setDialog("open", {
+			title: "Separated Function Example",
+			content: html_2,
+			width: dialogWidth,
+			height: dialogHeight,
+			buttons: {
+				"Inline Function Example": fn_1
+			}
+		});
+	}
+	setDialog("open", {
+		title: 'Click the Button!',
+		content: "<div style='text-align:right;font-size:200%;font-weight:bold;line-height:normal;color:green;'>&dArr;&nbsp;&nbsp;&nbsp;</div>",
+		buttons: {
+			"Inline Function Example": fn_1
+		}
+	});
+};
+function advancedExample() {
+	var html = 'Delete all files?';
+	setDialog("open", {
+		title: 'An Example Dialog Box',
+		content: html,
+		buttons: {
+			"Delete": function() {
+				setDialog("open", {
+					title: "Confirmation",
+					content: "Are you sure?",
+					buttons: {
+						"Yes": function() {
+							/* Just a demonstration */
+							var count = 0;
+							var interval = setInterval(function() {
+								setDialog("open", {
+									title: "Please wait...",
+									content: "Deleting <strong>" + count + "</strong> files",
+									buttons: false,
+									specialClass: "launched"
+								});
+								if (count == 50) {
+									clearInterval(interval);
+									setTimeout(function() {
+										setDialog("close");
+									}, 1000);
+								}
+								count++;
+							}, 100);
+							/* End demonstration */
+						},
+						"No": function() {
+							setDialog("open", {
+								content: "<span style='font-weight:bold;color:red;'>Canceled!</span>",
+								specialClass: "aborted"
+							});
+						}
+					}
+				});
+			}
+		}
+	});
+}
+function showCode() {
+	setDialog("open", {
+		title: "Code Snippet",
+		content: "<pre><code>setDialog(&quot;open&quot;, \{\n    title\: &quot;Options&quot;\,\n    width: 600\,\n    content\: &quot;Click the buttons below!&quot;\,\n    buttons\: \{\n        &quot;Cancel&quot;\: function\(\) \{\n            alert\(&#39;Canceled!&#39;\);\n        }\,\n        &quot;Visit DTE \:\]&quot;\: function\(\) \{\n            window.open\(&#39;http://www.dte.web.id&#39;\,&#39;&#39;\,&#39;&#39;);\n        }\,\n        &quot;Insert a Hello Text&quot;\: function\(\) \{\n            this\.parentNode\.parentNode\.children\[3\].innerHTML \+\= &#39; &lt;strong&gt;Hello!&lt;\/strong&gt;&#39;\n        }\,\n        &quot;Show the Code&quot;\: function\(\) \{\}\,\n        &quot;Reload&quot;: function\(\) \{\n            window\.location\.reload\(\);\n        \}\n    \}\n\}\);</code></pre>",
+		width: window.innerWidth - 30,
+		height: window.innerHeight - 30
+	});
+}
+function pluginLimit() {
+	setDialog("open", {
+		title: "Plugin Limitation &#x26A0;",
+		content: '<ol><li>No resizable feature</li><li>Cannot open multiple dialog box (only single dialog box with dynamic contents)</li><li>No animation (But, you can do that with <a href="javascript:cssTransition();">CSS Transition</a>)</li></ol>',
+		width: 600,
+		height: window.innerHeight - 30
+	});
+}
+function cssTransition() {
+	var contents = '<h6>CSS Transition:</h6>' +
+	'<pre><code>.dialog-box {\n' +
+	'  -webkit-transition:\n' +
+	'    opacity .5s ease-out,\n' +
+	'    width .5s ease-out,\n' +
+	'    height .5s ease-out,\n' +
+	'    top .5s ease-out,\n' +
+	'    left .5s, ease-out,\n' +
+	'    margin-top .5s ease-out,\n' +
+	'    margin-left .5s ease-out;\n' +
+	'  -moz-transition:\n' +
+	'    opacity .5s ease-out,\n' +
+	'    width .5s ease-out,\n' +
+	'    height .5s ease-out,\n' +
+	'    top .5s ease-out,\n' +
+	'    left .5s, ease-out,\n' +
+	'    margin-top .5s ease-out,\n' +
+	'    margin-left .5s ease-out;\n' +
+	'  -ms-transition:\n' +
+	'    opacity .5s ease-out,\n' +
+	'    width .5s ease-out,\n' +
+	'    height .5s ease-out,\n' +
+	'    top .5s ease-out,\n' +
+	'    left .5s, ease-out,\n' +
+	'    margin-top .5s ease-out,\n' +
+	'    margin-left .5s ease-out;\n' +
+	'  -o-transition:\n' +
+	'    opacity .5s ease-out,\n' +
+	'    width .5s ease-out,\n' +
+	'    height .5s ease-out,\n' +
+	'    top .5s ease-out,\n' +
+	'    left .5s, ease-out,\n' +
+	'    margin-top .5s ease-out,\n' +
+	'    margin-left .5s ease-out;\n' +
+	'  transition:\n' +
+	'    opacity .5s ease-out,\n' +
+	'    width .5s ease-out,\n' +
+	'    height .5s ease-out,\n' +
+	'    top .5s ease-out,\n' +
+	'    left .5s, ease-out,\n' +
+	'    margin-top .5s ease-out,\n' +
+	'    margin-left .5s ease-out;\n' +
+	'}</code></pre>';
+	setDialog("open", {
+		title: "Animation with CSS Transition",
+		content: contents,
+		specialClass: "transition",
+		width: window.innerWidth - 30,
+		height: window.innerHeight -200
+	});
+}
+
+</script>
+
+
+
+</body>
+</html>
