@@ -66,7 +66,7 @@ function updateScript(i, max) {
 		script = document.createElement('script');
 		script.type = 'text/javascript';
 		script.id = 'load-on-scroll-end';
-		script.src = 'http://dte-feed/feeds/posts/summary?alt=json-in-script&start-index=' + i + '&max-results=' + max + '&callback=grabList';
+		script.src = 'http://dte-feed.blogspot.com/feeds/posts/summary?alt=json-in-script&start-index=' + i + '&max-results=' + max + '&callback=grabList';
 	if (document.getElementById('load-on-scroll-end')) {
 		var oldScript = document.getElementById('load-on-scroll-end');
 		oldScript.parentNode.removeChild(oldScript);
