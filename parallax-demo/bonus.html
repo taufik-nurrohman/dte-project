@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Parallax Demo</title>
+<link rel="stylesheet" href="style-vertical.css" type="text/css">
+</head>
+<body>
+
+<div id="parallax-wrapper" class="parallax-wrapper">
+	<div class="layer layer-1"></div>
+	<div class="layer layer-2"></div>
+	<div class="layer layer-3"></div>
+	<div class="box-item-wrapper">
+		<div class="box-item">
+			<h3>Section 1</h3><p>Lorem ipsum dolor sit amet...</p>
+		</div>
+		<div class="box-item">
+			<h3>Section 2</h3><p>Lorem ipsum dolor sit amet...</p>
+		</div>
+		<div class="box-item">
+			<h3>Section 3</h3><p>Lorem ipsum dolor sit amet...</p>
+		</div>
+		<div class="box-item">
+			<h3>Section 4</h3><p>Lorem ipsum dolor sit amet...</p>
+		</div>
+	</div>
+</div>
+<span id="parallax-navigation" class="parallax-navigation">
+	<a href="#1">1</a>
+	<a href="#2">2</a>
+	<a href="#3">3</a>
+	<a href="#4">4</a>
+</span>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.backgroundpos.min.js"></script>
+<script type="text/javascript">
+(function($) {
+
+	// Cache some elements
+	var $window = $(window),
+		$parallax = $('#parallax-wrapper'),
+		$layer = $parallax.find('.layer'),
+		$wrap = $parallax.find('.box-item-wrapper'),
+		$nav = $('#parallax-navigation'), height, totalHeight;
+
+	// Set the parallax content & item height in window resize ...
+	// ... so we can be sure that when the window is resized, the size of the elements will be updated too
+	$window.on("resize", function() {
+		height = $parallax.height(); // get the parallax wrapper height
+		totalHeight = height * $wrap.find('.box-item').length; // total height = (parallax wrapper height * box item length)
+		$wrap.height(totalHeight).find('.box-item').outerHeight(height);
+	}).trigger("resize");
+
+	// Collect all navigation item inside parallax navigation, then get their index to set the animation distance
+	$nav.find('a').each(function() {
+		// when user click on the navigation item
+		$(this).on("click", function() {
+			var step = $(this).index(); // get the index (0, 1, 2, 3, ...)
+			$nav.find('.active').removeClass('active'); // remove the active class from navigation item
+			$(this).addClass('active'); // add the active class to the clicked navigation item
+			$layer.each(function() {
+				// set the background-position per-animation distance of each layer ...
+				// ... based on its index
+				var distance = ($(this).index()+1) * 200; // multiplied by 200
+				$(this).stop().animate({backgroundPosition: '0px -' + (step*distance) + 'px'}, 1500); // (jQuery background position plugin required)
+			});
+			// also, animate the `.box-item-wrapper` to the top to move the `.box-item`
+			$wrap.stop().animate({'top': -(step*height)}, 1500);
+			return false;
+		});
+	}).first().addClass('active'); // add active class to the first navigation item on initiation
+
+})(jQuery);
+</script>
+
+<a href="http://www.dte.web.id" style="display:block;position:absolute;top:10px;right:10px;">DTE :]</a>
+
+</body>
+</html>
