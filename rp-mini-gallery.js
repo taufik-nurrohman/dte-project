@@ -35,16 +35,13 @@ function setrecentposts_animation() {
 		$('div.rp-child', this).filter(':not(:animated)').fadeIn(tooltipFadeSpeed);
 	}).mousemove(function(e) {	
 		var top = e.pageY+20, left = e.pageX+20;
-			
-			if (top + ttHeight > winHeight) {
-				top = winHeight - ttHeight - 40;
-			}			
-			if (left + ttWidth > winWidth) {
-				left = winWidth - ttWidth - 40;
-			}	
-
+		if (top + ttHeight > winHeight) {
+			top = winHeight - ttHeight - 40;
+		}			
+		if (left + ttWidth > winWidth) {
+			left = winWidth - ttWidth - 40;
+		}
 		$('div.rp-child', this).css({top:top,left:left});
-
 	}).mouseleave(function() {
 		$('div.rp-child', this).hide();
 	});
