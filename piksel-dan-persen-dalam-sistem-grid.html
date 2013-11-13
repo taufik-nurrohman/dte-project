@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo Perbandingan Antara Sistem Grid dengan Satuan Piksel dan Persentase</title>
+<style>
+
+/* http://www.dte.web.id */
+
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  background-color:#ffd;
+  font:normal normal 13px/1.4 Arial,Sans-Serif;
+  color:black;
+  text-align:center;
+  padding:50px 0;
+}
+
+div {padding-top:1em}
+
+h2 {
+  font-weight:bold;
+  line-height:normal;
+  font-size:300%;
+}
+
+p {
+  margin:0 auto 1em;
+  width:500px;
+}
+
+.col-group {
+  background-color:#800;
+  margin:0 auto 50px;
+  text-align:left;
+}
+
+.col-group input {
+  display:block;
+  margin:0 1em 50px;
+  width:60px;
+}
+
+.left-col {
+  float:left;
+  height:200px;
+  background-color:#600;
+}
+
+.right-col {
+  float:right;
+  height:200px;
+  overflow:hidden;
+  background-color:#700;
+}
+
+.split-side {
+  float:left;
+  height:120px;
+  background-color:#a00;
+}
+
+.split-side.even {background-color:#b00}
+
+.col-bot {
+  float:left;
+  height:100px;
+  background-color:#500;
+}
+
+.col-bot.odd {background-color:#400}
+
+.clear {
+  padding-top:0;
+  clear:both;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Dengan Satuan Piksel</h2>
+<p>Memperbaharui lebar halaman sama artinya dengan memperbaharui semua anak grid.</p>
+
+<div class="col-group" style="width:500px;">
+	<input type="text" value="500px" onkeyup="this.parentNode.style.width=this.value;">
+	<div class="left-col" style="width:300px;"><input type="text" value="300px" onkeyup="this.parentNode.style.width=this.value;"></div>
+	<div class="right-col" style="width:200px;">
+		<input type="text" value="200px" onkeyup="this.parentNode.style.width=this.value;">
+		<div class="split-side odd" style="width:100px;"><input type="text" value="100px" onkeyup="this.parentNode.style.width=this.value;"></div>
+		<div class="split-side even" style="width:100px;"><input type="text" value="100px" onkeyup="this.parentNode.style.width=this.value;"></div>
+	</div>
+	<div class="footer clear">
+		<div class="col-bot odd" style="width:125px;"><input type="text" value="125px" onkeyup="this.parentNode.style.width=this.value;"></div>
+		<div class="col-bot even" style="width:125px;"><input type="text" value="125px" onkeyup="this.parentNode.style.width=this.value;"></div>
+		<div class="col-bot odd" style="width:125px;"><input type="text" value="125px" onkeyup="this.parentNode.style.width=this.value;"></div>
+		<div class="col-bot even" style="width:125px;"><input type="text" value="125px" onkeyup="this.parentNode.style.width=this.value;"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<h2>Dengan Satuan Persentase</h2>
+<p>Memperbaharui lebar halaman sudah cukup untuk memperbaharui semua anak grid. Rasio lebar anak-anak grid/kolom akan menyesuaikan diri dengan lebar induknya.</p>
+
+<div class="col-group" style="width:500px;">
+	<input type="text" value="500px" onkeyup="this.parentNode.style.width=this.value;">
+	<div class="left-col" style="width:60%;"><input type="text" value="60%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+	<div class="right-col" style="width:40%;">
+		<input type="text" value="40%" onkeyup="this.parentNode.style.width=this.value;" disabled>
+		<div class="split-side odd" style="width:50%;"><input type="text" value="50%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+		<div class="split-side even" style="width:50%;"><input type="text" value="50%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+	</div>
+	<div class="footer clear">
+		<div class="col-bot odd" style="width:25%;"><input type="text" value="25%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+		<div class="col-bot even" style="width:25%;"><input type="text" value="25%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+		<div class="col-bot odd" style="width:25%;"><input type="text" value="25%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+		<div class="col-bot even" style="width:25%;"><input type="text" value="25%" onkeyup="this.parentNode.style.width=this.value;" disabled></div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+</body>
+</html>
