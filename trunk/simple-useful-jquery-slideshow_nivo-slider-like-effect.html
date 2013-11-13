@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Simple Useful JQuery Slideshow - Nivo Slider Like Effect Slideshow</title>
+<!--[if IE]><script type='text/javascript' src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script><![endif]-->
+
+<style type="text/css">
+* {margin:0;padding:0}
+
+body {
+  background-color:#111;
+  padding:50px;
+}
+
+/* Slider */
+#slider {
+  display:block;
+  border:4px solid #000;
+  width:400px; /* slider width */
+  height:250px;; /* slider height */
+  margin:0 auto;
+  background:white url('http://reader-download.googlecode.com/svn/trunk/images/nivo-loading.gif') no-repeat 50% 50%;
+  overflow:hidden;
+  position:relative;
+}
+
+/* For caption */
+#slider figcaption {
+  display:block;
+  background-color:black;
+  font:normal normal 11px Arial,Sans-Serif;
+  color:white;
+  opacity:.8;
+  padding:10px 15px;
+  position:absolute;
+  right:0;
+  bottom:-100px; /* hide the caption with this way :) */
+  left:0;
+  z-index:99;
+}
+
+#slider img {
+  display:block;
+  margin:0 0;
+  width:400px; /* slide width */
+  height:250px; /* slide height */
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+/* Navigation */
+#slider-nav {
+  display:block;
+  position:absolute;
+  top:10px;
+  right:10px;
+  margin:0 0;
+  padding:0 0;
+  z-index:99;
+}
+
+#slider-nav a {
+  display:block;
+  float:left;
+  width:10px;
+  height:10px;
+  background-color:#111;
+  font-size:0;
+  color:transparent;
+  overflow:hidden;
+  text-indent:-99px;
+  margin:0 2px 0 0;
+  border:2px solid white;
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  border-radius:100%;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+#slider-nav .active {
+  background-color:#2589B4;
+}
+
+/* Hide all element inside the '#slider' until the page has been loaded! */
+#slider .container, #slider figcaption {display:none}
+#slider-nav {opacity:0}
+
+</style>
+</head>
+<body data-author="Taufik Nurrohman$">
+
+<figure id="slider">
+	<div class="container">
+		<img src="http://lorempixel.com/400/250/sports/1" alt="Lorem ipsum dolor sit amet...">
+		<img src="http://lorempixel.com/400/250/sports/2" alt="Consectetuer adipiscing elit...">
+		<img src="http://lorempixel.com/400/250/sports/3" alt="Sed diam nonummy nibh euismod tincidunt...">
+		<img src="http://lorempixel.com/400/250/sports/4" alt="Ut laoreet dolore magna aliquam erat volutpat...">
+	</div>
+	<figcaption></figcaption> <!-- slideshow caption -->
+	<nav id="slider-nav"></nav> <!-- navigation -->
+</figure>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+/**
+ * NIVO SLIDER LIKE EFFECT SLIDESHOW BY TAUFIK NURROHMAN
+ * URL: https://plus.google.com/108949996304093815163/about
+ * Based on this slideshow framework: http://hompimpaalaihumgambreng.blogspot.com/2012/09/simple-useful-jquery-slideshow.html
+ */
+
+(function($) {
+
+// ==================================================================================
+// Configuration here:
+// ----------------------------------------------------------------------------------
+	var config = {
+		slices: 10, // number of slices
+		speed: 600, // slideshow speed
+		easing: null, // easing type
+		interval: 3000 // slideshow interval
+	};
+// ==================================================================================
+
+	// Some variables...
+	var $slider = $('#slider'),
+		$caption = $slider.find('figcaption'),
+		$container = $slider.find('.container'),
+		$nav = $('#slider-nav'),
+		$slide = $container.children(),
+		autoSlide = null,
+		$first = $slide.first();
+
+	// Auto append navigation item based on the slides length
+	$slide.each(function(index) {
+		var i = index + 1;
+		$nav.append('<a href="#slide-'+i+'">'+i+'</a>');
+		$(this).attr('id', 'slide-'+i);
+	});
+
+	// Set the slices size
+	var slice_w = $slider.width() / config.slices,
+		slice_h = $slider.height();
+
+	// Build the slices
+	for (var i = 0; i < config.slices; i++) {
+		$('<div class="slice" />').css({
+			'position':'absolute',
+			'width':slice_w,
+			'height':slice_h,
+			'left':slice_w*i,
+			'z-index':4,
+			'background-color':'transparent',
+			'background-repeat':'no-repeat',
+			'background-position':'-' + slice_w*i + 'px 0'
+		}).appendTo($slider);
+	}
+
+	// Catch the slices, and also set the different position between odd and even slices
+	var $sliceOdd = $slider.find('.slice:odd').css('bottom',0),
+		$sliceEven = $slider.find('.slice:even').css('top',0);
+		
+	// Click to switch!
+	$nav.find('a').on("click", function() {
+
+		$nav.find('.active').removeClass('active');
+		$(this).addClass('active');
+
+		var pos = $(this).index(),
+			text = $slide.eq(pos).attr('alt'),
+			bg = $slide.eq(pos).attr('src');
+
+		$slide.hide().eq(pos).trigger("load").show();
+
+		// Do the caption and slices animation here!
+		$caption.stop().animate({bottom:'-100px'}, config.speed/2);
+
+		$sliceOdd.each(function(i) {
+			$(this).stop().delay(i*100).animate({bottom:'-'+slice_h+'px',opacity:0}, config.speed, config.easing, function() {
+				$(this).css({
+					'background-image':'url('+bg+')',
+					'bottom':0,
+					'opacity':1
+				});
+			});
+		});
+		$sliceEven.each(function(i) {
+			$(this).stop().delay(i*100).animate({top:'-'+slice_h+'px',opacity:0}, config.speed, config.easing, function() {
+				$(this).css({
+					'background-image':'url('+bg+')',
+					'top':0,
+					'opacity':1
+				});
+			});
+		}).promise().done(function() {
+			$caption.html(text).stop().animate({bottom:'0'}, config.speed/2);
+		});
+
+		clearInterval(autoSlide);
+		autoSlide = setInterval(slideShow, config.interval);
+
+		return false;
+
+	}).first().addClass('active');
+
+	// Init slideshow
+	$caption.html($slide.first().attr('alt')).stop().animate({bottom:'0'}, config.speed);
+
+	// Navigation clicker
+	function slideShow() {
+		if ($nav.find('.active').next().length) {
+			$nav.find('.active').next().trigger("click");
+		} else {
+			$nav.find('a').first().trigger("click");
+		}
+	}
+
+	// Run the slideshow on page load...
+	$(window).on("load", function() {
+
+		// remove the 'loading background-image' of '#slider'
+		$slider.css('background-image','none');
+
+		// Show the '.container', 'figcaption' and '#slide-nav' when the page has been loaded!
+		$container.show();
+		$caption.show();
+		$nav.css('opacity',1);
+
+		// Another init slideshow
+		$slider.find('.slice').css('background-image', 'url('+$first.attr("src")+')');
+
+		// Then, start the interval...
+		autoSlide = setInterval(slideShow, config.interval);
+
+	});
+
+})(jQuery);
+</script>
+
+<a title="Demo by Taufik Nurrohman" href="http://hompimpaalaihumgambreng.blogspot.com/2012/09/nivo-slider-like-effect-slideshow.html" style="font:bold 12px Arial,Sans-Serif;color:#39f;display:block;text-decoration:none;position:absolute;top:10px;right:12px;">DTE :]</a>
+
+
+</body>
+</html>
