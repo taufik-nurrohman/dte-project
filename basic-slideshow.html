@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Basic Slideshow</title>
+<style type="text/css">
+body {
+  text-align:center;
+  background-color:pink;
+}
+figure {
+  display:inline-block;
+  border:1px solid black;
+  background-color:white;
+  padding:10px;
+  margin:10px auto;
+  text-align:center;
+}
+nav {margin:10px 0 0;}
+img {display:none;}
+a + span {background-color:yellow;}
+</style>
+</head>
+<body>
+
+<figure>
+	<a style="display:block;" href="http://hompimpaalaihumgambreng.blogspot.com"><img src="" id="image" alt=""></a>
+	<span id="loading">Loading...</span>
+	<nav>
+		<span id="prev"><a href="javascript:navigate(0);">Prev</a></span>
+		 - <strong id="num"></strong> - 
+		<span id="next"><a href="javascript:navigate(1);">Next</a></span>
+	</nav>
+</figure>
+
+<script type="text/javascript">
+var slide = [ // Setiap slide dikumpulkan dalam array
+		"http://1.bp.blogspot.com/-jrMCCmrYSY4/T6Aoe9Z2fBI/AAAAAAAACno/JBRwhDUDAV0/s400/green-grass.jpg", // slide[0]
+		"http://1.bp.blogspot.com/-j8Juf_L4q5g/TmL_x6U54bI/AAAAAAAAAzE/HVf40rUrJQE/s320/319.jpg", // slide[1]
+		"http://2.bp.blogspot.com/_yGa4b5VGx6w/S_Sbmhqh14I/AAAAAAAAAFw/7Fs8bxAWdzk/s320/sky-flower.jpg", // slide[2]
+		"http://1.bp.blogspot.com/-P5SF0SFn_nA/T6AqorI8pnI/AAAAAAAACnw/MUUrR0W4e2M/s400/grass-bg.jpg", // slide[3]
+		"http://2.bp.blogspot.com/-unuh0jZwHw4/T7uHKYS6c2I/AAAAAAAACtk/ns7qXyu_pTA/s600/The-best-top-autumn-desktop-wallpapers-35.jpg"  // slide[4]
+		// Dan seterusnya...
+		// Tambahkan sendiri. Pisahkan setiap slide dengan tanda koma
+	],
+	prev = document.getElementById('prev'), // Navigasi mundur
+	next = document.getElementById('next'), // Navigasi maju
+	curr = document.getElementById('num'), // Deskripsi halaman saat ini
+	prev_a = prev.innerHTML, // Duplikat konten navigasi mundur
+	next_a = next.innerHTML, // Duplikat konten navigasi maju
+	prev_d = prev_a.replace(/<\S[^>]*>/g, ""), // Navigasi mundur berupa teks mati
+	next_d = next_a.replace(/<\S[^>]*>/g, ""), // Navigasi maju berupa teks mati
+	img = document.getElementById('image'), // Gambar
+	loading = document.getElementById('loading'), // Indikator sedang memuat/loading
+	i = 0; // Awal
+
+// Set gambar dengan nilai src berupa array slide[0]
+// Dalam hal ini: slide[i] = slide[0] = "image/1.jpg"
+img.setAttribute('src', slide[i]);
+
+// Awalan: set tampilan navigasi mundur sebagai teks mati
+//         set deskripsi halaman saat ini menjadi "Image 1 of 5"
+// Dalam hal ini: i = 0; (i + 1) = 1; slide.length = 5;
+if (i == 0) {
+	prev.innerHTML = prev_d;
+	curr.innerHTML = "Image " + (i + 1) + " of " + slide.length;
+}
+
+// SISTEM NAVIGASI
+function navigate(dir) {
+	// Langkah reset: Isi navigasi mundur dan maju dengan masing-masing duplikatnya
+	prev.innerHTML = prev_a;
+	next.innerHTML = next_a;
+	// Jika dir == 1, artinya navigasi maju, selain itu berarti navigasi mundur
+	// <a href="javascript:navigate(1);"> ** maju!
+	// <a href="javascript:navigate(0);"> ** mundur!
+	if (dir == 1) {
+		// Tingkatkan nilai i dengan 1 (i++ = i+1)
+		i++;
+		// Set gambar dengan nilai src berupa array slide[berikutnya]
+		img.setAttribute('src', slide[i]);
+		// Jika i < (5-1), set tampilan navigasi maju sebagai teks mati
+		if (i == slide.length - 1) next.innerHTML = next_d;
+	} else {
+		// Kurangi nilai i dengan 1 (i-- = i-1)
+		i--;
+		// Set gambar dengan nilai src berupa array slide[sebelumnya]
+		img.setAttribute('src', slide[i]);
+		// Jika i == 0, set tampilan navigasi mundur sebagai teks mati
+		if (i == 0) prev.innerHTML = prev_d;
+	}
+
+	// Set ulang deskripsi halaman saat ini setiap kali fungsi dieksekusi
+	// Dalam hal ini: setiap kali navigasi diklik
+	curr.innerHTML = "Image " + (i + 1) + " of " + slide.length;
+	// Tampilkan indikator sedang memuat
+	loading.style.display = "block";
+	// Sembunyikan gambar
+	img.style.display = "none";
+}
+
+// Saat gambar termuat...
+img.onload = function() {
+	// Hilangkan indikator sedang memuat
+	loading.style.display = "none";
+	// tampilkan kembali gambar yang kita sembunyikan tadi
+	this.style.display = "block";
+}
+</script>
+
+</body>
+</html>
