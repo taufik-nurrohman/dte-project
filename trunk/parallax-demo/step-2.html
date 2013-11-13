@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Parallax Demo</title>
+<link rel="stylesheet" href="style-horizontal.css" type="text/css">
+</head>
+<body>
+
+<div id="parallax-wrapper" class="parallax-wrapper">
+	<div class="layer layer-1"></div>
+	<div class="layer layer-2"></div>
+	<div class="layer layer-3"></div>
+</div>
+<span id="parallax-navigation" class="parallax-navigation">
+	<a href="#1">1</a>
+	<a href="#2">2</a>
+	<a href="#3">3</a>
+	<a href="#4">4</a>
+</span>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.backgroundpos.min.js"></script>
+<script type="text/javascript">
+(function($) {
+
+	// Cache some elements
+	var $parallax = $('#parallax-wrapper'),
+		$layer = $parallax.find('.layer'),
+		$nav = $('#parallax-navigation');
+
+	// Collect all navigation item inside parallax navigation, then get their index to set the animation distance
+	$nav.find('a').each(function() {
+		// when user click on the navigation item
+		$(this).on("click", function() {
+			var step = $(this).index(); // get the index (0, 1, 2, 3, ...)
+			$nav.find('.active').removeClass('active'); // remove the active class from navigation item
+			$(this).addClass('active'); // add the active class to the clicked navigation item
+			$layer.each(function() {
+				// set the background-position per-animation distance of each layer ...
+				// ... based on its index
+				var distance = ($(this).index()+1) * 200; // multiplied by 200
+				$(this).stop().animate({backgroundPosition: '-' + (step*distance) + 'px 0px'}, 1500); // (jQuery background position plugin required)
+			});
+			return false;
+		});
+	}).first().addClass('active'); // add active class to the first navigation item on initiation
+
+})(jQuery);
+</script>
+
+<a href="http://www.dte.web.id">DTE :]</a>
+
+</body>
+</html>

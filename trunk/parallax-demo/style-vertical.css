@@ -1,0 +1,75 @@
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  font:normal normal 11px/1.4 Arial,Sans-Serif;
+  color:black;
+  background-color:white;
+  padding:10px;
+}
+
+.parallax-wrapper {
+  border:1px solid black;
+  width:300px;
+  position:absolute;
+  top:10px;
+  bottom:10px;
+  left:10px;
+  overflow:hidden;
+}
+
+.parallax-wrapper .layer {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  background-position:0 0;
+  background-color:transparent;
+  background-repeat:repeat-y;
+}
+
+.parallax-wrapper .layer-1 {background-image:url('vertical-parallax-bg-1.png')}
+.parallax-wrapper .layer-2 {background-image:url('vertical-parallax-bg-2.png')}
+.parallax-wrapper .layer-3 {background-image:url('vertical-parallax-bg-3.png')}
+
+.box-item-wrapper {
+  position:relative;
+  overflow:hidden;
+}
+
+.box-item-wrapper .box-item {
+  height:100%;
+  padding:1.5em 2em;
+}
+
+.parallax-navigation {
+  display:block;
+  height:30px;
+  line-height:30px;
+  position:relative;
+  text-align:left;
+  font-size:11px;
+  font-weight:bold;
+  margin-left:310px;
+}
+
+.parallax-navigation a {
+  text-decoration:none;
+  color:black;
+  background-color:#eee;
+  padding:5px 10px;
+}
+
+.parallax-navigation a.active {
+  background-color:#529834;
+  color:white;
+}
+
+/* details */
+.box-item-wrapper .box-item h3 {
+  font-size:120%;
+  font-weight:bold;
+}
