@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Simple Useful JQuery Slideshow</title>
+<style type="text/css">
+* {margin:0;padding:0}
+
+body {
+  background-color:white;
+  padding:50px;
+}
+
+/* Slider */
+#slider {
+  width:300px; /* dimensi lebar */
+  height:200px;; /* dimensi tinggi */
+  margin:50px auto 0;
+  background-color:black;
+  overflow:hidden; /* Sembunyikan muatan elemen '.container' yang berlebih dari '#slider' */
+}
+
+#slider .slide {
+  width:300px; /* dimensi lebar */
+  height:200px; /* dimensi tinggi */
+  float:left;
+}
+
+#slide-1 {background-color:darkred}
+#slide-2 {background-color:darkgreen}
+#slide-3 {background-color:darkblue}
+#slide-4 {background-color:gold}
+#slide-5 {background-color:darkviolet}
+
+/* Navigasi */
+#slider-nav {
+  display:block;
+  width:300px;
+  margin:10px auto;
+  text-align:center;
+}
+
+#slider-nav a {
+  display:inline-block;
+  width:15px;
+  height:15px;
+  background-color:#bbb;
+  font-size:0;
+  color:transparent;
+  overflow:hidden;
+  text-indent:-99px;
+  margin:0 2px 0 0;
+  border:2px solid white;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:0 1px 2px rgba(0,0,0,.4);
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  border-radius:100%;
+}
+
+#slider-nav .active {
+  background-color:green;
+}
+
+/* Detail */
+.slide {
+  font:normal normal 11px Arial,Sans-Serif;
+  color:black;
+}
+
+.slide > div {
+  padding:10px 15px;
+}
+
+.slide h2 {
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+
+<div id="slider">
+	<div class="container">
+		<div class="slide">
+			<div><h2>Slide 1</h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+		</div>
+		<div class="slide">
+			<div><h2>Slide 2</h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+		</div>
+		<div class="slide">
+			<div><h2>Slide 3</h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+		</div>
+		<div class="slide">
+			<div><h2>Slide 4</h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+		</div>
+		<div class="slide">
+			<div><h2>Slide 5</h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+		</div>
+	</div>
+</div>
+<nav id="slider-nav"></nav>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+(function($) {
+
+	// Tangkap semua objek yang dibutuhkan
+	var $slider = $('#slider'),
+		$container = $slider.find('.container'),
+		$nav = $('#slider-nav'),
+		$slide = $container.children(),
+		s_length = $slide.length,
+		s_wide = $slider.width() * s_length,
+		s_height = $slider.height(),
+		autoSlide = null;
+
+	// Set posisi '.container' sebagai 'relative' (untuk kebutuhan animasi properti 'left')
+	// Set lebar '.container' dengan ukuran = (lebar slideshow * jumlah slide)
+	// Set tinggi '.container' dengan ukuran = tinggi slideshow
+	$container.css({
+		'position':'relative',
+		'width':s_wide,
+		'height':s_height
+	});
+
+	// Otomatis menyisipkan item navigasi berdasarkan jumlah slide
+	$slide.each(function(index) {
+		var i = index + 1;
+		$nav.append('<a href="#slide-'+i+'">'+i+'</a>');
+		$(this).attr('id', 'slide-'+i);
+	});
+
+	// Klik untuk mengganti slide
+	$nav.find('a').on("click", function(pos) {
+		// Tambah/lepas kelas 'active' dari item navigasi (untuk pewarnaan item navigasi yang aktif)
+		$nav.find('.active').removeClass('active');
+		$(this).addClass('active');
+		pos = $(this).index() * $slider.width(); // Jarak animasi dihitung berdasarkan indeks navigasi yang diklik * lebar slider
+		$container.animate({left:'-'+pos+'px'}, 600);
+		clearInterval(autoSlide); // Bersihkan interval slideshow otomatis...
+		autoSlide = setInterval(slideShow, 3000); // Kemudian set kembali interval seperti semula.
+		return false;
+	}).first().addClass('active');
+
+	// Untuk keperluan event klik otomatis pada navigasi
+	function slideShow() {
+		if ($nav.find('.active').next().length) {
+			$nav.find('.active').next().trigger("click");
+		} else {
+			$nav.find('a').first().trigger("click");
+		}
+	} autoSlide = setInterval(slideShow, 3000); // Jalankan fungsi slideShow() dengan interval 3 detik!
+
+})(jQuery);
+</script>
+
+<a title="Demo oleh Taufik Nurrohman" href="http://hompimpaalaihumgambreng.blogspot.com/2012/09/simple-useful-jquery-slideshow.html" style="font:bold 12px Arial,Sans-Serif;display:block;text-decoration:none;position:absolute;top:10px;right:12px;">DTE :]</a>
+</body>
+</html>
