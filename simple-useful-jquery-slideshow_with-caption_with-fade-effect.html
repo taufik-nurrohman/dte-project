@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Simple Useful JQuery Slideshow - Example with Caption</title>
+<!--[if IE]><script type='text/javascript' src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script><![endif]-->
+<style type="text/css">
+* {margin:0;padding:0}
+
+body {
+  background-color:#DEDBC6;
+  padding:50px;
+}
+
+/* Slider */
+#slider {
+  display:block;
+  width:300px; /* dimensi lebar */
+  height:200px;; /* dimensi tinggi */
+  margin:50px auto 0;
+  background:white url('http://reader-download.googlecode.com/svn/trunk/images/nivo-loading.gif') no-repeat 50% 50%;
+  overflow:hidden; /* Sembunyikan muatan elemen '.container' yang berlebih dari '#slider' */
+  position:relative;
+}
+
+/* Untuk caption */
+#slider figcaption {
+  display:block;
+  background-color:black;
+  font:normal normal 11px Arial,Sans-Serif;
+  color:white;
+  opacity:.8;
+  padding:10px 15px;
+  position:absolute;
+  right:0;
+  bottom:-100px; /* sembunyikan dengan cara ini :) */
+  left:0;
+  z-index:4;
+}
+
+#slider img {
+  display:block;
+  margin:0 0;
+  width:300px; /* dimensi lebar */
+  height:200px; /* dimensi tinggi */
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+/* Navigasi */
+#slider-nav {
+  display:block;
+  width:300px;
+  margin:10px auto;
+  text-align:center;
+}
+
+#slider-nav a {
+  display:inline-block;
+  width:15px;
+  height:15px;
+  background-color:#bbb;
+  font-size:0;
+  color:transparent;
+  overflow:hidden;
+  text-indent:-99px;
+  margin:0 2px 0 0;
+  border:2px solid white;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:0 1px 2px rgba(0,0,0,.4);
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  border-radius:100%;
+}
+
+#slider-nav .active {
+  background-color:#6A7E00;
+}
+
+/**
+ * Tip yang baik untuk slideshow berupa gambar:
+ * Sembunyikan tampilan sampai semua gambar benar-benar termuat agar saat gambar sedang dimuat, dia tidak merusak pemandangan kita :)
+ */
+#slider .container, #slider figcaption {display:none}
+#slider-nav {opacity:0}
+</style>
+</head>
+<body>
+
+
+<figure id="slider">
+	<div class="container">
+		<img src="http://lorempixel.com/300/200/food/1" alt="Lorem ipsum dolor sit amet...">
+		<img src="http://lorempixel.com/300/200/food/2" alt="Consectetuer adipiscing elit...">
+		<img src="http://lorempixel.com/300/200/food/3" alt="Sed diam nonummy nibh euismod tincidunt...">
+		<img src="http://lorempixel.com/300/200/food/4" alt="Ut laoreet dolore magna aliquam erat volutpat...">
+	</div>
+	<figcaption></figcaption> <!-- slideshow caption -->
+</figure>
+<nav id="slider-nav"></nav>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+(function($) {
+
+	// Tangkap semua objek yang dibutuhkan
+	var $slider = $('#slider'),
+		$caption = $slider.find('figcaption'),
+		$container = $slider.find('.container'),
+		$nav = $('#slider-nav'),
+		$slide = $container.children(),
+		s_length = $slide.length,
+		autoSlide = null;
+
+	$slide.each(function(index) {
+		var i = index + 1;
+		$nav.append('<a href="#slide-'+i+'">'+i+'</a>');
+		$(this).attr('id', 'slide-'+i);
+	});
+
+	$nav.find('a').on("click", function() {
+		$nav.find('.active').removeClass('active');
+		$(this).addClass('active');
+		var pos = $(this).index() * $slider.width(),
+			text = $slide.eq($(this).index()).attr('alt');
+		$caption.stop().animate({bottom:'-100px'}, 400);
+		// Sembunyikan semua slide dengan efek .fadeOut() ...
+		// ... kemudian tampilkan slide ke-`$(this).index()` dengan efek .fadeIn()
+		$slide.fadeOut(600).eq($(this).index()).fadeIn(600, function() {
+			$caption.html(text).stop().animate({bottom:'0'}, 400);
+		});
+		clearInterval(autoSlide);
+		autoSlide = setInterval(slideShow, 3000);
+		return false;
+	}).first().addClass('active');
+
+	$caption.html($slide.first().attr('alt')).stop().animate({bottom:'0'}, 600);
+
+	function slideShow() {
+		if ($nav.find('.active').next().length) {
+			$nav.find('.active').next().trigger("click");
+		} else {
+			$nav.find('a').first().trigger("click");
+		}
+	}
+
+	$(window).on("load", function() {
+		// Hilangkan background loading pada '#slider'
+		$slider.css('background-image','none');
+		// Tampilkan '.container', 'figcaption' dan '#slide-nav' saat halaman (semua gambar) telah termuat!
+		$container.show();
+		$caption.show();
+		$nav.css('opacity',1);
+		// lalu jalankan interval slideshow...
+		autoSlide = setInterval(slideShow, 3000);
+	});
+
+})(jQuery);
+</script>
+
+<a title="Demo oleh Taufik Nurrohman" href="http://hompimpaalaihumgambreng.blogspot.com/2012/09/simple-useful-jquery-slideshow.html" style="font:bold 12px Arial,Sans-Serif;color:brown;display:block;text-decoration:none;position:absolute;top:10px;right:12px;">DTE :]</a>
+</body>
+</html>
