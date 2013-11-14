@@ -1,0 +1,87 @@
+/*!
+ * BLOGGER TOC WITH ACCORDION EFFECT
+ * ---------------------------------------------------
+ * by Taufik Nurrohman
+ * URL: http://gplus.to/tovic
+ * ---------------------------------------------------
+ */
+.table-of-content {
+  background-color:#333;
+  border:2px solid #fafafa;
+  font:normal normal 11px/normal Verdana,Geneva,"DejaVu Sans",Tahoma,Arial,Sans-serif;
+  color:#999;
+  margin-bottom:5px;
+  -webkit-box-shadow:0 1px 2px black;
+  -moz-box-shadow:0 1px 2px black;
+  box-shadow:0 1px 2px black;
+  overflow:hidden;
+}
+.table-of-content .toc-header {
+  margin:0;
+  padding:10px 15px;
+  overflow:hidden;
+  cursor:pointer;
+  font:inherit;
+  font-size:13px;
+  color:#bbb;
+  text-shadow:0 1px 1px rgba(0,0,0,.3);
+  border-top:1px solid #444;
+  border-bottom:1px solid #222;
+  background-color:#333;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c',endColorstr='#333333');
+  background-image:-webkit-linear-gradient(#3c3c3c,#333);
+  background-image:-moz-linear-gradient(#3c3c3c,#333);
+  background-image:-ms-linear-gradient(#3c3c3c,#333);
+  background-image:-o-linear-gradient(#3c3c3c,#333);
+  background-image:linear-gradient(#3c3c3c,#333);
+}
+.table-of-content .toc-header.active {
+  color:#efefef;
+  border-top:1px solid #24B6E3;
+  border-bottom:1px solid #104968;
+  background-color:#248AB0;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#248AB0',endColorstr='#21739B');
+  background-image:-webkit-linear-gradient(#248AB0,#21739B);
+  background-image:-moz-linear-gradient(#248AB0,#21739B);
+  background-image:-ms-linear-gradient(#248AB0,#21739B);
+  background-image:-o-linear-gradient(#248AB0,#21739B);
+  background-image:linear-gradient(#248AB0,#21739B);
+}
+.table-of-content .loading {
+  display:block;
+  padding:10px 15px;
+  text-decoration:blink;
+}
+.table-of-content ol {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.table-of-content li {
+  line-height:normal;
+  margin:0;
+  padding:5px 5px 5px 15px;
+  white-space:nowrap;
+  text-align:left;
+  overflow:hidden;
+  border-top:1px solid #444;
+  border-bottom:1px solid #222;
+}
+.table-of-content li:first-child {border-top:none}
+.table-of-content li:last-child {border-bottom:none}
+.table-of-content a {
+  color:#5687f8;
+  text-decoration:none;
+}
+.table-of-content a:hover {text-decoration:underline}
+.table-of-content a:visited {color:#5687b8}
+.credit-link {
+  text-align:right;
+  margin-right:2px;
+}
+.credit-link a {
+  font:normal bold 10px/normal Helmet,Freesans,Sans-Serif;
+  color:#333;
+  text-decoration:none;
+}
