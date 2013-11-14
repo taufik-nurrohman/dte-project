@@ -17,6 +17,7 @@ var toc_config = {
 		theList: true
 	},
 	maxResults: 9999,
+	activePanel: 1,
 	slideSpeed: {
 		down: 400,
 		up: 400
@@ -80,10 +81,11 @@ var toc_config = {
 		if (typeof jQuery != 'undefined') {
 			$('#' + toc_config.containerId + ' .toc-content').hide();
 			$('#' + toc_config.containerId + ' .toc-header').click(function() {
+				if ($(this).hasClass('active')) return;
 				toc_config.clickCallback(this);
 				$('#' + toc_config.containerId + ' .toc-header').removeClass('active').next().slideUp(toc_config.slideSpeed.up, toc_config.slideEasing.up, toc_config.slideCallback.up);
 				$(this).addClass('active').next().slideDown(toc_config.slideSpeed.down, toc_config.slideEasing.down, toc_config.slideCallback.down);
-			}).first().addClass('active').next().slideDown(toc_config.slideSpeed.down, toc_config.slideEasing.down, toc_config.slideCallback.down);
+			}).eq(toc_config.activePanel - 1).addClass('active').next().slideDown(toc_config.slideSpeed.down, toc_config.slideEasing.down, toc_config.slideCallback.down);
 		}
 	};
 	var s = d.createElement('script');
