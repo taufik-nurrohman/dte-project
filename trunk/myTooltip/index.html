@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="Simple, JQuery, Tooltip, Plugin" name="keywords">
+<meta content="MyTooltip, A Simple JQuery Tooltip Plugin" name="description">
+<title>Demo JQuery .myTooltip() Plugin</title>
+<style type="text/css">
+
+body {
+	background-color:#EDF4FF;
+	padding:30px;
+	margin:0;
+	text-align:center;
+	font:normal 12px/16px Verdana,Arial,Sans-Serif;
+	color:#666;
+}
+
+h1 {
+	font:normal 12px verdana,Arial,Sans-Serif;
+	margin:0 0 100px;
+	text-align:right;
+}
+
+a {color:blue;}
+
+section {
+	background-color:white;
+	padding:30px;
+	margin:0 auto 50px;
+	max-width:450px;
+	text-align:left;
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	position:relative;
+}
+
+section h2 {font-size:16px;}
+
+mark {background-color:pink;color:#333;}
+
+section:before,
+section:after {
+	content:"";
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	background-color:white;
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	-webkit-transform:rotate(-2deg);
+	-moz-transform:rotate(-2deg);
+	-ms-transform:rotate(-2deg);
+	-o-transform:rotate(-2deg);
+	transform:rotate(-2deg);
+	z-index:-1;
+}
+
+section:after {
+	-webkit-transform:rotate(5deg);
+	-moz-transform:rotate(5deg);
+	-ms-transform:rotate(5deg);
+	-o-transform:rotate(5deg);
+	transform:rotate(5deg);
+}
+
+pre {
+	background-color:rgb(69, 124, 188);
+	border:2px solid rgb(46, 90, 144);
+	padding:10px 15px;
+	margin:0 0 15px;
+	overflow:auto;
+	word-wrap:normal;
+	color:#EDF4FF;
+}
+
+.tooltip {
+	background-color:black;
+	color:white;
+	padding:5px 10px;
+	display:block;
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.4);
+	box-shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+
+.yourClass {
+	background-color:gold;
+	border:2px solid darkorange;
+	color:black;
+}
+
+.arrowed {
+	background-color:#009;
+	font-family:Georgia,Serif;
+	padding:10px 15px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+.arrowed:after {
+	content:"";
+	width:0;
+	height:0;
+	border:5px solid transparent;
+	border-bottom-color:#009;
+	position:absolute;
+	top:-10px;
+	left:10px;
+}
+
+.red-tooltip {
+	background-color:#900;
+	border:2px solid #500;
+	color:yellow;
+	width:100px;
+	height:100px;
+	padding:0 0;
+	border-radius:100%;
+	font:normal 20px/100px Impact,Arial,Sans-Serif;
+	text-transform:uppercase;
+	text-align:center;
+}
+
+.tada {
+	background-color:green;
+	border:5px dashed darkgreen;
+	font:normal 20px 'Comic Sans MS',Times,Serif;
+}
+
+.author {
+	background-color:#900;
+	border:10px solid #600;
+	padding:20px 24px;
+	font-weight:bold;
+	font-size:16px;
+	color:gold;
+	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow:0 1px 3px rgba(0,0,0,0.4);
+	box-shadow:0 1px 3px rgba(0,0,0,0.4);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="mytooltip.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#section1 a, #section5 a, a.back').myTooltip("title");
+	$('#section2 a').myTooltip("data-tooltip");
+	$('#section3 a').myTooltip("title", {top:-50,left:-100});
+	$('#section4 a').myTooltip("title", {fade:true});
+	$('#author').myTooltip("title", {top:-100,left:-75});
+});
+</script>
+</head>
+<body>
+
+<h1><a class="back" href="http://www.dte.web.id/2012/06/mytooltip-jquery-plugin.html" title="Back to Article!">Demo for JQuery myTooltip Plugin</a></h1>
+
+<section id="section1"><h2>Basic: Get the Tooltip Text from 'title' Attribute</h2><pre>$('a').myTooltip();</pre><pre>&lt;a href="#" title="This is a tooltip!"&gt;Example Link&lt;/a&gt;</pre><a href="#" title="This is an example tooltip!">Lorem ipsum</a> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <a href="#" title="Hey nice!">euismod tincidunt</a> ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare <a href="#" title="OMG!">quam littera</a> gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in <a href="#" title="Tadaaa!!!">futurum</a>.</section>
+
+<section id="section2"><h2>Custom Attributes</h2><pre>$('a').myTooltip('data-tooltip');</pre><pre>&lt;a href="#" <mark>data-tooltip="This is a tooltip!"</mark>&gt;Example Link&lt;/a&gt;</pre><a href="#" data-tooltip="This text comes from the data-tooltip attribute">Lorem ipsum</a> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <a href="#" data-tooltip="Me too!">euismod tincidunt</a> ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare <a href="#" data-tooltip="Hey!!! Me toooo!!!!">quam littera</a> gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in <a href="#" data-tooltip="Up to you :)">futurum</a>.</section>
+
+<section id="section3"><h2>Custom Offset</h2><pre>$('a').myTooltip('title', {top:-50, left:-100});</pre><a href="#" title="Now I am Shifted!">Lorem ipsum</a> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <a href="#" title="Me too!">euismod tincidunt</a> ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare <a href="#" title="Hey!!! Me toooo!!!!">quam littera</a> gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in <a href="#" title="Up to you :)">futurum</a>.</section>
+
+<section id="section4"><h2>Enable Fade Effect</h2><pre>$('a').myTooltip('title', {fade:true, time:1000});</pre><a href="#" title="This is an example tooltip!">Lorem ipsum</a> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <a href="#" title="Hey nice!">euismod tincidunt</a> ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare <a href="#" title="OMG!">quam littera</a> gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in <a href="#" title="Tadaaa!!!">futurum</a>.</section>
+
+<section id="section5"><h2>Rainbow? Why Not?!</h2><strong>Add the <code>data-custom</code> attribute to add custom classes for each tooltip!</strong><br><br><pre>$('a').myTooltip('title');</pre><pre>&lt;a href="#" <mark>data-custom="yourClass"</mark> title="This is a tooltip!"&gt;Example Link&lt;/a&gt;
+&lt;a href="#" <mark>data-custom="arrowed"</mark> title="This is a tooltip!"&gt;Example Link&lt;/a&gt;
+&lt;a href="#" <mark>data-custom="red-tooltip"</mark> title="This is a tooltip!"&gt;Example Link&lt;/a&gt;
+&lt;a href="#" <mark>data-custom="tada-tooltip"</mark> title="This is a tooltip!"&gt;Example Link&lt;/a&gt;</pre><pre>.yourClass {
+  background-color:gold;
+  border:2px solid darkorange;
+  color:black;
+}
+
+.arrowed {
+  background-color:#009;
+  font-family:Georgia,Serif;
+  padding:10px 15px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+
+.arrowed:after {
+  content:"";
+  width:0;
+  height:0;
+  border:5px solid transparent;
+  border-bottom-color:#009;
+  position:absolute;
+  top:-10px;
+  left:10px;
+}
+
+.red-tooltip {
+  background-color:#900;
+  border:2px solid #500;
+  color:yellow;
+  width:100px;
+  height:100px;
+  padding:0 0;
+  border-radius:100%;
+  font:normal 20px/100px Impact,Arial,Sans-Serif;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.tada-tooltip {
+  background-color:green;
+  border:5px dashed darkgreen;
+  font:normal 20px 'Comic Sans MS',Times,Serif;
+}</pre><a href="#" data-custom="yourClass" title="This is a custom tooltip example!">Lorem ipsum</a> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <a href="#" data-custom="arrowed" title="Hey! I have a nice arrow...">euismod tincidunt</a> ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare <a href="#" data-custom="red-tooltip" title="An Alert!">quam littera</a> gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in <a href="#" data-custom="tada" title="Tadaaa!!!">futurum</a>.</section>
+
+<a id="author" data-custom="author" title="About Me?" href="https://plus.google.com/108949996304093815163/about">DTE :]</a>
+
+</body>
+</html>
