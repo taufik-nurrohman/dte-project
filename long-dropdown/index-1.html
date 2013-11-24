@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Long Drop Down</title>
+<style type="text/css">
+* {
+  margin:0;
+  padding:0;
+}
+body {
+  background-color:white;
+  padding:10px;
+}
+#nav {
+  background-color:#CEDEEF;
+  font:normal bold 10px/normal Tahoma,Verdana,Arial,Sans-Serif;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.2);
+}
+#nav ul {
+  margin:0;
+  padding:0;
+  height:30px;
+}
+#nav li {
+  list-style:none;
+  margin:0;
+  padding:0;
+  float:left;
+  position:relative;
+}
+#nav a {
+  display:block;
+  line-height:30px;
+  padding:0 15px;
+  color:#333;
+  text-decoration:none;
+}
+#nav a:hover,
+#nav li:hover > a {background-color:#CE4239}
+#nav li li {
+  display:block;
+  float:none;
+  background-color:#CE4239;
+}
+#nav li ul li a:hover,
+#nav li ul li:hover > a {background-color:#B2362C}
+#nav ul ul {
+  position:absolute;
+  top:100%;
+  left:0;
+  z-index:9999;
+  width:200px;
+  height:auto;
+  display:none;
+}
+#nav ul ul ul {
+  top:0;
+  left:100%;
+}
+/* CSS Fallback */
+#nav li:hover > .dropdown {display:block}
+</style>
+	<body>
+
+		<nav id="nav">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Archive</a>
+					<ul style="max-height:300px;overflow-y:auto;">
+						<li><a href="#">2012</a></li>
+						<li><a href="#">2011</a></li>
+						<li><a href="#">2010</a></li>
+						<li><a href="#">2009</a></li>
+						<li><a href="#">2008</a></li>
+						<li><a href="#">2007</a></li>
+						<li><a href="#">2006</a></li>
+						<li><a href="#">2005</a></li>
+						<li><a href="#">2004</a></li>
+						<li><a href="#">2003</a></li>
+						<li><a href="#">2002</a></li>
+						<li><a href="#">2001</a></li>
+						<li><a href="#">2000</a></li>
+						<li><a href="#">1999</a></li>
+						<li><a href="#">1998</a></li>
+						<li><a href="#">1997</a></li>
+						<li><a href="#">1996</a></li>
+						<li><a href="#">1995</a></li>
+						<li><a href="#">1994</a></li>
+						<li><a href="#">1993</a></li>
+						<li><a href="#">1992</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Comments</a>		
+					<ul style="max-height:300px;overflow-y:auto;">
+						<li><a href="#">Comments 2012</a></li>
+						<li><a href="#">Comments 2011</a></li>
+						<li><a href="#">Comments 2010</a></li>
+						<li><a href="#">Comments 2009</a></li>
+						<li><a href="#">Comments 2008</a></li>
+						<li><a href="#">Comments 2007</a></li>
+						<li><a href="#">Comments 2006</a></li>
+						<li><a href="#">Comments 2005</a></li>
+						<li><a href="#">Comments 2004</a></li>
+						<li><a href="#">Comments 2003</a></li>
+						<li><a href="#">Comments 2002</a></li>
+						<li><a href="#">Comments 2001</a></li>
+						<li><a href="#">Comments 2000</a></li>
+						<li><a href="#">Comments 1999</a></li>
+						<li><a href="#">Comments 1998</a></li>
+						<li><a href="#">Comments 1997</a></li>
+						<li><a href="#">Comments 1996</a></li>
+						<li><a href="#">Comments 1995</a></li>
+						<li><a href="#">Comments 1994</a></li>
+						<li><a href="#">Comments 1993</a></li>
+						<li><a href="#">Comments 1992</a></li>
+						<li><a href="#">Comments 1991</a></li>
+						<li><a href="#">Comments 1990</a></li>
+						<li><a href="#">Comments 1989</a></li>
+						<li><a href="#">Comments 1988</a></li>
+						<li><a href="#">Comments 1987</a></li>
+						<li><a href="#">Comments 1986</a></li>
+						<li><a href="#">Comments 1985</a></li>
+						<li><a href="#">Comments 1984</a></li>
+						<li><a href="#">Comments 1983</a></li>
+						<li><a href="#">Comments 1982</a></li>
+						<li><a href="#">Comments 1981</a></li>
+						<li><a href="#">Comments 1980</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Contact</a>
+					<ul class="dropdown">
+						<li><a href="#">Lorem Ipsum</a></li>
+						<li><a href="#">Dolor Sit Amet</a></li>
+						<li><a href="#">Mamamia</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<a href="http://hompimpaalaihumgambreng.blogspot.com/" style="position:fixed !important;position:absolute;bottom:10px;right:12px;font:bold 11px Tahoma,Arial,Sans-Serif;text-decoration:none;">DTE :]</a>
+
+	</body>
+</html>
