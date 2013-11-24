@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Long Drop Down</title>
+<style type="text/css">
+* {
+  margin:0;
+  padding:0;
+}
+body {
+  background-color:white;
+  padding:10px;
+}
+#nav {
+  background-color:#CEDEEF;
+  font:normal bold 10px/normal Tahoma,Verdana,Arial,Sans-Serif;
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.2);
+}
+#nav ul {
+  margin:0;
+  padding:0;
+  height:30px;
+}
+#nav li {
+  list-style:none;
+  margin:0;
+  padding:0;
+  float:left;
+  position:relative;
+}
+#nav a {
+  display:block;
+  line-height:30px;
+  padding:0 15px;
+  color:#333;
+  text-decoration:none;
+}
+#nav a:hover,
+#nav li:hover > a {background-color:#CE4239}
+#nav li li {
+  display:block;
+  float:none;
+  background-color:#CE4239;
+}
+#nav li ul li a:hover,
+#nav li ul li:hover > a {background-color:#B2362C}
+#nav ul ul {
+  position:absolute;
+  top:100%;
+  left:0;
+  z-index:9999;
+  width:200px;
+  height:auto;
+  display:none;
+}
+#nav ul ul ul {
+  top:0;
+  left:100%;
+}
+/* CSS Fallback */
+#nav li:hover > .dropdown {display:block}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- script type="text/javascript" src="jquery-1.7.1.min.js"></script -->
+<script type="text/javascript">
+$(function() {
+
+	// Teknik CSS Fallback Menu
+	// Selengkapnya: http://hompimpaalaihumgambreng.blogspot.com/2012/03/penanganan-javascript-pada-peramban.html
+	$('#nav ul.dropdown').removeClass('dropdown');
+
+	var nav       = $('#nav'),
+		navLi     = $('li', nav),
+		winHeight = $(window).height();
+
+	// Saat pointer mouse berada di atas item menu...
+	navLi.hover(function() {
+		var ulHeight = $(this).children('ul').height(); // Dapatkan tinggi submenu
+		// Tampilkan submenu dengan efek .fadeIn()
+		$(this).children('ul').stop(true, true).fadeIn('fast');
+		// Batasi efek scroll hanya untuk submenu yang memiliki tinggi lebih besar dari tinggi layar
+		if(ulHeight > winHeight) {
+			// Set tinggi submenu setinggi layar dikurangi tinggi menu + offset menu sebelah atas
+			$(this).children('ul').css({
+				'height': winHeight - (nav.height() + nav.offset().top),
+				'overflow': 'hidden'
+			})
+			// Saat pointer bergerak di atas submenu...
+			.mousemove(function(e) {
+				// Set margin-top elemen <li> pertama dengan nilai sebesar jarak koordinat pointer terhadap sumbu-Y
+				// dikurangi tinggi dan offset sebelah atas menu, kemudian nilainya dikalikan 'negatif' dua untuk mempercepat gerakan
+				// (e.pageY-$('#nav').height()-$('nav').offset().top)*-2
+				// [Negatif = Saat pointer bergerak ke bawah, menu akan bergerak ke atas]
+				$(this).children('li:first').css('margin-top', (e.pageY - nav.height() - nav.offset().top)*-2);
+
+				$('#koordinat-pointer').text("Koordinat Sumbu-Y = " + e.pageY); // Untuk demonstrasi
+
+			});
+		}
+	}, function() {
+		// Saat pointer mouse keluar dari atas item menu...
+		// Sembunyikan submenu dengan efek .slideUp() dan kembalikan nilai margin dari elemen <li> yaitu = 0
+		$(this).children('ul').slideUp('fast').children('li:first').animate({'margin-top':0}, 400);
+	});
+
+});
+</script>
+	<body>
+
+		<nav id="nav">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Archive</a>
+					<ul class="dropdown">
+						<li><a href="#">2012</a></li>
+						<li><a href="#">2011</a></li>
+						<li><a href="#">2010</a></li>
+						<li><a href="#">2009</a></li>
+						<li><a href="#">2008</a></li>
+						<li><a href="#">2007</a></li>
+						<li><a href="#">2006</a></li>
+						<li><a href="#">2005</a></li>
+						<li><a href="#">2004</a></li>
+						<li><a href="#">2003</a></li>
+						<li><a href="#">2002</a></li>
+						<li><a href="#">2001</a></li>
+						<li><a href="#">2000</a></li>
+						<li><a href="#">1999</a></li>
+						<li><a href="#">1998</a></li>
+						<li><a href="#">1997</a></li>
+						<li><a href="#">1996</a></li>
+						<li><a href="#">1995</a></li>
+						<li><a href="#">1994</a></li>
+						<li><a href="#">1993</a></li>
+						<li><a href="#">1992</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Comments</a>		
+					<ul class="dropdown">
+						<li><a href="#">Comments 2012</a></li>
+						<li><a href="#">Comments 2011</a></li>
+						<li><a href="#">Comments 2010</a></li>
+						<li><a href="#">Comments 2009</a></li>
+						<li><a href="#">Comments 2008</a></li>
+						<li><a href="#">Comments 2007</a></li>
+						<li><a href="#">Comments 2006</a></li>
+						<li><a href="#">Comments 2005</a></li>
+						<li><a href="#">Comments 2004</a></li>
+						<li><a href="#">Comments 2003</a></li>
+						<li><a href="#">Comments 2002</a></li>
+						<li><a href="#">Comments 2001</a></li>
+						<li><a href="#">Comments 2000</a></li>
+						<li><a href="#">Comments 1999</a></li>
+						<li><a href="#">Comments 1998</a></li>
+						<li><a href="#">Comments 1997</a></li>
+						<li><a href="#">Comments 1996</a></li>
+						<li><a href="#">Comments 1995</a></li>
+						<li><a href="#">Comments 1994</a></li>
+						<li><a href="#">Comments 1993</a></li>
+						<li><a href="#">Comments 1992</a></li>
+						<li><a href="#">Comments 1991</a></li>
+						<li><a href="#">Comments 1990</a></li>
+						<li><a href="#">Comments 1989</a></li>
+						<li><a href="#">Comments 1988</a></li>
+						<li><a href="#">Comments 1987</a></li>
+						<li><a href="#">Comments 1986</a></li>
+						<li><a href="#">Comments 1985</a></li>
+						<li><a href="#">Comments 1984</a></li>
+						<li><a href="#">Comments 1983</a></li>
+						<li><a href="#">Comments 1982</a></li>
+						<li><a href="#">Comments 1981</a></li>
+						<li><a href="#">Comments 1980</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Contact</a>
+					<ul class="dropdown">
+						<li><a href="#">Lorem Ipsum</a></li>
+						<li><a href="#">Dolor Sit Amet</a>
+							<ul class="dropdown">
+								<li><a href="#">Submenu 2.1</a></li>
+								<li><a href="#">Submenu 2.2</a></li>
+								<li><a href="#">Submenu 2.3</a></li>
+								<li><a href="#">Submenu 2.4</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Mamamia</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- Untuk Demonstrasi -->
+		<h3 id="koordinat-pointer" style="text-align:right;">&nbsp;</h3>
+
+		<a href="http://hompimpaalaihumgambreng.blogspot.com/" style="position:fixed !important;position:absolute;bottom:10px;right:12px;font:bold 11px Tahoma,Arial,Sans-Serif;text-decoration:none;">DTE :]</a>
+
+	</body>
+</html>
