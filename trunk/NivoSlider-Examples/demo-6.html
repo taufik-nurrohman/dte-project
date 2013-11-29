@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NivoSlider Demo - Thumbnails</title>
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+      /* CSS for NivoSlider thumbnails */
+      .nivo-controlNav {
+        top:100%;
+        right:0;
+        left:0;
+        text-align:center;
+        margin-top:15px;
+      }
+      .nivo-controlNav a {
+        width:auto;
+        height:auto;
+        padding:0;
+        background:none;
+        -webkit-border-radius:0;
+        -moz-border-radius:0;
+        border-radius:0;
+      }
+      .nivo-controlNav img {
+        display:block;
+        position:relative;
+        border:2px solid #111;
+        opacity:.8;
+        -webkit-box-shadow:0 1px 2px rgba(0,0,0,.4);
+        -moz-box-shadow:0 1px 2px rgba(0,0,0,.4);
+        box-shadow:0 1px 2px rgba(0,0,0,.4);
+      }
+      .nivo-controlNav a.active img {opacity:1}
+    </style>
+  </head>
+  <body>
+
+    <div id="slider-wrapper">
+      <div class="nivoSlider" id="nivoSlider">
+        <a href="#"><img src="img/1.jpg" rel="img/1_thumb.jpg" alt="" title="Slider Caption 1"></a>
+        <a href="#"><img src="img/2.jpg" rel="img/2_thumb.jpg" alt="" title="Slider Caption 2"></a>
+        <a href="#"><img src="img/3.jpg" rel="img/3_thumb.jpg" alt="" title="Slider Caption 3"></a>
+        <a href="#"><img src="img/4.jpg" rel="img/4_thumb.jpg" alt="" title="Slider Caption 4 and a &lt;a href=&#39;#&#39;&gt;link&lt;/a&gt;"></a>
+      </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/jquery.nivo.slider.min.js"></script>
+    <script>
+      $(window).load(function() {
+        $('#nivoSlider').nivoSlider({
+          controlNav: true,
+          controlNavThumbs: true,
+          controlNavThumbsFromRel: true
+        });
+      });
+    </script>
+
+  </body>
+</html>
