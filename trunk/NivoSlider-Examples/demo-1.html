@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NivoSlider Demo - Basic</title>
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div id="slider-wrapper">
+      <div class="nivoSlider" id="nivoSlider">
+        <a href="#"><img src="img/1.jpg" alt="" title="Slider Caption 1"></a>
+        <a href="#"><img src="img/2.jpg" alt="" title="Slider Caption 2"></a>
+        <a href="#"><img src="img/3.jpg" alt="" title="Slider Caption 3"></a>
+        <a href="#"><img src="img/4.jpg" alt="" title="Slider Caption 4 and a &lt;a href=&#39;#&#39;&gt;link&lt;/a&gt;"></a>
+      </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/jquery.nivo.slider.min.js"></script>
+    <script>
+      $(window).load(function() {
+        $('#nivoSlider').nivoSlider();
+      });
+    </script>
+
+  </body>
+</html>
