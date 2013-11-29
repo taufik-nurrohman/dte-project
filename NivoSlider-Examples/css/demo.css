@@ -1,0 +1,13 @@
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  background-color:#2f2f2f;
+  color:#999;
+}
+
+body.custom-theme {background-color:#24405F}
+
+a {text-decoration:none}
