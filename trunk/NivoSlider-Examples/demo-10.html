@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NivoSlider Demo - Callback Example</title>
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+      #callback-message {
+        margin:15px 0 0;
+        font:normal normal 13px/normal Arial,Sans-Serif;
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="slider-wrapper">
+      <div class="nivoSlider" id="nivoSlider">
+        <a href="#"><img src="img/1.jpg" alt="" title="Slider Caption 1"></a>
+        <a href="#"><img src="img/2.jpg" alt="" title="Slider Caption 2"></a>
+        <a href="#"><img src="img/3.jpg" alt="" title="Slider Caption 3"></a>
+        <a href="#"><img src="img/4.jpg" alt="" title="Slider Caption 4 and a &lt;a href=&#39;#&#39;&gt;link&lt;/a&gt;"></a>
+      </div>
+    </div>
+    <p id="callback-message"></p>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/jquery.nivo.slider.min.js"></script>
+    <script>
+      $(window).load(function() {
+        $('#nivoSlider').nivoSlider({
+          manualAdvance: true,
+          beforeChange: function() {
+            $('#callback-message').append('Next slide...<br>');
+          },
+          afterChange: function() {
+            $('#callback-message').append('Slide changed.<br>');
+          },
+          slideshowEnd: function() {
+            $('#callback-message').append('The end!<br>');
+          },
+          lastSlide: function(){
+            $('#callback-message').append('This is the last slide!<br>');
+          },
+          afterLoad: function(){
+            $('#callback-message').append('Starting slideshow...<br>');
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
