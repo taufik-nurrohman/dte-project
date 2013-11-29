@@ -1,0 +1,156 @@
+/*
+ * jQuery Nivo Slider v2.7.1
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2011, Gilbert Pellegrom
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * March 2010
+ * Style by Taufik Nurrohman <http://gplus.to/tovic>
+ */
+
+#slider-wrapper {
+  width:618px;
+  margin:30px auto;
+  padding:5px;
+  background-color:#eee;
+  border:7px solid #315883;
+  -webkit-box-shadow:0 1px 3px rgba(0,0,0,.4);
+  -moz-box-shadow:0 1px 3px rgba(0,0,0,.4);
+  box-shadow:0 1px 3px rgba(0,0,0,.4);
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+
+.nivoSlider {
+  position:relative;
+  background:white url('loading.gif') no-repeat 50% 50%;
+  width:618px; /* Make sure your images are the same size */
+  height:246px; /* Make sure your images are the same size */
+}
+
+.nivoSlider img {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+}
+
+.nivoSlider a {
+  border:none;
+  display:block;
+}
+
+.nivoSlider a.nivo-imageLink {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:none;
+  padding:0;
+  margin:0;
+  z-index:6;
+  display:none;
+}
+
+/* The slices and boxes in the Slider */
+.nivo-slice {
+  display:block;
+  position:absolute;
+  z-index:5;
+  height:100%;
+}
+
+.nivo-box {
+  display:block;
+  position:absolute;
+  z-index:5;
+}
+
+.nivo-caption {
+  position:absolute;
+  left:0;
+  top:0;
+  background:white;
+  color:#333;
+  opacity:.8; /* Overridden by `captionOpacity` setting */
+  width:120px;
+  height:246px;
+  z-index:8;
+  font:normal bold 12px/normal Arial,Sans-Serif;
+}
+
+.nivo-caption:after {
+  content:"";
+  display:block;
+  width:0;
+  height:0;
+  position:absolute;
+  top:10px;
+  left:100%;
+  border:10px solid transparent;
+  border-left-color:white;
+}
+
+.nivo-caption p {
+  padding:10px;
+  margin:0;
+}
+
+.nivo-html-caption {display:none}
+
+.nivoSlider .nivo-caption a {
+  color:blue;
+  display:inline;
+}
+
+/* Direction nav styles (e.g. "Next" & "Prev") */
+.nivo-directionNav {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:9;
+  border:4px solid #eee;
+  overflow:hidden;
+}
+.nivo-directionNav a {
+  display:block;
+  float:left;
+  font:normal normal 11px/normal Verdana,Tahoma,Arial,Sans-Serif;
+  color:white;
+  background-color:black;
+  padding:7px 8px;
+  border:none;
+  cursor:pointer;
+}
+
+.nivo-directionNav a:hover {background-color:#315883}
+
+/* Control nav styles (e.g. 1, 2, 3 ...) */
+.nivo-controlNav {
+  position:absolute;
+  bottom:10px;
+  left:-5px;
+}
+
+.nivo-controlNav a {
+  display:block;
+  font:normal bold 10px/normal Verdana,Arial,Sans-Serif;
+  color:white;
+  text-decoration:none;
+  position:relative;
+  z-index:9;
+  cursor:pointer;
+  background-color:#315883;
+  padding:4px 6px 5px 6px;
+  margin:0 0 3px;
+  text-align:right;
+  -webkit-border-radius:0 3px 3px 0;
+  -moz-border-radius:0 3px 3px 0;
+  border-radius:0 3px 3px 0;
+}
+
+.nivo-controlNav a.active {margin-right:-5px}
