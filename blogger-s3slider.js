@@ -1,4 +1,4 @@
-﻿/*
+ /*
 var s3slider_config = {
 	url: 'http://dte-feed.blogspot.com',
 	numPost: 7,
@@ -141,7 +141,7 @@ Modified by Taufik Nurrohman <http://gplus.to/tovic>
 			var dd = date[2].substring(0, 2),
 				dm = date[1],
 				dy = date[0];
-			image = ("media$thumbnail" in entry[i]) ? entry[i].media$thumbnail.url.replace(/\/s[0-9]+\-c/, "/s" + sc.slider.width + "-c") : sc.noImage;
+			image = ("media$thumbnail" in entry[i]) ? entry[i].media$thumbnail.url.replace(/\/s[0-9]+\-c/, "/s" + sc.slider.width) : sc.noImage;
 			for (var j = 0, jen = entry[i].link.length; j < jen; ++j) {
 				if (entry[i].link[j].rel == "alternate") {
 					link = entry[i].link[j].href;
