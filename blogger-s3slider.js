@@ -1,4 +1,4 @@
- /*
+/*
 var s3slider_config = {
 	url: 'http://dte-feed.blogspot.com',
 	numPost: 7,
