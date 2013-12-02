@@ -116,7 +116,7 @@ var slidesJS_config = {
 					break;
 				}
 			}
-			skeleton += '<div class="slidesJS-item" style="width:' + sc.slider.width + 'px;height:' + sc.slider.height + 'px;"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '><img src="' + image + '" style="display:block;width:' + sc.slider.width + 'px;min-height:' + sc.slider.height + 'px;height:auto;"></a><span class="slidesJS-caption"><span class="slidesJS-title"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '>' + title + '</a><span class="slidesJS-meta"><span class="slidesJS-meta-date">' + dd + ' ' + sc.monthArray[parseInt(dm, 10) - 1] + ' ' + dy + '</span><span class="slidesJS-meta-comment">' + comment + '</span></span></span></div>';
+			skeleton += '<div class="slidesJS-item" style="width:' + sc.slider.width + 'px;height:' + sc.slider.height + 'px;"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '><img src="' + image + '" style="display:block;width:' + sc.slider.width + 'px;min-height:' + sc.slider.height + 'px;height:auto;"></a><span class="slidesJS-caption"><span class="slidesJS-title"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '>' + title + '</a></span><span class="slidesJS-meta"><span class="slidesJS-meta-date">' + dd + ' ' + sc.monthArray[parseInt(dm, 10) - 1] + ' ' + dy + '</span><span class="slidesJS-meta-comment">' + comment + '</span></span></span></div>';
 		}
 		skeleton += '</div><span class="slidesJS-ribbon"></span>';
 		container.innerHTML = skeleton;
