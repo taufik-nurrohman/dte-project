@@ -32,8 +32,8 @@ var s3slider_config = {
 
 s3Slider
 
-Developped By: Boban KariÅ¡ik -> http://www.serie3.info/
-CSS Help: MÃ©szÃ¡ros RÃ³bert -> http://www.perspectived.com/
+Developped By: Boban Karišik -> http://www.serie3.info/
+CSS Help: Mészáros Róbert -> http://www.perspectived.com/
 Version: 1.0
 
 Copyright: Feel free to redistribute the script/modify it, as
@@ -154,7 +154,7 @@ Modified by Taufik Nurrohman <http://gplus.to/tovic>
 					break;
 				}
 			}
-			skeleton += '<li><img src="' + image + '" style="display:block;width:' + sc.slider.width + 'px;min-height:' + sc.slider.height + 'px;height:auto;"><span class="s3slider-caption"><span class="s3slider-title"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '>' + title + '</a><span class="s3slider-meta"><span class="s3slider-meta-date">' + dd + ' ' + sc.monthArray[parseInt(dm, 10) - 1] + ' ' + dy + '</span><span class="s3slider-meta-comment">' + comment + '</span></span></span></li>';
+			skeleton += '<li><img src="' + image + '" style="display:block;width:' + sc.slider.width + 'px;min-height:' + sc.slider.height + 'px;height:auto;"><span class="s3slider-caption"><span class="s3slider-title"><a href="' + link + '"' + (sc.newTabLink ? ' target="_blank"' : "") + '>' + title + '</a></span><span class="s3slider-meta"><span class="s3slider-meta-date">' + dd + ' ' + sc.monthArray[parseInt(dm, 10) - 1] + ' ' + dy + '</span><span class="s3slider-meta-comment">' + comment + '</span></span></span></li>';
 		}
 		skeleton += '</ul></div>';
 		container.innerHTML = skeleton;
