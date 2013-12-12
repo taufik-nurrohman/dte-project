@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo Page</title>
+		<style>
+		html {
+			overflow-y:scroll;
+			border-top:10px solid black;
+		}
+		body {
+			background-color:#fafafa;
+			padding:50px;
+			font:normal normal 14px/normal "Times New Roman",Times,Serif;
+			color:black;
+			text-align:center;
+		}
+		#view {
+			width:98%;
+			height:400px;
+			border:5px solid #666;
+			margin:15px auto 0;
+			background:white url('data:image/gif;base64,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') no-repeat 50% 50%;
+		}
+		input {
+			border:1px solid #bbb;
+			font:normal bold 12px/normal Arial,Sans-Serif;
+			color:black;
+			padding:5px 5px;
+			display:inline-block;
+			vertical-align:middle;
+			margin:0;
+			width:80%;
+			background-color:white;
+		}
+		#sharelink {width:70%}
+		table {
+			text-align:left;
+			width:98%;
+			margin:0 auto;
+			border-collapse:collapse;
+		}
+		table td {
+			padding:10px;
+			border:1px solid #bbb;
+		}
+		</style>
+	</head>
+
+	<body>
+	<h1>Demo - JavaScript to Set Value from URL</h1>
+	<table border="1">
+		<tbody>
+			<tr><td>Nama Pemilik:</td><td><input id="name" type="text" value="" /></td></tr>
+			<tr><td>URL:</td><td><input id="site" type="text" value="" /></td></tr>
+			<tr><td colspan="2"><h2>Share This!</h2><button id="generate">Generate URL!</button>&nbsp;&nbsp;<input id="sharelink" type="text" value="" /></td></tr>
+		</tbody>
+	</table>
+	<iframe id="view" style="height:400px;width:98%;"></iframe>
+	<script>
+
+	function getUrlQueryString(param) {
+		var outObj = {};
+		var qs = window.location.search;
+		if (qs != "") {
+			qs = decodeURIComponent(qs.replace(/\?/, ""));
+			var paramsArray = qs.split("&");
+			var length = paramsArray.length;
+			for (var i=0; i<length; ++i) {
+				var nameValArray = paramsArray[i].split("=");
+				nameValArray[0] = nameValArray[0].toLowerCase();
+				if (outObj[nameValArray[0]]) {
+					outObj[nameValArray[0]] = outObj[nameValArray[0]] + ";" + nameValArray[1];
+				} else {
+					if (nameValArray.length > 1) {
+						outObj[nameValArray[0]] = nameValArray[1];
+					} else {
+						outObj[nameValArray[0]] = true;
+					}
+				}
+			}
+		}
+		var retVal = param ? outObj[param.toLowerCase()] : qs;
+		return retVal ? retVal : "";
+	}
+
+	// Set variable here...
+	var name = getUrlQueryString("name"),
+		url  = getUrlQueryString("url");
+	window.onload = function() {
+		document.getElementById('name').value = name;
+		document.getElementById('site').value = url;
+		document.getElementById('view').src = url;
+		document.getElementById('generate').onclick = function() {
+			document.getElementById('sharelink').value = window.location.href;
+			document.getElementById('sharelink').focus();
+			document.getElementById('sharelink').select();
+		};
+	};
+
+	</script>
+
+	<p><a href="http://hompimpaalaihumgambreng.blogspot.com/2012/04/set-value-based-url-in-address-bar.html">Taufik Nurrohman</a></p>
+
+	</body>
+</html>
