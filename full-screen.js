@@ -19,7 +19,7 @@ window.postFullScreen = function(config) {
 		defaults[i] = (typeof config[i] != 'undefined') ? config[i] : defaults[i];
 	}
 	var div = document.createElement('div'), btn = defaults.createButton;
-	if (typeof config.beforeInit == 'function') {
+	if (typeof defaults.beforeInit == 'function') {
 		defaults.beforeInit();
 	}
 	div.innerHTML = '<div style="position:fixed!important;position:absolute;top:0;right:0;bottom:0;left:0;z-index:999999;background:' + defaults.background + ';color:' + defaults.color + ';padding:' + defaults.padding + 'px;padding-bottom:0;font-size:' + defaults.fontSize + ';overflow:auto;letter-spacing:0;text-transform:none;text-shadow:none;display:none;"><div style="max-width:' + defaults.maxWidth + 'px;margin:0 auto ' + defaults.padding + 'px;"><h1 style="font:inherit;color:inherit;margin:0;padding:0;font-size:300%;font-weight:bold;text-transform:none;letter-spacing:0;text-shadow:none;">' + defaults.titleSource.innerHTML + '</h1>' + defaults.contentSource.innerHTML + '</div><div style="text-align:center;margin:' + defaults.padding + 'px 0;"><button style="display:inline;display:inline-block;" onclick="this.parentNode.parentNode.style.display=\'none\';document.body.style.overflow=\'\';return false;">' + defaults.closeText + '</button></div><a href="#exit" style="display:block;position:absolute;top:18px;right:20px;font:normal bold 30px/30px Arial,Sans-Serif;color:inherit;text-decoration:none;overflow:hidden;background:none;opacity:.3;" onclick="this.parentNode.style.display=\'none\';document.body.style.overflow=\'\';return false;" onmousedown="this.style.opacity=0.8;" onmouseup="this.style.opacity=0.4;" onmouseover="this.style.opacity=0.5;" onmouseout="this.style.opacity=0.4;" title="' + defaults.closeText + '">&times;</a></div>';
@@ -36,7 +36,7 @@ window.postFullScreen = function(config) {
 		document.body.appendChild(btn);
 	}
 	if (typeof defaults.afterInit == 'function') {
-		defaults.beforeInit();
+		defaults.afterInit();
 	}
 
 	// auto open full screen mode when there is a `#full-screen` hash at the end of the URL
