@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Related Post Widget Configurator</title>
-<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link rel="shortcut icon" href="../favicon.ico">
 <style>
 
 * {
@@ -228,7 +228,7 @@ textarea:focus + .description {display:block}
 				</tr>
 			</tbody>
 		</table>
-		<input type="button" class="submit-button" name="sbt" id="sbt" value="Preview & Get Code!">
+		<input type="button" class="submit-button" name="sbt" id="sbt" value="Preview and Get Code!">
 		<div id="result-container" style="display:block;clear:both;"></div>
 	</form>
 </div>
@@ -352,7 +352,7 @@ function getCode() {
 	str += '      callBack: function() {}\n';
 	str += '  };\n';
 	str += '  &lt;/script&gt;\n';
-	str += '  &lt;script type=&#39;text/javascript&#39; src=&#39;http://blogger-json-experiment.googlecode.com/svn/resources/related-post/related-post.min.js&#39;/&gt;\n';
+	str += '  &lt;script type=&#39;text/javascript&#39; src=&#39;http://dte-project.googlecode.com/svn/trunk/related-post/related-post.min.js&#39;/&gt;\n';
 	str += '&lt;/b:if&gt;\n';
 	str += '&lt;!-- Related Post Widget End --&gt;';
 	str += '</code></pre>';
@@ -365,7 +365,7 @@ submitConfig();
 var once = false;
 submit.onclick = function() {
 	if (!once) {
-		this.value = 'Update Preview & Get Code!';
+		this.value = 'Update Preview and Get Code!';
 		once = true;
 	}
 	submitConfig();
