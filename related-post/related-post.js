@@ -38,7 +38,7 @@ var randomRelatedIndex, showRelatedPost;
 	}, la = (typeof labelArray == 'object' && labelArray.length > 0) ? '/-/' + shu(labelArray)[0] : "", rri = function(json) {
 		var to = json.feed.openSearch$totalResults.$t - def.numPosts,
 			si = ri(1, (to > 0 ? to : 1));
-		lo(def.homePage.replace(/\/$/, "") + '/feeds/posts/summary' + la + '?alt=json-in-script&orderby=updated&start-index=' + si + '&max-results=' + def.numPosts + '&callback=showRelatedPost');
+		lo(def.homePage.replace(/\/?\?m=\d+|\/+$/, "") + '/feeds/posts/summary' + la + '?alt=json-in-script&orderby=updated&start-index=' + si + '&max-results=' + def.numPosts + '&callback=showRelatedPost');
 	}, srp = function(json) {
 		var ct = document.getElementById(def.containerId),
 			entry = shu(json.feed.entry),
@@ -73,5 +73,5 @@ var randomRelatedIndex, showRelatedPost;
 	};
 	randomRelatedIndex = rri;
 	showRelatedPost = srp;
-	lo(def.homePage.replace(/\/$/, "") + '/feeds/posts/summary' + la + '?alt=json-in-script&orderby=updated&max-results=0&callback=randomRelatedIndex');
+	lo(def.homePage.replace(/\/?\?m=\d+|\/+$/, "") + '/feeds/posts/summary' + la + '?alt=json-in-script&orderby=updated&max-results=0&callback=randomRelatedIndex');
 })(window, document, document.getElementsByTagName('head')[0]);
