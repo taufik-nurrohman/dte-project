@@ -74,11 +74,6 @@ function generateCommentData(json) {
 
     var comments = feed.entry;
 
-    // Reverse the comments order, as the comment data in the JSON feed will be
-    // ordered by the newest comment first. This is different with the way Blogger
-    // sorts the comment data in your blog post.
-    // comments = comments.reverse();
-
     for (var i = 0, ien = comments.length; i < ien; ++i) {
 
         var comment = comments[i], // A single comment feed object
@@ -145,7 +140,7 @@ function generateCommentData(json) {
 }
 
 </script>
-<script src="http://custom-thread-commenting-system.blogspot.com/feeds/6427706034645358331/comments/default?alt=json-in-script&amp;orderby=published&amp;&amp;max-results=50&amp;callback=generateCommentData"></script>
+<script src="http://custom-thread-commenting-system.blogspot.com/feeds/6427706034645358331/comments/default?alt=json-in-script&amp;reverse=false&amp;orderby=published&amp;max-results=50&amp;callback=generateCommentData"></script>
 
 </body>
 </html>
