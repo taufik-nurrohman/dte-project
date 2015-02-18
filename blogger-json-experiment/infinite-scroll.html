@@ -470,8 +470,6 @@ function loadPostComments(json) {
 		skeleton = "";
 	if (typeof entry !== "undefined") {
 
-		entry = entry.reverse(); // Reverse the comments order
-
 		skeleton = '<ol>';
 
 		for (var i = 0, len = entry.length; i < len; i++) {
