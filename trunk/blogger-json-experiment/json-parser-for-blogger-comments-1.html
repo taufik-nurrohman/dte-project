@@ -101,10 +101,11 @@ function generateCommentsData(json) {
 
         for (var j = 0, jen = comment.link.length; j < jen; ++j) {
             item = comment.link[j];
-            // Getting the original comment ID
             if (item.rel == 'self') {
+                // Getting the original comment ID
                 commentID = item.href.split('/').pop();
-                commentDeleteURL = item.href.replace(/\/feeds\/(.*?)\/\d+/, '/delete-comment.g?blogID=$1').replace(/\/comments\/(default|summary)\//, '&postID=');
+                // Getting the comment delete URL
+                commentDeleteURL = item.href.replace(/\/feeds\/(\d+)\/(\d+)\/comments?\/(default|summary)\/(\d+)/, '/delete-comment.g?blogID=$1&postID=$4');
             }
             // Getting the comment permalink URL
             if (item.rel == 'alternate') {
