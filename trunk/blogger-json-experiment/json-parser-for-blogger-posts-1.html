@@ -12,7 +12,7 @@
 
 function generatePostsData(json) {
 
-    // Poor configuration settings, develop it yourself!
+    // Poor configuration settings, develop them yourself!
     var config = {
         containerID: 'result-container', // Container ID to show the generated data
         avatarSize: 50, // Default avatar size
@@ -35,7 +35,7 @@ function generatePostsData(json) {
         postPerPage = +feed.openSearch$itemsPerPage.$t, // The post/page feeds' max results per page or per feed request
         blogID = /\:blog-?(\d+)(\.|$)/.exec(feed.id.$t) ? /\:blog-?(\d+)(\.|$)/.exec(feed.id.$t)[1] : false, // The blog ID
         blogTitle = feed.title.$t, // The post/page feeds' title
-        blogTags = false, // The available blog tags
+        blogTags = false, // The available post/page tags (all)
         blogSubTitle = feed.subtitle.$t, // The post/page feeds' subtitle
         blogAuthorName = feed.author[0].name ? feed.author[0].name.$t : config.text.anon, // The blog/post author name
         blogAuthorAvatar = feed.author[0].gd$image.src.replace(/\/s\d+(\-c)?\//, '/s' + config.avatarSize + '-c/'), // The blog/post author profile avatar URL
@@ -88,11 +88,11 @@ function generatePostsData(json) {
             postID = post.id.$t, // The post/page ID
             postPublish = post.published.$t, // The post/page publishing time in ISO format
             postUpdate = post.updated.$t, // The post/page updating time in ISO format
-            postDate = postPublish, // The post/page publishing time in fancy format
+            postDate = postPublish, // The post/page publishing time in human-readable format
             postURL = false, // The post/page URL
             postTags = false, // The post/page tags
             postCommentTotal = post.thr$total ? +post.thr$total.$t : 0, // The post/page comments total
-            postCommentFeedURL = false, // The post/page comment feed URL
+            postCommentFeedURL = false, // The post/page comments feed URL
             postThumbnail = post.media$thumbnail ? post.media$thumbnail.url : config.noThumbnail, // The post/page thumbnail
             postAuthorName = post.author[0].name ? post.author[0].name.$t : config.text.anon, // The post/page author name
             postAuthorURL = post.author[0].uri ? post.author[0].uri.$t : false, // The post/page author profile URL
@@ -113,10 +113,11 @@ function generatePostsData(json) {
 
         for (var j = 0, jen = post.link.length; j < jen; ++j) {
             item = post.link[j];
-            // Getting the original post/page ID
             if (item.rel == 'self') {
+                // Getting the original post/page ID
                 postID = item.href.split('/').pop();
-                postEditURL = item.href.replace(/\/feeds\//, '/post-edit.g?blogID=').replace(/\/posts\/(default|summary)\//, '&postID=');
+                // Getting the post/page edit URL
+                postEditURL = item.href.replace(/\/feeds\/(\d+)\/(post|page)s?\/(default|summary)\/(\d+)/, '/$2-edit.g?blogID=$1&$2ID=$4');
             }
             // Getting the post/page URL
             if (item.rel == 'alternate') {
