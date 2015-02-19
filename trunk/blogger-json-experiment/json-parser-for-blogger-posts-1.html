@@ -80,7 +80,7 @@ function generatePostsData(json) {
     html += '<hr>';
     html += '<ol>';
 
-    var posts = feed.entry.title ? [feed.entry] : feed.entry;
+    var posts = feed.entry;
 
     for (var i = 0, ien = posts.length; i < ien; ++i) {
     
