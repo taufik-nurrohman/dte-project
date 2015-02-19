@@ -35,7 +35,7 @@ function generatePostData(json) {
         alert('Container not found.');
         return;
     }
-    
+
     var post = json.entry, // The post object
         postID = post.id.$t, // The post/page ID
         postPublish = post.published.$t, // The post/page publishing time in ISO format
