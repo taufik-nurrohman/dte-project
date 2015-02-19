@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>JSON Parser for Blogger Posts and Pages</title>
+</head>
+<body>
+
+<div id="result-container">Loading&hellip;</div>
+<script>
+
+function generatePostData(json) {
+
+    // Poor configuration settings, develop it yourself!
+    var config = {
+        containerID: 'result-container', // Container ID to show the generated data
+        avatarSize: 50, // Default avatar size
+        noThumbnail: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABGdBTUEAALGPC/xhBQAAAAZQTFRFOjo6JycnNkxyjQAAADZJREFUKM9j+A8DDFRnNTCAACP9WewPGNgfkMmiwN7GH0CGfCPdWZT5V/7/DwZyWeSHFa1SHQDDGF2E0US40gAAAABJRU5ErkJggg==',
+        text: {
+            anon: 'Anonymous',
+            untagged: 'Untagged',
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    };
+
+    var html = "",
+        item = "",
+        w = window,
+        d = document,
+        container = d.getElementById(config.containerID);
+
+    // No container found
+    if (!container) {
+        alert('Container not found.');
+        return;
+    }
+    
+    var post = json.entry, // The post object
+        postID = post.id.$t, // The post/page ID
+        postPublish = post.published.$t, // The post/page publishing time in ISO format
+        postUpdate = post.updated.$t, // The post/page updating time in ISO format
+        postDate = postPublish, // The post/page publishing time in fancy format
+        postURL = false, // The post/page URL
+        postTags = false, // The post/page tags
+        postCommentTotal = post.thr$total ? +post.thr$total.$t : 0, // The post/page comments total
+        postCommentFeedURL = false, // The post/page comment feed URL
+        postThumbnail = post.media$thumbnail ? post.media$thumbnail.url : config.noThumbnail, // The post/page thumbnail
+        postAuthorName = post.author[0].name ? post.author[0].name.$t : config.text.anon, // The post/page author name
+        postAuthorURL = post.author[0].uri ? post.author[0].uri.$t : false, // The post/page author profile URL
+        postAuthorAvatar = post.author[0].gd$image.src.replace(/\/s\d+(\-c)?\//, '/s' + config.avatarSize + '-c/'), // The post/page author profile avatar URL
+        postTitle = post.title.$t, // The post/page title
+        postContent = post.content ? post.content.$t : post.summary.$t.replace(/<br *\/?>|[\s]+/gi, ' ').replace(/<.*?>|[<>]/g, ""), // The post/page content
+        postEditURL = false; // The post/page edit URL
+
+    // Generate human-readable post date format
+    var date = postDate.split('T')[0].split('-');
+    postDate = date[2] + ' ' + config.text.monthNames[(+date[1]) - 1] + ' ' + date[0];
+
+    // Remove the leading `http://` or `https://` in post/page thumbnail URL
+    postThumbnail = postThumbnail.replace(/^https?\:/, "");
+
+    // Remove the leading `http://` or `https://` in post/page author profile avatar URL
+    postAuthorAvatar = postAuthorAvatar.replace(/^https?\:/, "");
+
+    for (var j = 0, jen = post.link.length; j < jen; ++j) {
+        item = post.link[j];
+        // Getting the original post/page ID
+        if (item.rel == 'self') {
+            postID = item.href.split('/').pop();
+            postEditURL = item.href.replace(/\/feeds\//, '/post-edit.g?blogID=').replace(/\/posts\/(default|summary)\//, '&postID=');
+        }
+        // Getting the post/page URL
+        if (item.rel == 'alternate') {
+            postURL = item.href;
+        }
+        // Getting the post/page comment feed URL
+        if (item.rel == 'replies' && item.type == 'application/atom+xml') {
+            postCommentFeedURL = item.href;
+        }
+    }
+
+    // Trying to get the external image URL from post content
+    if (post.content && postThumbnail == config.noThumbnail) {
+        var image = /<img +(.*?)src=(['"])([^'"]+?)(['"])(.*?) *\/?>/i.exec(post.content.$t);
+        postThumbnail = image && image[3] ? image[3] : config.noThumbnail;
+    }
+
+    // Getting the post/page tags
+    if (post.category && post.category.length) {
+        postTags = [];
+        for (var k = 0, ken = post.category.length; k < ken; ++k) {
+            postTags.push(post.category[k].term);
+        }
+        // Sort the post tags alphabetically
+        postTags = postTags.sort();
+    }
+
+    // Building the markup ...
+    html += '<li>';
+    html += '<p><b>ID:</b> ' + postID + '</p>';
+    html += '<p><b>Publish:</b> ' + postPublish + '</p>';
+    html += '<p><b>Update:</b> ' + postUpdate + '</p>';
+    html += '<p><b>Date:</b> ' + postDate + '</p>';
+    html += '<p><b>URL:</b> ' + postURL + '</p>';
+    html += '<p><b>Tags:</b> ' + (postTags !== false ? postTags.join(', ') : config.text.untagged) + '</p>';
+    html += '<p><b>Comment Total:</b> ' + postCommentTotal + '</p>';
+    html += '<p><b>Comment Feed URL:</b> ' + postCommentFeedURL + '</p>';
+    html += '<p><b>Thumbnail:</b> ' + postThumbnail + '</p>';
+    html += '<p><b>Author:</b> ' + postAuthorName + '</p>';
+    html += postAuthorURL !== false ? '<p><b>Author URL:</b> ' + postAuthorURL + '</p>' : "";
+    html += '<p><b>Author Avatar URL:</b> ' + postAuthorAvatar + '</p>';
+    html += '<p><b>Edit URL:</b> ' + postEditURL + '</p>';
+    html += '<p><b>Title:</b> ' + postTitle + '</p>';
+    html += '<p><b>Content:</b></p>';
+    html += '<div>' + postContent + '</div>';
+    html += '</li>';
+
+    // Building the markup ...
+    html += '</ol>';
+
+    // Show the generated data to the container ...
+    container.innerHTML = html;
+
+}
+
+</script>
+<script src="http://dte-feed.blogspot.com/feeds/posts/default/1962799387619194999?alt=json-in-script&amp;callback=generatePostData"></script>
+
+</body>
+</html>
