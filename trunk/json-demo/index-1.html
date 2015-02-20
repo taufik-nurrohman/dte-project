@@ -30,58 +30,59 @@ body {background-color:white}
 
 
 <div id="result-container">
-	<ol></ol>
-	<span class="loading">Memuat...</span>
+    <ol></ol>
+    <span class="loading">Memuat...</span>
 </div>
 
 <script type="text/javascript">
 
 var elem = document.getElementById('result-container'),
-	inner = elem.getElementsByTagName('ol')[0],
-	loading = elem.getElementsByTagName('span')[0],
-	start = 0,
-	max_result = 25;
+    inner = elem.getElementsByTagName('ol')[0],
+    loading = elem.getElementsByTagName('span')[0],
+    start = 0,
+    max_result = 25;
 
 function grabList(json) {
-	var list = json.feed.entry, link, skeleton = "";
-	if (typeof list !== "undefined") {
-		for (var i = 0; i < list.length; i++) {
-			for (var j = 0; j < list[i].link.length; j++) {
-				if (list[i].link[j].rel == "alternate") {
-					link = list[i].link[j].href;
-				}
-			}
-			skeleton += '<li><a href="' + link + '">' + list[i].title.$t + '</a></li>';
-		}
-		inner.innerHTML += skeleton;
-		loading.style.display = "none";
-	} else {
-		loading.className += ' the-end';
-		loading.textContent = 'Habis';
-	}
+    var list = json.feed.entry, link, skeleton = "";
+    if (typeof list !== "undefined") {
+        for (var i = 0; i < list.length; i++) {
+            for (var j = 0; j < list[i].link.length; j++) {
+                if (list[i].link[j].rel == "alternate") {
+                    link = list[i].link[j].href;
+                    break;
+                }
+            }
+            skeleton += '<li><a href="' + link + '">' + list[i].title.$t + '</a></li>';
+        }
+        inner.innerHTML += skeleton;
+        loading.style.display = "none";
+    } else {
+        loading.className += ' the-end';
+        loading.textContent = 'Habis';
+    }
 }
 
 function updateScript(i, max) {
-	var head = document.getElementsByTagName('head')[0],
-		script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.id = 'load-on-scroll-end';
-		script.src = 'http://dte-feed.blogspot.com/feeds/posts/summary?alt=json-in-script&start-index=' + i + '&max-results=' + max + '&callback=grabList';
-	if (document.getElementById('load-on-scroll-end')) {
-		var oldScript = document.getElementById('load-on-scroll-end');
-		oldScript.parentNode.removeChild(oldScript);
-	}
-	head.appendChild(script);
+    var head = document.getElementsByTagName('head')[0],
+        script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'load-on-scroll-end';
+        script.src = 'http://dte-feed.blogspot.com/feeds/posts/summary?alt=json-in-script&start-index=' + i + '&max-results=' + max + '&callback=grabList';
+    if (document.getElementById('load-on-scroll-end')) {
+        var oldScript = document.getElementById('load-on-scroll-end');
+        oldScript.parentNode.removeChild(oldScript);
+    }
+    head.appendChild(script);
 }
 
 updateScript(1, max_result);
 
 elem.onscroll = function() {
-	if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
-		start++;
-		updateScript(start*max_result, max_result);
-		loading.style.display = "block";
-	}
+    if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
+        start++;
+        updateScript(start*max_result, max_result);
+        loading.style.display = "block";
+    }
 };
 
 </script>
