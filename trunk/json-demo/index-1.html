@@ -44,7 +44,7 @@ var elem = document.getElementById('result-container'),
 
 function grabList(json) {
 	var list = json.feed.entry, link, skeleton = "";
-	if (list !== undefined) {
+	if (typeof list !== "undefined") {
 		for (var i = 0; i < list.length; i++) {
 			for (var j = 0; j < list[i].link.length; j++) {
 				if (list[i].link[j].rel == "alternate") {
