@@ -98,7 +98,7 @@ var elem = document.getElementById(widget_config.container_id),
 
 function grabList(json) {
 	var list = json.feed.entry, link, img, sum, skeleton = "";
-	if (list !== undefined) {
+	if (typeof list !== "undefined") {
 		for (var i = 0; i < list.length; i++) {
 			for (var j = 0; j < list[i].link.length; j++) {
 				if (list[i].link[j].rel == "alternate") {
@@ -116,7 +116,7 @@ function grabList(json) {
 		inner.innerHTML += skeleton; // Insert the skeleton to the container
 		loading.style.display = "none"; // Hide the loading indicator
 	} else {
-		// If the JSON is empty (list == undefined),
+		// If the JSON is empty (list === "undefined"),
 		// add a new class to the loading indicator called `the-end`
 		loading.className += ' the-end';
 		// Replae the loading indicator text into `fully loaded!` for the example
