@@ -74,70 +74,71 @@ body {background-color:#eee}
 
 
 <div id="result-container">
-	<ol></ol>
-	<span class="loading">Memuat...</span>
+    <ol></ol>
+    <span class="loading">Memuat...</span>
 </div>
 
 <script type="text/javascript">
 
 var widget_config = {
-	home_page: 'http://dte-feed.blogspot.com', // Your blog homepage
-	summary: 200, // Summary length
-	no_thumb: 'http://hompimpa.googlecode.com/svn/trunk/Blogger-Masonry-Widget/img/meee.png', // Fallback thumbnail
-	container_id: 'result-container', // ID of the result container
-	script_id: 'load-on-scroll-end-script', // ID of the asynchronous script
-	max_result: 25, // Max result post at once script loading
-	end_text: 'Habis' // End text if all posts has been loaded
+    home_page: 'http://dte-feed.blogspot.com', // Your blog homepage
+    summary: 200, // Summary length
+    no_thumb: 'http://hompimpa.googlecode.com/svn/trunk/Blogger-Masonry-Widget/img/meee.png', // Fallback thumbnail
+    container_id: 'result-container', // ID of the result container
+    script_id: 'load-on-scroll-end-script', // ID of the asynchronous script
+    max_result: 25, // Max result post at once script loading
+    end_text: 'Habis' // End text if all posts has been loaded
 };
 
 var elem = document.getElementById(widget_config.container_id),
-	inner = elem.getElementsByTagName('ol')[0],
-	loading = elem.getElementsByTagName('span')[0],
-	start = 0, // Dynamic start-index
-	max = widget_config.max_result;
+    inner = elem.getElementsByTagName('ol')[0],
+    loading = elem.getElementsByTagName('span')[0],
+    start = 0, // Dynamic start-index
+    max = widget_config.max_result;
 
 function grabList(json) {
-	var list = json.feed.entry, link, img, sum, skeleton = "";
-	if (typeof list !== "undefined") {
-		for (var i = 0; i < list.length; i++) {
-			for (var j = 0; j < list[i].link.length; j++) {
-				if (list[i].link[j].rel == "alternate") {
-					link = list[i].link[j].href;
-				}
-			}
-			// Build the list skeleton...
-			img = ("media$thumbnail" in list[i]) ? list[i].media$thumbnail.url : widget_config.no_thumb;
-			sum = ("summary" in list[i]) ? list[i].summary.$t.replace(/<br ?\/?>/ig, " ").replace(/<(.*?)>/g, "").substring(0, widget_config.summary) + '&hellip;' : "";
-			skeleton += '<li>';
-			skeleton += '<div><strong><a href="' + link + '">' + list[i].title.$t + '</a></strong>';
-			skeleton += '<img alt="Loading..." src="' + img + '" width="72" height="72">' + sum + '</div>';
-			skeleton += '</li>';
-		}
-		inner.innerHTML += skeleton; // Insert the skeleton to the container
-		loading.style.display = "none"; // Hide the loading indicator
-	} else {
-		// If the JSON is empty (list === "undefined"),
-		// add a new class to the loading indicator called `the-end`
-		loading.className += ' the-end';
-		// Replae the loading indicator text into `fully loaded!` for the example
-		loading.textContent = widget_config.end_text;
-	}
+    var list = json.feed.entry, link, img, sum, skeleton = "";
+    if (typeof list !== "undefined") {
+        for (var i = 0; i < list.length; i++) {
+            for (var j = 0; j < list[i].link.length; j++) {
+                if (list[i].link[j].rel == "alternate") {
+                    link = list[i].link[j].href;
+                    break;
+                }
+            }
+            // Build the list skeleton...
+            img = ("media$thumbnail" in list[i]) ? list[i].media$thumbnail.url : widget_config.no_thumb;
+            sum = ("summary" in list[i]) ? list[i].summary.$t.replace(/<br ?\/?>/ig, " ").replace(/<(.*?)>/g, "").substring(0, widget_config.summary) + '&hellip;' : "";
+            skeleton += '<li>';
+            skeleton += '<div><strong><a href="' + link + '">' + list[i].title.$t + '</a></strong>';
+            skeleton += '<img alt="Loading..." src="' + img + '" width="72" height="72">' + sum + '</div>';
+            skeleton += '</li>';
+        }
+        inner.innerHTML += skeleton; // Insert the skeleton to the container
+        loading.style.display = "none"; // Hide the loading indicator
+    } else {
+        // If the JSON is empty (list === "undefined"),
+        // add a new class to the loading indicator called `the-end`
+        loading.className += ' the-end';
+        // Replae the loading indicator text into `fully loaded!` for the example
+        loading.textContent = widget_config.end_text;
+    }
 }
 
 // Make an indirect script loader with two parameters: start-index and max-result post
 function updateScript(a, b) {
-	var head = document.getElementsByTagName('head')[0],
-		script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.id = widget_config.script_id;
-		script.src = widget_config.home_page + '/feeds/posts/summary?alt=json-in-script&start-index=' + a + '&max-results=' + b + '&callback=grabList';
-	// If there is an old script in the document...
-	if (document.getElementById(widget_config.script_id)) {
-		var oldScript = document.getElementById(widget_config.script_id);
-		// Remove the old script, and replace with the new one that has an updated start-index value
-		oldScript.parentNode.removeChild(oldScript);
-	}
-	head.appendChild(script);
+    var head = document.getElementsByTagName('head')[0],
+        script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = widget_config.script_id;
+        script.src = widget_config.home_page + '/feeds/posts/summary?alt=json-in-script&start-index=' + a + '&max-results=' + b + '&callback=grabList';
+    // If there is an old script in the document...
+    if (document.getElementById(widget_config.script_id)) {
+        var oldScript = document.getElementById(widget_config.script_id);
+        // Remove the old script, and replace with the new one that has an updated start-index value
+        oldScript.parentNode.removeChild(oldScript);
+    }
+    head.appendChild(script);
 }
 
 // Start loading the callback script with start-index of 1
@@ -145,15 +146,15 @@ updateScript(1, max);
 
 // When the container is being scrolled...
 elem.onscroll = function() {
-	// ... check the scroll distance
-	if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
-		// If the distance equal to the height of the inner container...
-		start++; // Increase the start value by one
-		// then load the new script with an updated start-index
-		updateScript(start*max, max);
-		// and show the loading indicator
-		loading.style.display = "block";
-	}
+    // ... check the scroll distance
+    if ((this.scrollTop + this.offsetHeight) == inner.offsetHeight) {
+        // If the distance equal to the height of the inner container...
+        start++; // Increase the start value by one
+        // then load the new script with an updated start-index
+        updateScript(start*max, max);
+        // and show the loading indicator
+        loading.style.display = "block";
+    }
 };
 
 </script>
