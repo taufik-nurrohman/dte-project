@@ -81,7 +81,7 @@ function generatePostData(json) {
         }
     }
 
-    // Trying to get the external image URL from post content
+    // Trying to get the external image URL from post/page content
     if (post.content && postThumbnail == config.noThumbnail) {
         var image = /<img +(.*?)src=(['"])([^'"]+?)(['"])(.*?) *\/?>/i.exec(post.content.$t);
         postThumbnail = image && image[3] ? image[3] : config.noThumbnail;
