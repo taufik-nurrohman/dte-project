@@ -36,7 +36,7 @@ function generatePostData(json) {
         return;
     }
 
-    var post = json.entry, // The post object
+    var post = json.entry, // The post/page object
         postID = post.id.$t, // The post/page ID
         postPublish = post.published.$t, // The post/page publishing time in ISO format
         postUpdate = post.updated.$t, // The post/page updating time in ISO format
@@ -53,7 +53,7 @@ function generatePostData(json) {
         postContent = post.content ? post.content.$t : post.summary.$t.replace(/<br *\/?>|[\s]+/gi, ' ').replace(/<.*?>|[<>]/g, ""), // The post/page content
         postEditURL = false; // The post/page edit URL
 
-    // Generate human-readable post date format
+    // Generate human-readable post/page date format
     var date = postDate.split('T')[0].split('-');
     postDate = date[2] + ' ' + config.text.monthNames[(+date[1]) - 1] + ' ' + date[0];
 
@@ -93,7 +93,7 @@ function generatePostData(json) {
         for (var k = 0, ken = post.category.length; k < ken; ++k) {
             postTags.push(post.category[k].term);
         }
-        // Sort the post tags alphabetically
+        // Sort the post/page tags alphabetically
         postTags = postTags.sort();
     }
 
