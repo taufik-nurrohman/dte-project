@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Ajax Form Example 2</title>
 
-<style type="text/css">
+<style>
 * {
   margin:0;
   padding:0;
@@ -98,8 +98,8 @@ body {
 	<input type="text" name="q"> <input type="submit" value="Search">
 </form>
 
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'></script>
-<script type="text/javascript">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
 (function($) {
 	var $form = $('#ajax-search-form'),
 		$input = $form.find(':text');
@@ -109,7 +109,7 @@ body {
 		var keyword = $input.val();
 		$result_container.show().html('Loading...');
 		$.ajax({
-			url: 'http://dte-feed.blogspot.com/feeds/posts/summary?alt=json-in-script&q=' + keyword + '&max-results=9999',
+			url: '//dte-feed.blogspot.com/feeds/posts/summary?alt=json-in-script&q=' + keyword + '&max-results=9999',
 			type: 'get',
 			dataType: 'jsonp',
 			success: function(json) {
