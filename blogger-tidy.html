@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML5 Converter for Blogger Post Content</title>
+    <style>
+* {
+  margin:0;
+  padding:0;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+html {
+  background-color:white;
+  font:normal normal 13px/1.4 Helmet,FreeSans,Sans-Serif;
+  color:black;
+  padding:1em;
+}
+button,
+input,
+select,
+textarea {
+  display:inline-block;
+  vertical-align:middle;
+  background-color:#ffa;
+  border:1px solid;
+  font:inherit;
+  line-height:normal;
+  padding:2px;
+}
+label {
+  display:inline-block;
+  cursor:pointer;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  margin:0;
+  padding:0;
+  border:0;
+}
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+  background-color:black;
+  color:white;
+  padding-right:6px;
+  padding-left:6px;
+  cursor:pointer;
+}
+p {margin:0 0 1em}
+textarea {
+  display:block;
+  width:100%;
+  min-height:300px;
+  line-height:1;
+  font-family:"Courier New",Courier,"Nimbus Mono L",Monospace;
+}
+fieldset {
+  border:1px solid;
+  margin:0 0 1em;
+  padding:1em;
+}
+legend {
+  font-weight:bold;
+  padding:0 .2em;
+}
+iframe {
+  display:block;
+  width:100%;
+  height:300px;
+  border:1px solid;
+  padding:1em;
+}
+    </style>
+  </head>
+  <body>
+    <p>
+      <button id="do">Convert</button>
+      or
+      <label><input type="checkbox" id="do_auto" checked> Convert as I Type</label>
+      &middot;
+      <label><input type="checkbox" id="blogger" checked> Blogger</label>
+    </p>
+    <fieldset>
+      <legend>Input</legend>
+      <textarea id="input"></textarea>
+    </fieldset>
+    <fieldset>
+      <legend>Output</legend>
+      <textarea id="output"></textarea>
+    </fieldset>
+    <iframe id="view"></iframe>
+    <script>
+(function(w, d) {
+
+    function el(em) {
+        return d.getElementById(em);
+    }
+
+    var input = el('input'),
+        output = el('output'),
+        view = el('view'),
+        submit = el('do'),
+        submit_auto = el('do_auto'),
+        blogger = el('blogger');
+
+    function convert(text) {
+        // remove line break(s)
+        text = text.replace(/\r/g, "");
+        text = text.replace(/>\n*(\s*)\n*</g, '>$1<');
+        // remove inline style(s)
+        text = text.replace(/<(?:b|span|strong)\s+style="font-weight:\s*bold;?">(.*?)<\/(?:b|span|strong)>/g, '<strong>$1</strong>');
+        text = text.replace(/<(?:em|i|span)\s+style="font-style:\s*italic;?">(.*?)<\/(?:em|i|span)>/g, '<em>$1</em>');
+        // replace `<b>` with `<strong>`, `<i>` with `<em>`
+        text = text.replace(/<b>(.*?)<\/b>/g, '<strong>$1</strong>');
+        text = text.replace(/<i>(.*?)<\/i>/g, '<em>$1</em>');
+        // replace `<strike>` with `<del>`
+        text = text.replace(/<strike>(.*?)<\/strike>/g, '<del>$1</del>');
+        // replace `<acronym>` with `<abbr>`
+        text = text.replace(/<acronym(>| [^<>]*?>)(.*?)<\/acronym>/g, '<abbr$1$2</abbr>');
+        // replace `<center>` tag
+        text = text.replace(/<center(>| [^<>]*?>)([\s\S]*?)<\/center>/g, '<div class="text-center">$2</div>');
+        // replace obsolete attribute(s)
+        text = text.replace(/ v?align="(bottom|center|justify|left|middle|right|top)"/g, ' class="align-$1"');
+        // HTML5 self-closed tag(s)
+        text = text.replace(/<([^<>]*?) *\/?>/g, '<$1>');
+        // replace `http://` or `https://` with `//`
+        text = text.replace(/"https?:\/\//g, '"//');
+        // clean-up ...
+        text = text.replace(/ type="text\/(css|javascript)"| type='text\/(css|javascript)'/g, "");
+
+        // automatic paragraph ...
+        text = text.replace(/<(blockquote|dd|div|li|td)(>| [^<>]*?>)/g, '<$1$2\n\n');
+        text = text.replace(/<\/(blockquote|dd|div|li|td)>/g, '\n\n</$1>');
+        texts = text.split(/\n{2,}/);
+        text = [];
+        for (var i = 0, len = texts.length; i < len; ++i) {
+            var s = texts[i].replace(/\n/g, '<br>');
+            if (s.length && s.match(/^ *[^\s<]|<(?:a|abbr|b|code|del|dfn|em|i|img|ins|kbd|mark|s|samp|span|strong)[\s>]/)) {
+                text.push('<p>' + s + '</p>');
+            } else {
+                text.push(s);
+            }
+        }
+        text = text.join('\n\n');
+        text = text.replace(/<pre(>| [^<>]*?>)\s*(<code(?:>| [^<>]*?>)|)\s*([\s\S]*?)\s*(<\/code>|)\s*<\/pre>/g, function(a, b, c, d, e) {
+            d = d.replace(/\t/g, '    ');
+            d = d.replace(/\r/g, "");
+            d = d.replace(/<\/?p>/g, "");
+            d = d.replace(/<br>/g, '\n');
+            return '<pre' + b + c + d + e + '</pre>';
+        });
+        text = text.replace(/<(dd|li|td)(>| [^<>]*?>)\n*<p>([^\n]*?)<\/p>\n*<\/(dd|li|td)>/g, '<$1$2$3</$4>');
+        // tidy ...
+        text = text.replace(/<(\/?[^\s]+?)>/g, '\n\n<$1>\n\n');
+        text = text.replace(/\n*<(\/?(?:a|abbr|b|code|del|dfn|em|i|img|ins|kbd|mark|s|samp|span|strong))(>| [^<>]*?>)\n*/g, '<$1$2');
+        text = text.replace(/(^|[^>])\n+</g, '$1<');
+        text = text.replace(/>\n+([^<]|$)/g, '>$1');
+        text = text.replace(/<br>/g, '<br>\n');
+        text = text.replace(/\n{2,}/g, '\n\n');
+        // trim ...
+        text = text.replace(/^\s*|\s*$/g, "");
+        // **Blogger** specific markup
+        if (blogger.checked) {
+            text = text.replace(/ id="BLOGGER_PHOTO_ID_\d+"/g, "");
+            text = text.replace(/<(?:div|figure) class="separator( .*?)?">([\s\S]*?)<\/(?:div|figure)>/g, '<figure class="container$1">$2</figure>');
+            text = text.replace(/ imageanchor="\d+"/g, "");
+            // start: my blog specific markup
+            text = text.replace(/ data-codetype=/g, ' data-title=');
+            text = text.replace(/<pre rel=/g, '<pre data-title=');
+            text = text.replace(/<table border="\d+"/g, '<table');
+            text = text.replace(/ (frame)?border="\d+"/g, "");
+            text = text.replace(/ class=".*?(full reference|reference full).*?"/g, ' class="border expand"');
+            text = text.replace(/ class="catatan"/g, ' class="note"');
+            text = text.replace(/<span class="highlight">(.*?)<\/span>/g, '<mark>$1</mark>');
+            text = text.replace(/<div class="reference-link">([\s\S]*?)<\/div>/g, '<hr>$1');
+            text = text.replace(/\/\/hompimpaalaihumgambreng\./g, '//dte-feed.');
+            text = text.replace(/\bJQuery\b/g, 'jQuery');
+            text = text.replace(/<(t[rhd]) id=".*?">/g, '<$1>');
+            // end: my blog specific markup
+        }
+        return text;
+    }
+
+    function run() {
+        var v = convert(input.value);
+        output.value = v;
+        view.src = 'data:text/html;charset=utf-8,' + escape(v.replace(/"\/\//g, '"http://'));
+    }
+
+    input.onkeyup = function() {
+        if (!submit_auto.checked) return;
+        run();
+    };
+
+    submit.onclick = function() {
+        return run(), false;
+    };
+
+})(window, document);
+    </script>
+  </body>
+</html>
