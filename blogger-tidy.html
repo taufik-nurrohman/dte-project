@@ -110,6 +110,8 @@ iframe {
         // remove line break(s)
         text = text.replace(/\r/g, "");
         text = text.replace(/>\n*(\s*)\n*</g, '>$1<');
+        // convert `<br>` to `\n`
+        text = text.replace(/<br(>| [^<>]*? *\/?>)/g, '\n');
         // remove inline style(s)
         text = text.replace(/<(?:b|span|strong)\s+style="font-weight:\s*bold;?">(.*?)<\/(?:b|span|strong)>/g, '<strong>$1</strong>');
         text = text.replace(/<(?:em|i|span)\s+style="font-style:\s*italic;?">(.*?)<\/(?:em|i|span)>/g, '<em>$1</em>');
@@ -132,13 +134,14 @@ iframe {
         text = text.replace(/ type="text\/(css|javascript)"| type='text\/(css|javascript)'/g, "");
 
         // automatic paragraph ...
-        text = text.replace(/<(blockquote|dd|div|li|td)(>| [^<>]*?>)/g, '<$1$2\n\n');
-        text = text.replace(/<\/(blockquote|dd|div|li|td)>/g, '\n\n</$1>');
-        texts = text.split(/\n{2,}/);
+        text = text.replace(/<(blockquote|dd|div|(?:fig)?caption|li|td)(>| [^<>]*?>)/g, '<$1$2\n\n');
+        text = text.replace(/<\/(blockquote|dd|div|(?:fig)?caption|li|td)>/g, '\n\n</$1>');
+        texts = text.split(/(\n\s*){2,}/);
         text = [];
         for (var i = 0, len = texts.length; i < len; ++i) {
-            var s = texts[i].replace(/\n/g, '<br>');
-            if (s.length && s.match(/^ *[^\s<]|<(?:a|abbr|b|code|del|dfn|em|i|img|ins|kbd|mark|s|samp|span|strong)[\s>]/)) {
+            var s = texts[i].replace(/^\s*|\s*$/g, "");
+            if (s.length && (s[0] !== '<' || s.match(/^<(?:a|abbr|acronym|b|basefont|bdo|big|blink|button|cite|code|del|dfn|em|font|i|img|input|ins|kbd|listing|mar(?:k|quee)|nextid|nobr|q|r[pt]|ruby|s|samp|select|small|spacer|span|strike|strong|su[bp]|svg|textarea|time|tt|u|var|w?br|xm)[\s>]/))) {
+                s = s.replace(/\n/g, '<br>');
                 text.push('<p>' + s + '</p>');
             } else {
                 text.push(s);
@@ -152,12 +155,12 @@ iframe {
             d = d.replace(/<br>/g, '\n');
             return '<pre' + b + c + d + e + '</pre>';
         });
-        text = text.replace(/<(dd|li|td)(>| [^<>]*?>)\n*<p>([^\n]*?)<\/p>\n*<\/(dd|li|td)>/g, '<$1$2$3</$4>');
+        text = text.replace(/<(dd|div|(?:fig)?caption|li|td)(>| [^<>]*?>)\n*<p>([^\n]*?)<\/p>\n*<\/(dd|div|(?:fig)?caption|li|td)>/g, '<$1$2$3</$4>');
         // tidy ...
         text = text.replace(/<(\/?[^\s]+?)>/g, '\n\n<$1>\n\n');
-        text = text.replace(/\n*<(\/?(?:a|abbr|b|code|del|dfn|em|i|img|ins|kbd|mark|s|samp|span|strong))(>| [^<>]*?>)\n*/g, '<$1$2');
-        text = text.replace(/(^|[^>])\n+</g, '$1<');
-        text = text.replace(/>\n+([^<]|$)/g, '>$1');
+        text = text.replace(/\n*<(\/?(?:a|abbr|acronym|b|basefont|bdo|big|blink|button|cite|code|del|dfn|em|font|i|img|input|ins|kbd|listing|mar(?:k|quee)|nextid|nobr|q|r[pt]|ruby|s|samp|select|small|spacer|span|strike|strong|su[bp]|svg|textarea|time|tt|u|var|w?br|xm))(>| [^<>]*?>)\n*/g, '<$1$2');
+        text = text.replace(/(^|[^>])\n*</g, '$1<');
+        text = text.replace(/>\n*([^<]|$)/g, '>$1');
         text = text.replace(/<br>/g, '<br>\n');
         text = text.replace(/\n{2,}/g, '\n\n');
         // trim ...
