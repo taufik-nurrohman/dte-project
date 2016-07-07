@@ -58,149 +58,246 @@ textarea {
   font-family:"Courier New",Courier,"Nimbus Mono L",Monospace;
 }
 fieldset {
-  border:1px solid;
+  border:0;
   margin:0 0 1em;
-  padding:1em;
+  padding:.5em 0 0;
+  width:49.5%;
+  float:left;
 }
-legend {
-  font-weight:bold;
-  padding:0 .2em;
-}
+fieldset + fieldset {float:right}
+legend {font-weight:bold}
 iframe {
   display:block;
+  clear:both;
   width:100%;
   height:300px;
   border:1px solid;
-  padding:1em;
+}
+hr {
+  border:0;
+  border-top:1px solid;
+  color:inherit;
+  height:0;
+  margin:0 0 1em;
 }
     </style>
   </head>
   <body>
     <p>
-      <button id="do">Convert</button>
-      or
-      <label><input type="checkbox" id="do_auto" checked> Convert as I Type</label>
-      &middot;
-      <label><input type="checkbox" id="blogger" checked> Blogger</label>
+      <label><input type="checkbox" id="p" checked> Convert Line Break to Paragraph</label>
+      <br>
+      <label><input type="checkbox" id="b" checked> Blogger</label>
     </p>
+    <hr>
     <fieldset>
       <legend>Input</legend>
       <textarea id="input"></textarea>
     </fieldset>
     <fieldset>
       <legend>Output</legend>
-      <textarea id="output"></textarea>
+      <textarea id="output" onfocus="this.select();"></textarea>
     </fieldset>
     <iframe id="view"></iframe>
     <script>
 (function(w, d) {
 
-    function el(em) {
-        return d.getElementById(em);
-    }
+var IGNORE = 'h[1-6]|kbd|math|pre|script|style|textarea',
+    I = 'a|abbr|acronym|b|basefont|bdo|big|blink|button|cite|code|del|dfn|em|font|i|img|input|ins|kbd|listing|mar(?:k|quee)|nextid|nobr|q|r[pt]|ruby|s|samp|select|small|spacer|span|strike|strong|su[bp]|svg|textarea|time|tt|u|var|w?br|xm',
+    B = 'blockquote|div|p',
+    AUTO = 'dd|div|(?:fig)?caption|li|td',
+    Z = '>|\\s[^<>]*?>',
+    ZZ = ' *\\/?>|\\s[^<>]*? *\\/?>';
 
-    var input = el('input'),
-        output = el('output'),
-        view = el('view'),
-        submit = el('do'),
-        submit_auto = el('do_auto'),
-        blogger = el('blogger');
+function trim(text) {
+    return text.replace(/^\s*|\s*$/g, "");
+}
 
-    function convert(text) {
-        // remove line break(s)
-        text = text.replace(/\r/g, "");
-        text = text.replace(/>\n*(\s*)\n*</g, '>$1<');
-        // convert `<br>` to `\n`
-        text = text.replace(/<br(>| [^<>]*? *\/?>)/g, '\n');
-        // remove inline style(s)
-        text = text.replace(/<(?:b|span|strong)\s+style="font-weight:\s*bold;?">(.*?)<\/(?:b|span|strong)>/g, '<strong>$1</strong>');
-        text = text.replace(/<(?:em|i|span)\s+style="font-style:\s*italic;?">(.*?)<\/(?:em|i|span)>/g, '<em>$1</em>');
-        // replace `<b>` with `<strong>`, `<i>` with `<em>`
-        text = text.replace(/<b>(.*?)<\/b>/g, '<strong>$1</strong>');
-        text = text.replace(/<i>(.*?)<\/i>/g, '<em>$1</em>');
-        // replace `<strike>` with `<del>`
-        text = text.replace(/<strike>(.*?)<\/strike>/g, '<del>$1</del>');
-        // replace `<acronym>` with `<abbr>`
-        text = text.replace(/<acronym(>| [^<>]*?>)(.*?)<\/acronym>/g, '<abbr$1$2</abbr>');
-        // replace `<center>` tag
-        text = text.replace(/<center(>| [^<>]*?>)([\s\S]*?)<\/center>/g, '<div class="text-center">$2</div>');
-        // replace obsolete attribute(s)
-        text = text.replace(/ v?align="(bottom|center|justify|left|middle|right|top)"/g, ' class="align-$1"');
-        // HTML5 self-closed tag(s)
-        text = text.replace(/<([^<>]*?) *\/?>/g, '<$1>');
-        // replace `http://` or `https://` with `//`
-        text = text.replace(/"https?:\/\//g, '"//');
-        // clean-up ...
-        text = text.replace(/ type="text\/(css|javascript)"| type='text\/(css|javascript)'/g, "");
-
-        // automatic paragraph ...
-        text = text.replace(/<(blockquote|dd|div|(?:fig)?caption|li|td)(>| [^<>]*?>)/g, '<$1$2\n\n');
-        text = text.replace(/<\/(blockquote|dd|div|(?:fig)?caption|li|td)>/g, '\n\n</$1>');
-        texts = text.split(/(\n\s*){2,}/);
-        text = [];
-        for (var i = 0, len = texts.length; i < len; ++i) {
-            var s = texts[i].replace(/^\s*|\s*$/g, "");
-            if (s.length && (s[0] !== '<' || s.match(/^<(?:a|abbr|acronym|b|basefont|bdo|big|blink|button|cite|code|del|dfn|em|font|i|img|input|ins|kbd|listing|mar(?:k|quee)|nextid|nobr|q|r[pt]|ruby|s|samp|select|small|spacer|span|strike|strong|su[bp]|svg|textarea|time|tt|u|var|w?br|xm)[\s>]/))) {
-                s = s.replace(/\n/g, '<br>');
-                text.push('<p>' + s + '</p>');
+// JavaScript version of <https://github.com/tovic/paragraph-plugin-for-mecha-cms>
+function paragraph(text) {
+    function p(t) {
+        t = t.replace(RegExp('(<(?:' + B + '|' + AUTO + ')(?:' + Z + '))', 'g'), '$1\n\n');
+        t = t.replace(RegExp('(<\/(?:' + B + '|' + AUTO + ')>)', 'g'), '\n\n$1');
+        var tt = t.split(/(\n\s*){2,}/),
+            oo = "";
+        for (var i = 0, len = tt.length; i < len; ++i) {
+            var s = trim(tt[i]);
+            if (s.length && (s[0] !== '<' || s.match(RegExp('^<(?:' + I + ')[\\s>]')))) {
+                s = s.replace(/\n\s*/g, '<br>');
+                oo += '\n<p>' + s + '</p>\n';
             } else {
-                text.push(s);
+                oo += s;
             }
         }
-        text = text.join('\n\n');
-        text = text.replace(/<pre(>| [^<>]*?>)\s*(<code(?:>| [^<>]*?>)|)\s*([\s\S]*?)\s*(<\/code>|)\s*<\/pre>/g, function(a, b, c, d, e) {
-            d = d.replace(/\t/g, '    ');
-            d = d.replace(/\r/g, "");
-            d = d.replace(/<\/?p>/g, "");
-            d = d.replace(/<br>/g, '\n');
-            return '<pre' + b + c + d + e + '</pre>';
-        });
-        text = text.replace(/<(dd|div|(?:fig)?caption|li|td)(>| [^<>]*?>)\n*<p>([^\n]*?)<\/p>\n*<\/(dd|div|(?:fig)?caption|li|td)>/g, '<$1$2$3</$4>');
-        // tidy ...
-        text = text.replace(/<(\/?[^\s]+?)>/g, '\n\n<$1>\n\n');
-        text = text.replace(/\n*<(\/?(?:a|abbr|acronym|b|basefont|bdo|big|blink|button|cite|code|del|dfn|em|font|i|img|input|ins|kbd|listing|mar(?:k|quee)|nextid|nobr|q|r[pt]|ruby|s|samp|select|small|spacer|span|strike|strong|su[bp]|svg|textarea|time|tt|u|var|w?br|xm))(>| [^<>]*?>)\n*/g, '<$1$2');
-        text = text.replace(/(^|[^>])\n*</g, '$1<');
-        text = text.replace(/>\n*([^<]|$)/g, '>$1');
-        text = text.replace(/<br>/g, '<br>\n');
-        text = text.replace(/\n{2,}/g, '\n\n');
-        // trim ...
-        text = text.replace(/^\s*|\s*$/g, "");
-        // **Blogger** specific markup
-        if (blogger.checked) {
-            text = text.replace(/ id="BLOGGER_PHOTO_ID_\d+"/g, "");
-            text = text.replace(/<(?:div|figure) class="separator( .*?)?">([\s\S]*?)<\/(?:div|figure)>/g, '<figure class="container$1">$2</figure>');
-            text = text.replace(/ imageanchor="\d+"/g, "");
-            // start: my blog specific markup
-            text = text.replace(/ data-codetype=/g, ' data-title=');
-            text = text.replace(/<pre rel=/g, '<pre data-title=');
-            text = text.replace(/<table border="\d+"/g, '<table');
-            text = text.replace(/ (frame)?border="\d+"/g, "");
-            text = text.replace(/ class=".*?(full reference|reference full).*?"/g, ' class="border expand"');
-            text = text.replace(/ class="catatan"/g, ' class="note"');
-            text = text.replace(/<span class="highlight">(.*?)<\/span>/g, '<mark>$1</mark>');
-            text = text.replace(/<div class="reference-link">([\s\S]*?)<\/div>/g, '<hr>$1');
-            text = text.replace(/\/\/hompimpaalaihumgambreng\./g, '//dte-feed.');
-            text = text.replace(/\bJQuery\b/g, 'jQuery');
-            text = text.replace(/<(t[rhd]) id=".*?">/g, '<$1>');
-            // end: my blog specific markup
+        return fix(oo);
+    }
+    function fix(u) {
+        var ii = AUTO.split('|');
+        for (var i in ii) {
+            var t = ii[i];
+            u = u.replace(RegExp('<(' + t + ')(' + Z + ')\\n*<p(?:' + Z + ')([^\\n]*?)<\\/p>\\n*<\\/' + t + '>', 'g'), '<$1$2$3</$1>');
         }
-        return text;
+        return u;
     }
+    text = text.replace(/\r\n|\r/g, '\n') + '\n\n';
+    text = text.replace(RegExp('\\s*<br(' + ZZ + ')\\s*', 'g'), '\n');
+    var o = [];
+    text.replace(RegExp('([\\s\\S]*?)(<\\/?(?:' + IGNORE + '|p)(?:' + Z + ')|<!\-\-[\\s\\S]*?\-\->|$)', 'g'), function(a, b, c) {
+        if (b) o.push(b);
+        if (c) o.push(c);
+    });
+    var output = "",
+        skip = 0;
+    for (var i = 0, len = o.length; i < len; ++i) {
+        var s = o[i];
+        if (s.length && s[0] === '<' && s.slice(-1) === '>') {
+            skip = s[1] && (s[1] === '/' || s[1] === '!') ? 0 : 1;
+            output += s;
+        } else {
+            output += !skip ? p(s) : s;
+        }
+    }
+    return tidy(output);
+}
 
-    function run() {
-        var v = convert(input.value);
+function tidy(text) {
+    text = trim(text);
+    text = text.replace(RegExp('<(\\/?[^\\s]+?)(' + Z + ')', 'g'), '\n\n<$1$2\n\n');
+    text = text.replace(RegExp('\\n*<(\\/?(?:' + I + '))(' + Z + ')\\n*', 'g'), '<$1$2');
+    text = text.replace(/(^|[^>])\n+\s*</g, '$1<');
+    text = text.replace(/>\n+\s*([^<]|$)/g, '>$1');
+    var ii = IGNORE.split('|');
+    for (var i in ii) {
+        var t = ii[i];
+        text = text.replace(RegExp('\\n*<(' + t + ')(' + Z + ')\\n*([\\s\\S]*?)\\n*<\\/' + t + '>\\n*'), '\n<$1$2$3</$1>\n');
+    }
+    text = text.replace(RegExp('><(hr|img|input|svg)(' + Z + ')<(?!\\/)', 'g'), '>\n<$1$2\n<');
+    text = text.replace(RegExp('<\\/(' + IGNORE + ')>\\n+<(' + IGNORE + ')(' + Z + ')', 'g'), '</$1>\n<$2$3');
+    text = text.replace(RegExp('<scr' + 'ipt(' + Z + ')\\n*([\\s\\S]+?)\\n*<\\/scr' + 'ipt>', 'g'), '<scr' + 'ipt$1\n$2\n<\/scr' + 'ipt>');
+    text = text.replace(RegExp('<st' + 'yle(' + Z + ')\\n*([\\s\\S]+?)\\n*<\\/st' + 'yle>', 'g'), '<st' + 'yle$1\n$2\n</st' + 'yle>');
+    text = text.replace(RegExp('<([-:\\w]+?)(' + Z + ')\\s*<\\/([-:\\w]+?)>', 'g'), '<$1$2</$3>');
+    text = text.replace(/<br>/g, '<br>\n');
+    return trim(text);
+}
+
+// Validator(s) ...
+function validate(text) {
+    // remove inline style(s)
+    var bold = ['b', 'span', 'strong'], t;
+    for (var i in bold) {
+        t = bold[i];
+        text = text.replace(RegExp('<' + t + '\s+style="font-weight:\s*bold;?">(.*?)<\\/' + t + '>', 'g'), '<strong>$1</strong>');
+    }
+    var italic = ['em', 'i', 'span'];
+    for (var i in italic) {
+        t = italic[i];
+        text = text.replace(RegExp('<' + t + '\s+style="font-style:\s*italic;?">(.*?)<\\/' + t + '>', 'g'), '<em>$1</em>');
+    }
+    // replace `<b>` with `<strong>`, `<i>` with `<em>`, other(s) with `<span>`
+    text = text.replace(RegExp('<b(' + Z + ')(.*?)<\\/b>', 'g'), '<strong$1$2</strong>');
+    text = text.replace(RegExp('<i(' + Z + ')(.*?)<\\/i>', 'g'), '<em$1$2</em>');
+    text = text.replace(RegExp('<font(' + Z + ')(.*?)<\\/font>', 'g'), '<span$1$2</span>');
+    // replace `<strike>` with `<del>`
+    text = text.replace(RegExp('<strike(' + Z + ')(.*?)<\\/strike>', 'g'), '<del$1$2</del>');
+    // replace `<acronym>` with `<abbr>`
+    text = text.replace(RegExp('<acronym(' + Z + ')(.*?)<\\/acronym>', 'g'), '<abbr$1$2</abbr>');
+    // replace `<center>` tag
+    text = text.replace(RegExp('<center(' + Z + ')([\\s\\S]*?)<\\/center>', 'g'), '<div class="text-center"$1$2</div>');
+    // remove tag(s)
+    var remove = ['blink', 'marquee'];
+    for (var i in remove) {
+        t = remove[i];
+        text = text.replace(RegExp('<' + t + '(?:' + Z + ')([\\s\\S]*?)<\\/' + t + '>', 'g'), '$1');
+    }
+    // replace obsolete attribute(s) with inline style(s)
+    text = text.replace(/<([-:\w]+?)(.*?)>/g, function(a, b, c) {
+        var attributes = {
+            align: 'vertical-align:',
+            bgcolor: 'background-color:',
+            color: 'color:',
+            face: 'font-family:',
+            size: 'font-size:',
+            style: "" // used to address duplicate `style` tag(s)
+        };
+        var css = "";
+        for (var i in attributes) {
+            t = attributes[i];
+            c = c.replace(RegExp(' ' + i + '="(.*?)"'), function(a, b) {
+                css += t + b + ';';
+                return "";
+            });
+        }
+        css = css.replace(/;+/g, ';');
+        css = css.replace(/("|;)font-size:(\d+)/g, '$1font-size:$2pt');
+        c += ' style="' + css + '"';
+        return css ? '<' + b + c + '>' : a;
+    });
+    // HTML5 self-closed tag(s)
+    text = text.replace(RegExp('<([-:\\w]+?)(\\s[^<>]*?)? *\\/?>', 'g'), '<$1$2>');
+    // remove `border` and `type` attribute
+    text = text.replace(/ (frame)?border="\d+"| type="text\/(css|javascript)"/g, "");
+    return text;
+}
+
+// Blogger
+function blogger(text) {
+    // replace `http://` or `https://` with `//`
+    text = text.replace(/"https?:\/\//g, '"//');
+    // other(s)
+    text = text.replace(/ id="BLOGGER_PHOTO_ID_\d+"/g, "");
+    text = text.replace(RegExp('<div class="separator( [^"]*?)?"(' + Z + ')([\\s\\S]*?)<\\/div>', 'g'), '<figure class="container$1"$2$3</figure>');
+    text = text.replace(RegExp('<figure class="separator( [^"]*?)?"(' + Z + ')([\\s\\S]*?)<\\/figure>', 'g'), '<figure class="container$1"$2$3</figure>');
+    text = text.replace(/ imageanchor="\d+"/g, "");
+    // start: my blog specific markup
+    text = text.replace(/ data-codetype=/g, ' data-title=');
+    text = text.replace(/<pre rel=/g, '<pre data-title=');
+    text = text.replace(/ class="(.*?)"/g, function(a, b) {
+        var classes = {
+            catatan: 'note',
+            compare: false,
+            full: 'expand',
+            reference: false
+        }
+        var c = b.split(' '), o = "";
+        for (var i in c) {
+            if (classes[c[i]] === false) continue;
+            o += ' ' + (classes[c[i]] || c[i]);
+        }
+        return ' class="' + trim(o) + '"';
+    });
+    text = text.replace(/<span class="highlight">(.*?)<\/span>/g, '<mark>$1</mark>');
+    text = text.replace(/<div class="reference-link">([\s\S]*?)<\/div>/g, '<hr>$1');
+    text = text.replace(/\/\/hompimpaalaihumgambreng\./g, '//dte-feed.');
+    text = text.replace(/\bJQuery\b/g, 'jQuery');
+    text = text.replace(/<(t[rhd]) id=".*?">/g, '<$1>');
+    // end: my blog specific markup
+    return text;
+}
+
+var input = d.getElementById('input'),
+    output = d.getElementById('output'),
+    p = d.getElementById('p'),
+    b = d.getElementById('b'),
+    view = d.getElementById('view'),
+    ttt = null;
+
+function run(e) {
+    var v = input.value;
+    if (ttt) w.clearTimeout(ttt);
+    ttt = w.setTimeout(function() {
+        v = validate(v);
+        if (b.checked) v = blogger(v);
+        if (p.checked) v = paragraph(v);
         output.value = v;
-        view.src = 'data:text/html;charset=utf-8,' + escape(v.replace(/"\/\//g, '"http://'));
-    }
+        view.src = 'data:text/html;charset=utf-8,' + escape(v.replace(/"\/\//g, '"http://') + '<style>html,body{margin:0;padding:.5em}</style>');
+    }, 100);
+}
 
-    input.onkeyup = function() {
-        if (!submit_auto.checked) return;
-        run();
-    };
+input.onkeyup = run;
+input.oninput = run;
+input.onpaste = run;
 
-    submit.onclick = function() {
-        return run(), false;
-    };
+p.onchange = run;
+blogger.onchange = run;
 
 })(window, document);
     </script>
