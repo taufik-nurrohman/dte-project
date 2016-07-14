@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta content="Simple JQuery custom selectbox plugin to change the original selectbox appearance into a styled and style-able selectbox element. Blablabla... Whatever..." name="description">
+<meta content="Simple jQuery custom selectbox plugin to change the original selectbox appearance into a styled and style-able selectbox element. Blablabla... Whatever..." name="description">
 <title>Demo for JQuery Custom SelectBoxes</title>
 <style>
 * {
@@ -134,101 +134,102 @@ a:hover {
   cursor:default;
 }
 </style>
-<link rel="stylesheet" href="style.css" type="text/css">
+<!-- link rel="stylesheet" href="jquery.select.css" -->
+<link rel="stylesheet" href="jquery.select.min.css">
 
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'></script>
-<!-- script type="text/javascript" src="jquery.custom.selectbox.js"></script -->
-<script src="jquery.custom.selectbox.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- script src="jquery.select.js"></script -->
+<script src="jquery.select.min.js"></script>
 <script>
 $(document).ready(function() {
-	$('#sample-1 select').customSelectBox().change(function() {
-		alert($(this).val());
-	});
-	// Custom classes for special selectbox
-	$('#sample-2 select').customSelectBox({
-		selectboxClass: 'my-selectbox',
-		buttonClass: 'btn',
-		selectedClass: 'active',
-		disabledClass: 'nope',
-		focusedClass: 'in-focus'
-	}).change(function() {
-		$(this).closest('.section').find('h3').css('background-color', $(this).val());
-	});
+    $('#sample-1 select').customSelectBox().change(function() {
+        alert($(this).val());
+    });
+    // Custom classes for special selectbox
+    $('#sample-2 select').customSelectBox({
+        selectboxClass: 'my-selectbox',
+        buttonClass: 'btn',
+        selectedClass: 'active',
+        disabledClass: 'nope',
+        focusedClass: 'in-focus'
+    }).change(function() {
+        $(this).closest('.section').find('h3').css('background-color', $(this).val());
+    });
 });
 </script>
 </head>
 <body>
 
-<h1><a href="http://hompimpaalaihumgambreng.blogspot.com/2012/12/plugin-jquery-custom-select-box.html" data-href="https://plus.google.com/108949996304093815163">Simple JQuery Custom SelectBoxes Demo</a></h1>
+<h1><a href="//www.dte.web.id/2012/12/plugin-jquery-custom-select-box.html" data-href="//plus.google.com/108949996304093815163">Simple jQuery Custom Select Boxes Demo</a></h1>
 
 <div class="section" id="sample-1">
 
-	<h3>Basic Select Box</h3>
-	<select>
-		<option value="value-1">Red Style</option>
-		<option value="value-2">Orange Style</option>
-		<option value="value-3">Yellow Style</option>
-		<option value="value-4">Green Style</option>
-		<option value="value-5">Blue Style</option>
-		<option value="value-6">Purple Style</option>
-	</select>
+    <h3>Basic Select Box</h3>
+    <select>
+        <option value="value-1">Red Style</option>
+        <option value="value-2">Orange Style</option>
+        <option value="value-3">Yellow Style</option>
+        <option value="value-4">Green Style</option>
+        <option value="value-5">Blue Style</option>
+        <option value="value-6">Purple Style</option>
+    </select>
 
-	<h3>Options without Value Attribute</h3>
-	<select>
-		<option>Red Style</option>
-		<option>Orange Style</option>
-		<option>Yellow Style</option>
-		<option>Green Style</option>
-		<option value="I&#39;m a value">Blue Style</option>
-		<option>Purple Style</option>
-	</select>
+    <h3>Options without Value Attribute</h3>
+    <select>
+        <option>Red Style</option>
+        <option>Orange Style</option>
+        <option>Yellow Style</option>
+        <option>Green Style</option>
+        <option value="I&#39;m a value">Blue Style</option>
+        <option>Purple Style</option>
+    </select>
 
-	<h3>Selected Option</h3>
-	<select>
-		<option value="value-1">Red Style</option>
-		<option value="value-2">Orange Style</option>
-		<option value="value-3" selected>Yellow Style</option>
-		<option value="value-4">Green Style</option>
-		<option value="value-5">Blue Style</option>
-		<option value="value-6">Purple Style</option>
-	</select>
+    <h3>Selected Option</h3>
+    <select>
+        <option value="value-1">Red Style</option>
+        <option value="value-2">Orange Style</option>
+        <option value="value-3" selected>Yellow Style</option>
+        <option value="value-4">Green Style</option>
+        <option value="value-5">Blue Style</option>
+        <option value="value-6">Purple Style</option>
+    </select>
 
-	<h3>Disabled Option</h3>
-	<select>
-		<option disabled>Lorem Ipsum 1</option>
-		<option value="Sample Value 2">Lorem Ipsum 2</option>
-		<option value="Sample Value 3" selected>Lorem Ipsum 3</option>
-		<option value="Sample Value 4">Lorem Ipsum 4</option>
-		<option value="Sample Value 5">Lorem Ipsum 5</option>
-		<option value="Sample Value 6" disabled>Lorem Ipsum 6</option>
-	</select>
+    <h3>Disabled Option</h3>
+    <select>
+        <option disabled>Lorem Ipsum 1</option>
+        <option value="Sample Value 2">Lorem Ipsum 2</option>
+        <option value="Sample Value 3" selected>Lorem Ipsum 3</option>
+        <option value="Sample Value 4">Lorem Ipsum 4</option>
+        <option value="Sample Value 5">Lorem Ipsum 5</option>
+        <option value="Sample Value 6" disabled>Lorem Ipsum 6</option>
+    </select>
 
 </div>
 
 <div class="section" id="sample-2">
 
-	<h3>Custom Classes</h3>
-	<select>
-		<option value="transparent">Normal Header</option>
-		<option value="red">Red Header</option>
-		<option value="green">Green Header</option>
-		<option value="blue">Blue Header</option>
-		<option value="yellow">Yellow Header</option>
-		<option value="purple" disabled>Purple Header</option>
-	</select>
+    <h3>Custom Classes</h3>
+    <select>
+        <option value="transparent">Normal Header</option>
+        <option value="red">Red Header</option>
+        <option value="green">Green Header</option>
+        <option value="blue">Blue Header</option>
+        <option value="yellow">Yellow Header</option>
+        <option value="purple" disabled>Purple Header</option>
+    </select>
 
 </div>
 
 <div class="section usage" id="usage">
 
 <h3>Basic Usage:</h3>
-<p>Put the <a href="style.css" target="_blank">custom selectbox stylesheet</a>, your JQuery library and my <a href="jquery.custom.selectbox.min.js" target="_blank">simple custom selectbox plugin</a> above the <code>&lt;/head&gt;</code> code:</p>
+<p>Put the <a href="jquery.select.min.css" target="_blank">custom selectbox stylesheet</a>, your JQuery library and my <a href="jquery.select.min.js" target="_blank">simple custom selectbox plugin</a> above the <code>&lt;/head&gt;</code> code:</p>
 <pre><code>...
 ...
 
-&lt;link rel="stylesheet" href="css/style.css"&gt;
-&lt;script src="js/jquery.js"&gt;&lt;/script&gt;
-&lt;script src="js/jquery.custom.selectbox.min.js"&gt;&lt;/script&gt;
+&lt;link href="jquery.select.min.css" rel="stylesheet"&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.select.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
     $('select').customSelectBox().change(function() {
@@ -241,14 +242,14 @@ $(document).ready(function() {
 <p>This plugin will wrap the original selectbox element and add some HTML tags as a fake selectbox element:</p>
 <pre><code>&lt;!-- Generated HTML Markup --&gt;
 
-&lt;div class="styled-select"&gt;
+&lt;div class="select"&gt;
     &lt;select style="visibility:hidden;"&gt;
         &lt;option value="value-1" selected&gt;Lorem Ipsum 1&lt;/option&gt;
         &lt;option value="value-2"&gt;Lorem Ipsum 2&lt;/option&gt;
         &lt;option value="value-3"&gt;Lorem Ipsum 3&lt;/option&gt;
         &lt;option value="value-4" disabled&gt;Lorem Ipsum 4&lt;/option&gt;
     &lt;/select&gt;
-    &lt;span class="curr"&gt;Lorem Ipsum 1&lt;/span&gt;
+    &lt;span class="current"&gt;Lorem Ipsum 1&lt;/span&gt;
     &lt;ul style="display:none;"&gt;
         &lt;li class="selected o-0" data-value="value-1"&gt;Lorem Ipsum 1&lt;/li&gt;
         &lt;li class=" o-1" data-value="value-2"&gt;Lorem Ipsum 2&lt;/li&gt;
@@ -259,11 +260,11 @@ $(document).ready(function() {
 
 <p>Where:</p>
 <ul>
-	<li><code>styled-select</code> &rArr; <code>selectboxClass</code></li>
-	<li><code>curr</code> &rArr; <code>buttonClass</code></li>
-	<li><code>selected</code> &rArr; <code>selectedClass</code></li>
-	<li><code>disabled</code> &rArr; <code>disabledClass</code></li>
-	<li><code>focused</code> &rArr; <code>focusedClass</code></li>
+    <li><code>select</code> &rArr; <code>selectboxClass</code></li>
+    <li><code>current</code> &rArr; <code>buttonClass</code></li>
+    <li><code>selected</code> &rArr; <code>selectedClass</code></li>
+    <li><code>disabled</code> &rArr; <code>disabledClass</code></li>
+    <li><code>focused</code> &rArr; <code>focusedClass</code></li>
 </ul>
 
 <h3>Custom Classes</h3>

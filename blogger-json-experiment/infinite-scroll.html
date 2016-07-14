@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
 <title>Experiment: Infinite Scroll with Blogger JSON</title>
-<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link href="../favicon.ico" rel="icon">
 
 
 
@@ -14,7 +14,7 @@
 <!--
 
 Author: Taufik Nurrohman
-Author URL: http://www.dte.web.id (http://hompimpaalaihumgambreng.blogspot.com)
+Author URL: http://www.dte.web.id
 Author G+: https://plus.google.com/108949996304093815163/about
 
 You are allowed to learn, use, add a new attribution/making your own attribution or modify my works in this page as long as you don't:
@@ -31,7 +31,7 @@ You are allowed to learn, use, add a new attribution/making your own attribution
 
 
 
-<style type="text/css">
+<style>
 
 * {
   margin:0;
@@ -353,7 +353,7 @@ iframe.jsfiddle-demo {
 
 
 <!-- Just a message -->
-<div class="message"><p>Hello&hellip; This page demonstrates how I use <code>removeChild()</code> and <code>.appendChild()</code> to remove and update the JSON callback script when the screen scrolls have reached to the end.</p><p>By the way, this page will continue to load up on the last post. I hope you don't use this page as a fast reading media for my blog posts. Visit <a href="http://www.dte.web.id" title="DTE :]">the original blog</a> and read the articles through the original blog post to support the development of my blog. Thank you very much.</p></div>
+<div class="message"><p>Hello&hellip; This page demonstrates how I use <code>removeChild()</code> and <code>.appendChild()</code> to remove and update the JSON callback script when the screen scrolls have reached to the end.</p><p>By the way, this page will continue to load up on the last post. I hope you don't use this page as a fast reading media for my blog posts. Visit <a href="//www.dte.web.id" title="DTE :]">the original blog</a> and read the articles through the original blog post to support the development of my blog. Thank you very much.</p></div>
 <!-- End message -->
 
 
@@ -362,175 +362,175 @@ iframe.jsfiddle-demo {
 
 
 <div id="blog-post-list" class="blog-post-list">
-	<div class="blog-header">
-		<h1><a href="http://www.dte.web.id">Feeds From DTE :]</a></h1>
-		<span class="blog-navigation"><a href="http://www.dte.web.id/2013/03/infinite-scroll-experiment-with-blogger.html">Home</a></span>
-	</div>
-	<div id="blog-content" class="blog-content"></div>
+    <div class="blog-header">
+        <h1><a href="//www.dte.web.id">Feeds From DTE :]</a></h1>
+        <span class="blog-navigation"><a href="//www.dte.web.id/2013/03/infinite-scroll-experiment-with-blogger.html">Home</a></span>
+    </div>
+    <div id="blog-content" class="blog-content"></div>
 </div>
 <div id="feed-loading-indicator" class="feed-loading-indicator"></div>
 
 
-<script type="text/javascript">
+<script>
 
 // Widget config start
 var infiniteScroll = {
-	url: 'http://www.dte.web.id',
-	numpost: 3,
-	containerId: 'blog-content',
-	loader: 'feed-loading-indicator',
-	scriptId: 'json-script',
-	labels: {
-		postComment: 'Post a Comment',
-		noComment: 'No Comment',
-		loadingText: 'Loading...',
-		monthNames: ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
-	}
+    url: '//www.dte.web.id',
+    numpost: 3,
+    containerId: 'blog-content',
+    loader: 'feed-loading-indicator',
+    scriptId: 'json-script',
+    labels: {
+        postComment: 'Post a Comment',
+        noComment: 'No Comment',
+        loadingText: 'Loading...',
+        monthNames: ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
+    }
 };
 // Config end.
 
 var init = 1, // First visit = true
-	index = 0,
-	loaded = true,
-	postNum = 0,
-	dynamicId = null,
-	commentFormUrl = "",
-	container = document.getElementById(infiniteScroll.containerId),
-	loader = document.getElementById(infiniteScroll.loader);
-	
+    index = 0,
+    loaded = true,
+    postNum = 0,
+    dynamicId = null,
+    commentFormUrl = "",
+    container = document.getElementById(infiniteScroll.containerId),
+    loader = document.getElementById(infiniteScroll.loader);
+    
 loader.innerHTML = infiniteScroll.labels.loadingText;
 
 // SCRIPT FOR LOADING THE BLOG POSTS
 function loadPosts(json) {
 
-	var handleDiv = document.createElement('div'),
-		entry = json.feed.entry,
-		skeleton = "",
-		date, content, link, commentNum, commentFeed, formUrl;
+    var handleDiv = document.createElement('div'),
+        entry = json.feed.entry,
+        skeleton = "",
+        date, content, link, commentNum, commentFeed, formUrl;
 
-	for (var i = 0; i < infiniteScroll.numpost; i++) {
+    for (var i = 0; i < infiniteScroll.numpost; i++) {
 
-		postNum = postNum + infiniteScroll.numpost;
+        postNum = postNum + infiniteScroll.numpost;
 
-		for (var j = 0, jen = entry[i].link.length; j < jen; j++) {
-			if (entry[i].link[j].rel == "alternate") {
-				link = entry[i].link[j].href;
-				break;
-			}
-		}
-		for (var k = 0, ken = entry[i].link.length; k < ken; k++) {
-			if (entry[i].link[k].rel == "replies" && entry[i].link[k].type == "application/atom+xml") {
-				commentFeed = entry[i].link[k].href;
-				break;
-			}
-		}
-		for (var l = 0, len = entry[i].link.length; l < len; l++) {
-			if (entry[i].link[l].rel == "replies" && entry[i].link[l].type == "text/html") {
-				commentNum = entry[i].link[l].title;
-				break;
-			}
-		}
+        for (var j = 0, jen = entry[i].link.length; j < jen; j++) {
+            if (entry[i].link[j].rel == "alternate") {
+                link = entry[i].link[j].href;
+                break;
+            }
+        }
+        for (var k = 0, ken = entry[i].link.length; k < ken; k++) {
+            if (entry[i].link[k].rel == "replies" && entry[i].link[k].type == "application/atom+xml") {
+                commentFeed = entry[i].link[k].href;
+                break;
+            }
+        }
+        for (var l = 0, len = entry[i].link.length; l < len; l++) {
+            if (entry[i].link[l].rel == "replies" && entry[i].link[l].type == "text/html") {
+                commentNum = entry[i].link[l].title;
+                break;
+            }
+        }
 
-		date = entry[i].published.$t.substring(0,10).split('-');
-		content = ("content" in entry[i]) ? entry[i].content.$t : "";
+        date = entry[i].published.$t.substring(0,10).split('-');
+        content = ("content" in entry[i]) ? entry[i].content.$t : "";
 
-		formUrl = entry[i].id.$t.replace(/^(.*?)blog-(.*?)\.post-(.*?)$/,"http://www.blogger.com/comment-iframe.g?blogID=$2&postID=$3");
+        formUrl = entry[i].id.$t.replace(/^(.*?)blog-(.*?)\.post-(.*?)$/,"//www.blogger.com/comment-iframe.g?blogID=$2&postID=$3");
 
-		// This private regex is created just to handle my blog post markup pattern
-		// Ignore/remove this if you want to develop all of this script
-		content = content.replace(/<div class="jsfiddle-demo(.*?)data-src="(.*?)"(.*?)div>/ig,"<iframe src=\"$2\" class=\"jsfiddle-demo\"></iframe>").replace(/ href="\//g," href=\"" + infiniteScroll.url + "/");
-		content = content.replace(/<code class="(.*?)">(.[\w\W\n]+?)<\/code>/ig, function(m) {
-			return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link + "'>here</a>]</em>\n\n");
-		});
-		// End private regex
+        // This private regex is created just to handle my blog post markup pattern
+        // Ignore/remove this if you want to develop all of this script
+        content = content.replace(/<div class="jsfiddle-demo(.*?)data-src="(.*?)"(.*?)div>/ig,"<iframe src=\"$2\" class=\"jsfiddle-demo\"></iframe>").replace(/ href="\//g," href=\"" + infiniteScroll.url + "/");
+        content = content.replace(/<code class="(.*?)">(.[\w\W\n]+?)<\/code>/ig, function(m) {
+            return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link + "'>here</a>]</em>\n\n");
+        });
+        // End private regex
 
-		skeleton += '<div class="blog-post">';
-		skeleton += '<h2 class="blog-post-title"><a href="' + link + '" title="Read the original blog post">' + entry[i].title.$t + '</a></h2>';
-		skeleton += '<time class="blog-post-published" datetime="' + date.join('-') + '">' + date[2] + ' ' + infiniteScroll.labels.monthNames[(parseInt(date[1],10)-1)] + ' ' + date[0] + '</time>';
-		skeleton += '<div class="blog-post-body">' + content + '</div>';
-		skeleton += '<div class="comment-section" id="comment-' + postNum + '"><a title="Show comments" href="#comment-' + postNum + '" onclick="loadJSON(\'' + commentFeed + '?alt=json-in-script&reverse=false&callback=loadPostComments\', \'comment-' + postNum + '\');commentFormUrl=\'' + formUrl + '\';return false;">' + commentNum + '</a></div>';
-		skeleton += '</div>';
+        skeleton += '<div class="blog-post">';
+        skeleton += '<h2 class="blog-post-title"><a href="' + link + '" title="Read the original blog post">' + entry[i].title.$t + '</a></h2>';
+        skeleton += '<time class="blog-post-published" datetime="' + date.join('-') + '">' + date[2] + ' ' + infiniteScroll.labels.monthNames[(parseInt(date[1],10)-1)] + ' ' + date[0] + '</time>';
+        skeleton += '<div class="blog-post-body">' + content + '</div>';
+        skeleton += '<div class="comment-section" id="comment-' + postNum + '"><a title="Show comments" href="#comment-' + postNum + '" onclick="loadJSON(\'' + commentFeed + '?alt=json-in-script&reverse=false&callback=loadPostComments\', \'comment-' + postNum + '\');commentFormUrl=\'' + formUrl + '\';return false;">' + commentNum + '</a></div>';
+        skeleton += '</div>';
 
-	}
+    }
 
-	handleDiv.innerHTML = skeleton;
-	container.appendChild(handleDiv);
+    handleDiv.innerHTML = skeleton;
+    container.appendChild(handleDiv);
 
-	setTimeout(function() {
-		loader.style.bottom = '-30px';
-		loaded = true;
-	}, 500);
+    setTimeout(function() {
+        loader.style.bottom = '-30px';
+        loaded = true;
+    }, 500);
 
 }
 
 // SCRIPT FOR LOADING THE COMMENTS
 function loadPostComments(json) {
-	var entry = json.feed.entry,
-		content, avatar, author, commentator, published, isopub, deleteUri,
-		skeleton = "";
-	if (typeof entry !== "undefined") {
+    var entry = json.feed.entry,
+        content, avatar, author, commentator, published, isopub, deleteUri,
+        skeleton = "";
+    if (typeof entry !== "undefined") {
 
-		skeleton = '<ol>';
+        skeleton = '<ol>';
 
-		for (var i = 0, len = entry.length; i < len; i++) {
+        for (var i = 0, len = entry.length; i < len; i++) {
 
-			content = ("content" in entry[i]) ? entry[i].content.$t : "";
-			author = entry[i].author[0].name.$t;
-			commentator = (entry[i].author) ? '<a href="' + entry[i].author[0].uri.$t + '">' + author + '</a>' : author;
-			avatar = entry[i].author[0].gd$image.src.replace(/\/s\d+(\-c)?\//,"/s36-c/").replace(/http\:/,"");
-			published = entry[i].gd$extendedProperty[1].value;
-			isopub = entry[i].published.$t;
-			deleteUri = entry[i]["thr$in-reply-to"].ref.replace(/^(.*?)blog-(.*?)\.post-(.*?)$/,"http://www.blogger.com/delete-comment.g?blogID=$2&postID=$3");;
+            content = ("content" in entry[i]) ? entry[i].content.$t : "";
+            author = entry[i].author[0].name.$t;
+            commentator = (entry[i].author) ? '<a href="' + entry[i].author[0].uri.$t + '">' + author + '</a>' : author;
+            avatar = entry[i].author[0].gd$image.src.replace(/\/s\d+(\-c)?\//,"/s36-c/").replace(/^http\:/,"");
+            published = entry[i].gd$extendedProperty[1].value;
+            isopub = entry[i].published.$t;
+            deleteUri = entry[i]["thr$in-reply-to"].ref.replace(/^(.*?)blog-(.*?)\.post-(.*?)$/,"//www.blogger.com/delete-comment.g?blogID=$2&postID=$3");;
 
-			skeleton += '<li><div class="blog-post-comment-avatar"><img width="36" height="36" src="http:' + avatar + '" alt="' + author + '"></div><div class="blog-post-comment-item"><strong>' + commentator + ':</strong> ' + content + ' <span class="clear"></span><time class="blog-post-comment-comment-item-published" datetime="' + isopub + '" title="' + isopub + '">' + published + '</time></div></li>';
+            skeleton += '<li><div class="blog-post-comment-avatar"><img width="36" height="36" src="' + avatar + '" alt="' + author + '"></div><div class="blog-post-comment-item"><strong>' + commentator + ':</strong> ' + content + ' <span class="clear"></span><time class="blog-post-comment-comment-item-published" datetime="' + isopub + '" title="' + isopub + '">' + published + '</time></div></li>';
 
-		}
+        }
 
-		skeleton += '</ol>';
+        skeleton += '</ol>';
 
-	} else {
-		skeleton = '<div>' + infiniteScroll.labels.noComment + '</div>';
-	}
-	skeleton += '<iframe class="blog-post-comment-form" frameborder="0" src="' + commentFormUrl + '"></iframe>';
+    } else {
+        skeleton = '<div>' + infiniteScroll.labels.noComment + '</div>';
+    }
+    skeleton += '<iframe class="blog-post-comment-form" frameborder="0" src="' + commentFormUrl + '"></iframe>';
 
-	document.getElementById(dynamicId).innerHTML = skeleton;
-	loaded = true;
+    document.getElementById(dynamicId).innerHTML = skeleton;
+    loaded = true;
 }
 
 // SCRIPT FOR APPEND/REMOVE THE ASYNCHRONOUS CALLBACK SCRIPT WITH SOME LOGIC PARAMETERS
 function loadJSON(url, loadTo) {
-	dynamicId = loadTo;
-	var feedUrl = (url !== null) ? url : infiniteScroll.url + '/feeds/posts/default?alt=json-in-script&max-results=' + infiniteScroll.numpost + '&start-index=' + ((init == 1) ? 1 : (infiniteScroll.numpost*index)+1) + '&callback=loadPosts';
-	if (loaded === true) {
-		var script = document.createElement('script');
-			script.type = "text/javascript";
-			script.id = infiniteScroll.scriptId;
-			script.src = feedUrl;
-		if (document.getElementById(infiniteScroll.scriptId)) {
-			var old = document.getElementById(infiniteScroll.scriptId);
-			old.parentNode.removeChild(old);
-			if (loadTo === null) {
-				loader.style.bottom = '0';
-			} else {
-				document.getElementById(dynamicId).innerHTML = infiniteScroll.labels.loadingText;
-			}
-		}
-		document.documentElement.firstChild.appendChild(script);
-		loaded = false;
-	}
-	init = 0; // First visit = false
+    dynamicId = loadTo;
+    var feedUrl = (url !== null) ? url : infiniteScroll.url + '/feeds/posts/default?alt=json-in-script&max-results=' + infiniteScroll.numpost + '&start-index=' + ((init == 1) ? 1 : (infiniteScroll.numpost*index)+1) + '&callback=loadPosts';
+    if (loaded === true) {
+        var script = document.createElement('script');
+            script.type = "text/javascript";
+            script.id = infiniteScroll.scriptId;
+            script.src = feedUrl;
+        if (document.getElementById(infiniteScroll.scriptId)) {
+            var old = document.getElementById(infiniteScroll.scriptId);
+            old.parentNode.removeChild(old);
+            if (loadTo === null) {
+                loader.style.bottom = '0';
+            } else {
+                document.getElementById(dynamicId).innerHTML = infiniteScroll.labels.loadingText;
+            }
+        }
+        document.documentElement.firstChild.appendChild(script);
+        loaded = false;
+    }
+    init = 0; // First visit = false
 }
 
 // WINDOW SCROLL EVENT: CHECK IF WE HAVE REACHED THE END
 window.onscroll = function() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1 || navigator.userAgent.toLowerCase().indexOf("safari") > -1) {
         if (document.documentElement.scrollHeight == (document.body.scrollTop + document.documentElement.clientHeight)) {
-			index++;
-			loadJSON(null, null); // Update the callback script if we have reached end of the page
+            index++;
+            loadJSON(null, null); // Update the callback script if we have reached end of the page
         }
     } else {
         if (document.documentElement.scrollHeight == (document.documentElement.scrollTop + document.documentElement.clientHeight)) {
-			index++;
+            index++;
             loadJSON(null, null); // Update the callback script if we have reached end of the page
         }
     }

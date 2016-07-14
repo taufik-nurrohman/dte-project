@@ -1,0 +1,100 @@
+/* DEFAULT STYLE */
+
+/* selectbox wrapper */
+.select {
+  border:1px solid #ccc;
+  background-color:white;
+  display:inline-block;
+  margin:0 2px;
+  font:normal bold 11px/26px Arial,Sans-Serif;
+  height:26px;
+  color:black;
+  position:relative;
+}
+
+.select,
+.select .current {padding:0 20px 0 10px}
+
+/* select element inside the custom selectbox */
+.select select {
+  padding:0;
+  margin:0;
+  height:0;
+  visibility:hidden;
+}
+
+/* selectbox button (current value holder) */
+.select .current {
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  cursor:pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+
+/* arrow down */
+.select .current:after {
+  content:"";
+  display:block;
+  width:0;
+  height:0;
+  border:3px solid transparent;
+  border-top-color:black;
+  position:absolute;
+  top:12px;
+  right:8px;
+}
+
+/* drop down menu (fake option list) */
+.select ul {
+  border:1px solid #ccc;
+  background-color:white;
+  margin:0;
+  padding:0;
+  position:absolute;
+  top:100%;
+  right:-1px;
+  left:-1px;
+  z-index:99;
+  -webkit-box-shadow:0 1px 4px -2px rgba(0,0,0,.4);
+  -moz-box-shadow:0 1px 4px -2px rgba(0,0,0,.4);
+  box-shadow:0 1px 4px -2px rgba(0,0,0,.4);
+}
+
+/* option item (fake option item) */
+.select li {
+  list-style:none;
+  cursor:pointer;
+  padding:0 10px;
+  margin:0;
+}
+
+.select li:hover {
+  background-color:#39f;
+  color:white;
+}
+
+/* selected option */
+.select li.selected,
+.select li.selected:hover {
+  background-color:#ffc;
+  color:black;
+}
+
+/* disabled option */
+.select li.disabled,
+.select li.disabled:hover {
+  color:#bbb;
+  font-style:italic;
+  background:none;
+  cursor:text;
+}
+
+/* focused selectbox */
+.select .current.focused {background-color:#eee}

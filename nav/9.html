@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <style>
+    #nav {
+      font: normal normal 12px/normal Arial, Sans-Serif;
+    }
+    #nav ul,
+    #nav li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      position: relative;
+    }
+    #nav li {
+      float: left;
+      display: inline;
+    }
+    #nav a {
+      display: block;
+      white-space: nowrap;
+    }
+    #nav li li {
+      float: none;
+      display: block;
+    }
+    #nav li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      display: none;
+    }
+    #nav li ul ul {
+      top: 0;
+      left: 100%;
+    }
+    #nav li:hover > ul {
+      display: block;
+    }
+    </style>
+  </head>
+  <body>
+    <nav id="nav">
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Profil</a>
+          <ul>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a></li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Jurnal</a>
+          <ul>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a></li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Komentar</a>
+          <ul>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a>
+              <ul>
+                <li><a href="#">Submenu 2.1</a></li>
+                <li><a href="#">Submenu 2.2</a></li>
+                <li><a href="#">Submenu 2.3</a></li>
+                <li><a href="#">Submenu 2.4</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>

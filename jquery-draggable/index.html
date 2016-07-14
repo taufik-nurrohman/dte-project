@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta content="jquery, draggable, plugin, event, mouse" name="keywords">
-<meta content="Draggable without JQuery UI" name="description">
+<meta content="Draggable without jQuery UI" name="description">
 <title>Demo Simple JQuery Draggable</title>
-<style type="text/css">
+<style>
 
 html {overflow-y:scroll}
 
 body {
   background-color:#eee;
-  font:normal normal 16px Times,Serif;
+  font:normal normal 16px/normal Times,Serif;
   color:black;
   padding:20px 50px 50px;
 }
@@ -75,44 +75,44 @@ pre {
 }
 
 @media screen and (max-width:800px) {
-	#wrap-left,
-	#wrap-right {
-	  float:none;
-	  width:auto;
-	  margin:0 0 30px;
-	}
+    #wrap-left,
+    #wrap-right {
+      float:none;
+      width:auto;
+      margin:0 0 30px;
+    }
 }
 
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="draggable.js"></script>
-<script type="text/javascript">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="draggable.js"></script>
+<script>
 $(function() {
 
-	$('#wrap-left div').filter(':not(.with-handle)').drags();
-	$('#wrap-left .with-handle').drags({handle:"strong"});
+    $('#wrap-left div').filter(':not(.with-handle)').drags();
+    $('#wrap-left .with-handle').drags({handle:"strong"});
 
 });
 </script>
 </head>
 <body>
-<h1><a href="http://www.dte.web.id/2012/06/draggable-without-jquery-ui.html">JQuery Draggable Demo</a></h1>
+<h1><a href="//www.dte.web.id/2012/06/draggable-without-jquery-ui.html">JQuery Draggable Demo</a></h1>
 <div id="wrap-left">
-	<div class="with-handle" style="width:226px;"><strong>I'm a dragging handle<a href="#" onclick="this.parentNode.parentNode.style.visibility='hidden';return false;">&#215;</a></strong>Define the <code>handle</code> option to make a simple draggable dialog box (limited for direct children).</div>
-	<div><a href="draggable.js" target="_blank">Download Source</a></div>
-	<div><a href="draggable.min.js" target="_blank">Download Minified</a></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<span style="display:block;clear:both;"></span>
+    <div class="with-handle" style="width:226px;"><strong>I&rsquo;m a dragging handle<a href="#" onclick="this.parentNode.parentNode.style.visibility='hidden';return false;">&#215;</a></strong>Define the <code>handle</code> option to make a simple draggable dialog box (limited for direct children).</div>
+    <div><a href="draggable.js" target="_blank">Download Source</a></div>
+    <div><a href="draggable.min.js" target="_blank">Download Minified</a></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <span style="display:block;clear:both;"></span>
 </div>
 <div id="wrap-right">
-<pre><span style="color:#666;font-weight:normal;">// Simple JQuery Draggable Plugin</span>
+<pre><span style="color:#666;font-weight:normal;">// Simple jQuery Draggable Plugin</span>
 <span style="color:#666;font-weight:normal;">// https://plus.google.com/108949996304093815163/about</span>
 <span style="color:#666;font-weight:normal;">// Usage: $(selector).drags();</span>
 <span style="color:#666;font-weight:normal;">// Options:</span>

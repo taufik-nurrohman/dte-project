@@ -5,7 +5,7 @@
 <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
 <meta content="Life time, easy understanding CSS selectors" name="description">
 <title>CSS Siblings Selector Demo</title>
-<style type="text/css">
+<style>
 * {
   margin:0;
   padding:0;
@@ -70,7 +70,7 @@ textarea {
   top:-9px;
   left:10px;
   background-color:white;
-  font:normal normal 11px Tahoma,Verdana,Arial,Sans-Serif;
+  font:normal normal 11px/normal Tahoma,Verdana,Arial,Sans-Serif;
   color:black;
   padding:2px 5px;
 }
@@ -78,9 +78,9 @@ textarea {
   .col.left,
   .col.right {
     display:block;
-	float:none;
-	width:auto;
-	margin:0 0 15px;
+    float:none;
+    width:auto;
+    margin:0 0 15px;
   }
 }
 </style>
@@ -89,40 +89,40 @@ textarea {
 <div id="style"></div>
 <div id="page-wrap">
 <div class="col left" id="skeleton">
-	<h2>Kode CSS</h2><textarea id="css-text" onkeyup="makeCSS('css-text');">article div {
-  border:4px solid red !important;
-}</textarea><a href="http://hompimpaalaihumgambreng.blogspot.com">DTE :]</a>
+  <h2>Kode CSS</h2><textarea id="css-text" onkeyup="makeCSS('css-text');">article div {
+  border: 4px solid red !important;
+}</textarea><a href="//github.com/tovic">Taufik Nurrohman</a>
 </div>
 <div class="col right" id="result">
-	<h2>Tampilan</h2><article><span class="legend">&lt;article&gt;</span>
-		<div class="wrap-1"><span class="legend">&lt;div class="wrap-1"&gt;</span>
-			<div class="wrap-2"><span class="legend">&lt;div class="wrap-2"&gt;</span>
-				<div class="wrap-3"><span class="legend">&lt;div class="wrap-3"&gt;</span>
-					<div class="wrap-4"><span class="legend">&lt;div class="wrap-4"&gt;</span></div>
-				</div>
-			</div>
-		</div>
-		<div><span class="legend">&lt;div&gt;</span>
-			<div class="wrap-5"><span class="legend">&lt;div class="wrap-5"&gt;</span></div>
-		</div>
-	</article>
-	<div><span class="legend">&lt;div&gt;</span>
-		<div><span class="legend">&lt;div&gt;</span></div>
-	</div>
-	<div><span class="legend">&lt;div&gt;</span>
-		<div><span class="legend">&lt;div&gt;</span>
-			<div><span class="legend">&lt;div&gt;</span></div>
-		</div>
-	</div>
-	<div><span class="legend">&lt;div&gt;</span></div>
+  <h2>Tampilan</h2><article><span class="legend">&lt;article&gt;</span>
+    <div class="wrap-1"><span class="legend">&lt;div class="wrap-1"&gt;</span>
+      <div class="wrap-2"><span class="legend">&lt;div class="wrap-2"&gt;</span>
+        <div class="wrap-3"><span class="legend">&lt;div class="wrap-3"&gt;</span>
+          <div class="wrap-4"><span class="legend">&lt;div class="wrap-4"&gt;</span></div>
+        </div>
+      </div>
+    </div>
+    <div><span class="legend">&lt;div&gt;</span>
+      <div class="wrap-5"><span class="legend">&lt;div class="wrap-5"&gt;</span></div>
+    </div>
+  </article>
+  <div><span class="legend">&lt;div&gt;</span>
+    <div><span class="legend">&lt;div&gt;</span></div>
+  </div>
+  <div><span class="legend">&lt;div&gt;</span>
+    <div><span class="legend">&lt;div&gt;</span>
+      <div><span class="legend">&lt;div&gt;</span></div>
+    </div>
+  </div>
+  <div><span class="legend">&lt;div&gt;</span></div>
 </div>
 </div>
-<script type="text/javascript">
+<script>
 function makeCSS(value) {
-	var cssText = document.getElementById(value).value;
-		cssText = cssText.replace(/&gt;/g, ">");
-	var css  = "<style type='text/css'>" + cssText + "</style>";
-	document.getElementById('style').innerHTML = css;
+  var cssText = document.getElementById(value).value;
+    cssText = cssText.replace(/&gt;/g, ">");
+  var css  = "<style>" + cssText + "</style>";
+  document.getElementById('style').innerHTML = css;
 } makeCSS('css-text');
 </script>
 </body>

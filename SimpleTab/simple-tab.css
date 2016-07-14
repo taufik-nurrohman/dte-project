@@ -1,0 +1,51 @@
+.simpleTab {
+  width:400px;
+  color:black;
+  text-align:left;
+}
+
+.simpleTab .tab-wrapper {
+  margin:0;
+  padding:0;
+  height:30px;
+}
+
+.simpleTab .tab-wrapper li {
+  margin:0;
+  padding:0;
+  float:left;
+  list-style:none;
+  display:inline;
+}
+
+.simpleTab .tab-wrapper a {
+  margin:0 2px 0 0;
+  display:block;
+  font:normal bold 12px/30px Arial,Sans-Serif;
+  padding:0px 15px;
+  background-color:black;
+  color:white;
+  text-decoration:none;
+  border:1px solid black;
+  border-bottom:none;
+  position:relative;
+  z-index:1;
+  outline:none;
+}
+
+.simpleTab .tab-content {
+  clear:both;
+  padding:10px;
+  background-color:yellow;
+  border:1px solid black;
+  position:relative;
+  z-index:2;
+  top:-1px;
+  height:170px;
+}
+
+.simpleTab .tab-wrapper a.activeTab {
+  background-color:yellow;
+  color:black;
+  z-index:3;
+}

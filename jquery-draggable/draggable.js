@@ -1,4 +1,4 @@
-// Simple JQuery Draggable Plugin
+// Simple jQuery Draggable Plugin
 // https://plus.google.com/108949996304093815163/about
 // Usage: $(selector).drags();
 // Options:

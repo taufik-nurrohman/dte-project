@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>JQuery Easing Demo</title>
-<style type="text/css">
+<style>
 
-html {overflow-y:scroll;}
+html {overflow-y:scroll}
 
 body {
   background-color:#eee;
@@ -19,7 +19,7 @@ a {
   text-decoration:none;
 }
 
-a:hover {color:blue;}
+a:hover {color:blue}
 
 h1 {
   font:normal 18px Georgia,Serif;
@@ -46,13 +46,13 @@ h1 {
   margin:0 0 10px;
 }
 
-#page-wrap div:hover {color:#eee;}
-#page-wrap div.red {background-color:#900;}
+#page-wrap div:hover {color:#eee}
+#page-wrap div.red {background-color:#900}
 
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script type="text/javascript">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script>
 $(function() {
 	$('#page-wrap').find('div').each(function(i) {
 			i = i + 1;
