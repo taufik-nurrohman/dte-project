@@ -359,7 +359,7 @@ function getCode() {
     str += '    callBack: function() {}\n';
     str += '};\n';
     str += '&lt;/script&gt;\n';
-    str += '&lt;script src=&#39;https://cdn.rawgit.com/tovic/dte-project/v1.0.0/related-post/related-post.min.js&#39;/&gt;';
+    str += '&lt;script src=&#39;' + window.location.href.replace(/\.html$/, '.min.js') + '&#39;/&gt;';
     str += BIF_END + '\n';
     str += '&lt;!-- Related Post Widget End --&gt;';
     str += '</code></pre>';
