@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="Perbedaan antara Delay Animasi dan Intensitas Hover Animasi." name="description">
+<title>Simple jQuery .hoverTimeout() Plugin</title>
+<style>
+* {
+  margin:0;
+  padding:0;
+}
+.hidden {display:none}
+body {
+  padding:40px 50px;
+  margin:0 auto;
+  max-width:900px;
+  background-color:white;
+  color:black;
+  font:normal normal 13px/1.4 Arial,Sans-Serif;
+}
+p {
+  margin:30px 0 30px;
+}
+pre {
+  background-color:#555;
+  color:white;
+  padding:5px 10px;
+  overflow:auto;
+  word-wrap:normal;
+  white-space:pre;
+}
+.hover-box {
+  font:normal bold 16px/40px Times,Serif;
+  color:white;
+  background-color:black;
+  text-align:center;
+  position:relative;
+  cursor:pointer;
+}
+.hover-box:hover {background-color:darkblue}
+.hover-box div {
+  position:absolute;
+  top:100%;
+  right:0;
+  left:0;
+  background-color:green;
+  height:100px;
+  display:none;
+}
+#status {
+  font:normal bold 20px Times,Serif;
+  margin:15px 0;
+  padding:5px 10px;
+  border:1px solid black;
+  background-color:yellow;
+  color:red;
+}
+#status:before {
+  content:"Status: ";
+  color:black;
+}
+#status em {
+  font-weight:normal;
+  color:black;
+  font-size:16px;
+}
+table {
+  border-collapse:collapse;
+  margin:30px 0 120px;
+}
+table td {
+  width:50%;
+  vertical-align:top;
+  padding:30px 30px;
+  border:1px solid black;
+}
+footer {
+  display:block;
+  text-align:right;
+  margin:50px 0 0;
+}
+@media (max-width:800px) {
+  table td {
+    display:block;
+    width:auto;
+  }
+  #status {
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    border-width:0 0 1px;
+    z-index:99;
+    margin:0 0;
+  }
+}
+#nav {
+  margin:15px 0;
+  padding:0 0;
+  height:30px;
+  background-color:black;
+  font:normal bold 10px/30px Arial,Sans-Serif;
+  text-transform:uppercase;
+}
+#nav li {
+  margin:0 0;
+  padding:0 0;
+  list-style:none;
+  float:left;
+  display:inline;
+  position:relative;
+}
+#nav a {
+  display:block;
+  text-decoration:none;
+  color:white;
+  padding:0 15px;
+}
+#nav li ul {
+  height:auto;
+  width:200px;
+  position:absolute;
+  top:100%;
+  left:0;
+  z-index:99;
+  background-color:black;
+  display:none;
+}
+#nav li li {
+  float:none;
+  display:block;
+}
+#nav li li ul {
+  top:0;
+  left:100%;
+}
+#nav a:hover,
+#nav li:hover > a {background-color:purple}
+#nav li:hover > ul.hidden {display:block} /* CSS fallback if JavaScript is disabled */
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+// jQuery hover event with timeout by Taufik Nurrohman
+// https://plus.google.com/108949996304093815163/about
+(function($) {
+	$.fn.hoverTimeout = function(timeout1, fn1, timeout2, fn2) {
+		return this.each(function() {
+			var t = null, $this = $(this);
+			$this.hover(function() {
+				clearTimeout(t);
+				t = setTimeout(function() {
+					fn1.call($this);
+				}, timeout1);
+			}, function() {
+				clearTimeout(t);
+				t = setTimeout(function() {
+					fn2.call($this);
+				}, timeout2);
+			});
+		});
+	};
+})(jQuery);
+
+$(function() {
+
+	/* SAMPEL PERTAMA */
+
+	$('.one').hover(function() {
+		$('#status').html('Menunggu... <em>(Waiting...)</em>'); // Untuk demonstrasi...
+		$(this).children().filter(':not(:animated)').delay(1000).slideDown('normal', function() {
+			$('#status').html('Selesai! <em>(Finish!)</em>'); // Untuk demonstrasi...
+		});
+	}, function() {
+		$(this).children().slideUp();
+	});
+
+	$('.two').hoverTimeout(1000, function() {
+		$(this).children().slideDown('normal', function() {
+			$('#status').html('Selesai! <em>(Finish!)</em>').addClass('ok'); // Untuk demonstrasi...
+		});
+	}, 0, function() {
+		$(this).children().slideUp('normal', function() {
+			$('#status').removeClass('ok'); // Untuk demonstrasi...
+		});
+	}).hover(function() { // Untuk demonstrasi...
+		$('#status').html('Menunggu... <em>(Waiting...)</em>');
+	}, function() {
+		if (!$('#status').hasClass('ok')) {
+			$('#status').html('Batal. <em>(Abort)</em>');
+		}
+	});
+
+	/* SAMPEL KE DUA (MENU NAVIGASI) */
+
+	$('#nav li').hoverTimeout(400, function() {
+		$(this).children('ul').fadeIn('fast');
+	}, 400, function() {
+		$(this).children('ul').fadeOut('fast');
+	}).find('.hidden').removeClass('hidden');
+
+});
+
+</script>
+</head>
+<body>
+<h1>Perbedaan antara Delay Hover Animasi dengan Intensitas Hover Animasi (Lihat Status)</h1>
+<h3 id="status">null</h3>
+<table border="0"><tr><td>
+<div class="hover-box one">Dengan .hover() &amp; .delay()
+	<div></div>
+</div>
+<p><code>.delay()</code> hanya menahan animasi yang akan dijalankan saat pointer memasuki target, namun tidak akan membatalkan pewaktu/<em>timer</em> jika pointer keluar dari target terlalu cepat:</p><pre><code>$('.one').hover(
+    function() {
+        $(this).children().delay(<mark>1000</mark>)
+            .slideDown();
+    },
+    function() {
+        $(this).children().slideUp();
+    }
+);</code></pre></td><td>
+<div class="hover-box two">Dengan .hoverTimeout()
+	<div></div>
+</div>
+<p><code><a href="http://dte-history.blogspot.com/2012/10/jquery-hover-with-throttle-timeout.html" title="Back to article!">.hoverTimeout()</a></code> mirip dengan <code>.delay()</code>, tapi dia memiliki kemampuan untuk membatalkan pewaktu/<em>timer</em> jika pointer mouse keluar dari target terlalu cepat:</p><pre><code>$('.two').hoverTimeout(
+    <mark>1000</mark>, function() {
+        $(this).children().slideDown();
+    },
+    <mark>0</mark>, function() {
+        $(this).children().slideUp();
+    }
+);</code></pre></td><tr></table>
+<h1>Contoh Penerapan dalam Menu Navigasi</h1>
+<ul id="nav">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">About</a>
+		<ul class="hidden">
+			<li><a href="#">About Me</a></li>
+			<li><a href="#">About Us</a></li>
+			<li><a href="#">About You</a></li>
+		</ul>
+	</li>
+	<li><a href="#">Archive</a>
+		<ul class="hidden">
+			<li><a href="#">2012</a></li>
+			<li><a href="#">2011</a>
+				<ul class="hidden">
+					<li><a href="#">April</a></li>
+					<li><a href="#">Maret</a></li>
+					<li><a href="#">Februari</a></li>
+					<li><a href="#">Januari</a></li>
+				</ul>
+			</li>
+			<li><a href="#">2010</a></li>
+			<li><a href="#">2009</a></li>
+		</ul>
+	</li>
+	<li><a href="#">Contact</a></li>
+</ul>
+<pre><code>$('#nav li').hoverTimeout(400, function() {
+    $(this).children('ul').fadeIn('fast');
+}, 400, function() {
+    $(this).children('ul').fadeOut('fast');
+}).find('.hidden').removeClass('hidden');</code></pre>
+<footer><a href="http://dte-history.blogspot.com">DTE :]</a></footer>
+</body>
+</html>
