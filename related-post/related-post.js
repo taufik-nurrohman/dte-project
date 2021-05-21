@@ -1,11 +1,11 @@
-/*! Related Post Widget for Blogger by Taufik Nurrohman <https://github.com/tovic> */
+/*! Related Post Widget for Blogger by Taufik Nurrohman <https://github.com/taufik-nurrohman> */
 (function(a, b, c) {
     var hash = (new Date()).getTime();
     // Default configuration data
     var def = {
         widgetTitle: "<h4>Artikel Terkait:</h4>",
         widgetStyle: 1,
-        homePage: "http://dte-feed.blogspot.com",
+        homePage: "//dte-feed.blogspot.com",
         numPosts: 7,
         summaryLength: 370,
         titleLength: "auto",
