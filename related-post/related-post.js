@@ -48,7 +48,7 @@
         return arr;
     },
     // Check if the base variable for the tag/label list does not exist or empty
-    la = (typeof labelArray === "object" && labelArray.length) ? '/-/' + shuffle(labelArray)[0] : "",
+    la = (typeof labelArray === "object" && labelArray.length) ? '/-/' + encodeURIComponent(shuffle(labelArray)[0]) : "",
     // A "random related index" function
     // Generate random `start-index` value by loading an empty JSON feed entry
     // to get only the `json.feed.openSearch$totalResults.$t` data to fill
