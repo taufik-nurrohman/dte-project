@@ -1,5 +1,13 @@
 /*! Related Post Widget for Blogger by Taufik Nurrohman <https://github.com/taufik-nurrohman> */
 (function(a, b, c) {
+    // Hot fix <https://github.com/taufik-nurrohman/dte-project/issues/2>
+    if (typeof labelArray === "object" && labelArray.length) {
+        var em = b.createElement('em');
+        for (var i = 0, j = labelArray.length; i < j; ++i) {
+            em.innerHTML = labelArray[i];
+            labelArray[i] = em.textContent;
+        }
+    }
     var hash = (new Date()).getTime();
     // Default configuration data
     var def = {
@@ -42,7 +50,7 @@
         while (--i) {
             j = Math.floor(Math.random() * (i + 1));
             temp = arr[i];
-            arr[i] = arr[j]; 
+            arr[i] = arr[j];
             arr[j] = temp;
         }
         return arr;
